@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Represents a Person's name in the address book.
@@ -21,6 +22,8 @@ public class Name {
 
     public final String fullName;
 
+    public final String fullNameIni;
+
     /**
      * Validates given name.
      *
@@ -33,6 +36,13 @@ public class Name {
             throw new IllegalValueException(MESSAGE_NAME_CONSTRAINTS);
         }
         this.fullName = trimmedName;
+
+        String[] fullNameArray = trimmedName.split(" ");
+        String ini = "";
+        for(String namePart: fullNameArray) {
+            ini += namePart.substring(0, 1);
+        }
+        this.fullNameIni = trimmedName + " " + ini;
     }
 
     /**

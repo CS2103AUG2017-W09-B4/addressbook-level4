@@ -28,14 +28,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        String nameInitial = "";
-        for(String partName: nameKeywords) {
-            nameInitial += partName.substring(0, 1);
-        }
 
-        List<String> nameKeyWordsList = Arrays.asList(nameKeywords);
-        nameKeyWordsList.add(nameInitial);
-        return new FindCommand(new NameContainsKeywordsPredicate(nameKeyWordsList));
+        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
