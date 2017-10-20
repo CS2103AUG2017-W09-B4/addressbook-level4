@@ -45,9 +45,10 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#logging">3.2. Logging</a></li>
-<li><a href="#configuration">3.3. Configuration</a></li>
-<li><a href="#favourite-contact-system">3.4. Favourite Contact System</a></li>
+<li><a href="#sorting">3.2. Sorting</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#configuration">3.4. Configuration</a></li>
+<li><a href="#favourite-contact-system">3.5. Favourite Contact System</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -767,7 +768,57 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.2. Logging</a></h3>
+<h3 id="sorting"><a class="link" href="#sorting">3.2. Sorting</a></h3>
+<div class="paragraph">
+<p>The sort mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
+It supports the sorting of persons in the address book by the <code>PREFIX</code> specified.
+If the <code>r</code> flag is specified, the list of persons will be sorted in descending order.</p>
+</div>
+<div class="paragraph">
+<p>The sorting of persons occur in <code>UniquePersonList</code>, where a call to <code>Collections.sort</code> is
+made with the respective comparator and a <code>isReverse</code> boolean flag as parameters.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below details the flow the execution of a <code>sort n/r</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The execution of <code>sort</code> results in the reordering of the in-memory <code>UniquePersonList</code>.
+However, the change is transient and the order of the list will return to its
+original starting order as when the App initializes.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>sort</code><br>
+<strong>Alternative 1 (current choice):</strong> Sort persons through <code>UniquePersonList</code><br>
+<strong>Pros:</strong> Imputes responsibility of sorting to <code>UniquePersonList</code>, which is the class person list is declared from.<br>
+This results in fine-grained, total control over anything to do with a person list and future implementations
+will be easier and more complete.<br>
+<strong>Cons:</strong> Hard for new developers to understand the flow of sorting execution.<br>
+<strong>Alternative 2:</strong> Perform <code>sort</code> at <code>ModelManager</code> or <code>AddressBook</code> level<br>
+<strong>Pros:</strong> New developers will have an easier time tracing the sort execution flow.<br>
+<strong>Cons:</strong> <code>ModelManager</code> or <code>AddressBook</code> will be highly coupled with the sort function and
+any future changes to these classes may be more contrived and difficult.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Sort Persistence<br>
+<strong>Alternative 1 (current choice):</strong> The address book is not saved after sorting.<br>
+<strong>Pros:</strong> Users may want to sort for their current session only.<br>
+<strong>Cons:</strong> Sorting order is not retained when the program exits.<br>
+<strong>Alternative 2:</strong> Save address book after every sort<br>
+<strong>Pros:</strong> Sorting order is preserved after program exits.<br>
+<strong>Cons:</strong> The original order of the address book is lost during every sort.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -805,18 +856,18 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.3. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">3.4. Favourite Contact System</a></h3>
+<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">3.5. Favourite Contact System</a></h3>
 <div class="paragraph">
 <p>The commands related to the Favourite system rely on the "Favourite" attribute class found in the Person class. name, email &amp; address are some other attribute classes in a Person class.</p>
 </div>
 <div class="sect3">
-<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">3.4.1. Add &amp; Remove contact from Favourites (Since V1.2)</a></h4>
+<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">3.5.1. Add &amp; Remove contact from Favourites (Since V1.2)</a></h4>
 <div class="paragraph">
 <p><strong>addFave:</strong> This command&#8217;s class accepts the parsed index of the contact from the current list of contacts displayed on the GUI. The contact&#8217;s Person class is then retrieved and modified to have it&#8217;s Favourite attribute marked as true and the in-memory model of the addressbook is updated with the modified Person.</p>
 </div>
@@ -825,13 +876,13 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-of-favourite-contacts-coming-in-v1-3"><a class="link" href="#listing-of-favourite-contacts-coming-in-v1-3">3.4.2. Listing of Favourite contacts (Coming in V1.3)</a></h4>
+<h4 id="listing-of-favourite-contacts-coming-in-v1-3"><a class="link" href="#listing-of-favourite-contacts-coming-in-v1-3">3.5.2. Listing of Favourite contacts (Coming in V1.3)</a></h4>
 <div class="paragraph">
 <p><strong>listFave:</strong> This command will list all contacts who have their Favourite attribute marked as "true".</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4"><a class="link" href="#modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4">3.4.3. Modifications to existing commands in regards to Favourite system (Coming in V1.4)</a></h4>
+<h4 id="modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4"><a class="link" href="#modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4">3.5.3. Modifications to existing commands in regards to Favourite system (Coming in V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>List Command:</strong> Favourite contacts will be loaded before all other contacts.</p>
 </div>
@@ -2336,7 +2387,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 18:41:21 +00:00
+Last updated 2017-10-20 20:35:14 +00:00
 </div>
 </div>
 </body>
