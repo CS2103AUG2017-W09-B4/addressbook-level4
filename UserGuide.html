@@ -34,13 +34,17 @@
 <li><a href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#sorting-persons-code-sort-code">2.8. Sorting persons : <code>sort</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">2.9. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">2.10. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.11. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.12. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.13. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.14. Saving the data</a></li>
+<li><a href="#marking-a-person-as-favourite-code-addfave-code">2.8. Marking a person as 'Favourite': <code>addFave</code></a></li>
+<li><a href="#unmarking-a-person-as-favourite-code-removefave-code">2.9. Unmarking a person as 'Favourite': <code>removeFave</code></a></li>
+<li><a href="#creating-a-group-code-gcreate-code">2.10. Creating a group: <code>gcreate</code></a></li>
+<li><a href="#deleting-a-group-code-gdelete-code">2.11. Deleting a group: <code>gdelete</code></a></li>
+<li><a href="#sorting-persons-code-sort-code">2.12. Sorting persons : <code>sort</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">2.13. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">2.14. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.15. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">2.16. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.17. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.18. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -363,7 +367,145 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sorting-persons-code-sort-code"><a class="link" href="#sorting-persons-code-sort-code">2.8. Sorting persons : <code>sort</code></a></h3>
+<h3 id="marking-a-person-as-favourite-code-addfave-code"><a class="link" href="#marking-a-person-as-favourite-code-addfave-code">2.8. Marking a person as 'Favourite': <code>addFave</code></a></h3>
+<div class="paragraph">
+<p>Marks the person identified by the index number used in the last person listing as a 'Favourite'.<br>
+Format: <code>addFave INDEX</code><br>
+Alias: <code>af</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Marks the contact  at the specified <code>INDEX</code> as 'Favourite'.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addFave 1</code>
+Marks the 1st contact as 'Favourite' in the address book.</p>
+</li>
+<li>
+<p><code>af 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unmarking-a-person-as-favourite-code-removefave-code"><a class="link" href="#unmarking-a-person-as-favourite-code-removefave-code">2.9. Unmarking a person as 'Favourite': <code>removeFave</code></a></h3>
+<div class="paragraph">
+<p>Unmarks the person identified by the index number used in the last person listing as a 'Favourite'<br>
+Format: <code>removeFave INDEX</code><br>
+Alias: <code>rf</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Unmarks the contact at the specified <code>INDEX</code> as 'Favourite'.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>removeFave 1</code>
+Unmarks the 1st contact as 'Favourite' in the address book.</p>
+</li>
+<li>
+<p><code>af 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-group-code-gcreate-code"><a class="link" href="#creating-a-group-code-gcreate-code">2.10. Creating a group: <code>gcreate</code></a></h3>
+<div class="paragraph">
+<p>Adds a group to the address book.<br>
+Format: <code>gc n/NAME</code><br>
+Alias: <code>gc</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gcreate n/Bamboo</code></p>
+</li>
+<li>
+<p><code>gc n/W09-B4</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group-code-gdelete-code"><a class="link" href="#deleting-a-group-code-gdelete-code">2.11. Deleting a group: <code>gdelete</code></a></h3>
+<div class="paragraph">
+<p>Deletes a group from address book.<br>
+Format: <code>gdelete INDEX</code><br>
+Alias: <code>gd</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the group at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gdelete 2</code><br>
+Deletes the 2nd group in the address book.</p>
+</li>
+<li>
+<p><code>gd 2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-persons-code-sort-code"><a class="link" href="#sorting-persons-code-sort-code">2.12. Sorting persons : <code>sort</code></a></h3>
 <div class="paragraph">
 <p>Sorts persons based on prefix specified in either ascending or descending order.<br>
 Format: <code>sort [PREFIX/[r]]</code><br>
@@ -406,7 +548,7 @@ Sorts persons by phone in descending order.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.9. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.13. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code><br>
@@ -428,7 +570,7 @@ Alias: <code>h</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.10. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.14. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code><br>
@@ -474,7 +616,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.11. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.15. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code><br>
@@ -507,7 +649,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.12. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.16. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code><br>
@@ -515,14 +657,14 @@ Alias: <code>c</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.13. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.17. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.14. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.18. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -564,8 +706,20 @@ e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 e.g. <code>find James Jake</code></p>
 </li>
 <li>
-<p><strong>Sort</strong> : <code>sort [PREFIX/[r]]</code><br>
-e.g. <code>sort p/r</code></p>
+<p><strong>Mark Favourite Contact</strong> : <code>addFave INDEX</code><br>
+e.g. <code>addFave 1</code></p>
+</li>
+<li>
+<p><strong>Unmark Favourite Contact</strong> : <code>removeFave INDEX</code><br>
+e.g. <code>removeFave 2</code></p>
+</li>
+<li>
+<p><strong>Create Group</strong> : <code>gcreate n/NAME</code><br>
+e.g. <code>gcreate n/Bamboo</code></p>
+</li>
+<li>
+<p><strong>Delete Group</strong> : <code>gdelete INDEX</code><br>
+e.g. <code>gdelete 2</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
@@ -593,7 +747,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-20 10:23:14 +00:00
+Last updated 2017-10-20 16:05:23 +00:00
 </div>
 </div>
 </body>
