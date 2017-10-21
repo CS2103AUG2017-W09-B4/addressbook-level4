@@ -133,35 +133,35 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Fork this repo, and clone the fork to your computer</p>
+<p>Fork this repo, and clone the fork to your computer.</p>
 </li>
 <li>
-<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project dialog first)</p>
+<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project dialog first).</p>
 </li>
 <li>
-<p>Set up the correct JDK version for Gradle</p>
+<p>Set up the correct JDK version for Gradle.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Click <code>Configure</code> &gt; <code>Project Defaults</code> &gt; <code>Project Structure</code></p>
+<p>Click <code>Configure</code> &gt; <code>Project Defaults</code> &gt; <code>Project Structure</code>.</p>
 </li>
 <li>
-<p>Click <code>New&#8230;&#8203;</code> and find the directory of the JDK</p>
+<p>Click <code>New&#8230;&#8203;</code> and find the directory of the JDK.</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Click <code>Import Project</code></p>
+<p>Click <code>Import Project</code>.</p>
 </li>
 <li>
-<p>Locate the <code>build.gradle</code> file and select it. Click <code>OK</code></p>
+<p>Locate the <code>build.gradle</code> file and select it. Click <code>OK</code>.</p>
 </li>
 <li>
-<p>Click <code>Open as Project</code></p>
+<p>Click <code>Open as Project</code>.</p>
 </li>
 <li>
-<p>Click <code>OK</code> to accept the default settings</p>
+<p>Click <code>OK</code> to accept the default settings.</p>
 </li>
 <li>
 <p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>). It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
@@ -175,10 +175,10 @@ This will generate all resources required by the application and tests.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Run the <code>seedu.address.MainApp</code> and try a few commands</p>
+<p>Run <code>seedu.address.MainApp</code> and try a few commands.</p>
 </li>
 <li>
-<p><a href="#testing">Run the tests</a> to ensure they all pass.</p>
+<p><a href="#testing">Run the tests</a> to ensure all of them pass.</p>
 </li>
 </ol>
 </div>
@@ -188,25 +188,25 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect3">
 <h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
-<p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
+<p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order. To rectify this,</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to <code>File</code> &gt; <code>Settings&#8230;&#8203;</code> (Windows/Linux), or <code>IntelliJ IDEA</code> &gt; <code>Preferences&#8230;&#8203;</code> (macOS)</p>
+<p>Go to <code>File</code> &gt; <code>Settings&#8230;&#8203;</code> (Windows/Linux), or <code>IntelliJ IDEA</code> &gt; <code>Preferences&#8230;&#8203;</code> (macOS).</p>
 </li>
 <li>
-<p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code></p>
+<p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code>.</p>
 </li>
 <li>
-<p>Click on the <code>Imports</code> tab to set the order</p>
+<p>Click on the <code>Imports</code> tab to set the order.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements</p>
+<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set both to <code>999</code> to prevent IntelliJ from contracting the import statements.</p>
 </li>
 <li>
-<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code></p>
+<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code>.</p>
 </li>
 </ul>
 </div>
@@ -214,7 +214,7 @@ This will generate all resources required by the application and tests.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Optionally, you can follow the <a href="UsingCheckstyle.html">UsingCheckstyle.adoc</a> document to configure Intellij to check style-compliance as you write code.</p>
+<p>Optionally, you can follow <a href="UsingCheckstyle.html">UsingCheckstyle.adoc</a> to configure Intellij to check for style-compliance as you write code.</p>
 </div>
 </div>
 <div class="sect3">
@@ -252,7 +252,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Get some sense of the overall design by reading the <a href="#architecture">Architecture</a> section.</p>
+<p>Understand the overall design by reading the <a href="#architecture">Architecture</a> section.</p>
 </li>
 <li>
 <p>Take a look at the section <a href="#suggested-programming-tasks-to-get-started">Suggested Programming Tasks to Get Started</a>.</p>
@@ -277,7 +277,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <p><em>Figure 2.1.1 : Architecture Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the application. Given below is a quick overview of each component.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -292,15 +292,15 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</p>
+<p><strong>At app launch</strong>: Initializes the components in the correct sequence, and connects them up with each other.</p>
 </li>
 <li>
-<p>At shut down: Shuts down the components and invokes cleanup method where necessary.</p>
+<p><strong>At shut down</strong>: Shuts down the components and invokes cleanup method where necessary.</p>
 </li>
 </ul>
 </div>
@@ -310,7 +310,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="ulist">
 <ul>
 <li>
-<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design).</p>
 </li>
 <li>
 <p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
@@ -318,7 +318,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </ul>
 </div>
 <div class="paragraph">
-<p>The rest of the App consists of four components.</p>
+<p>The rest of the App consists of four components:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -337,7 +337,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </ul>
 </div>
 <div class="paragraph">
-<p>Each of the four components</p>
+<p>Each of the four components:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -350,7 +350,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <code>Logic</code> component (refer to the class diagram given below) defines its API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -422,27 +422,41 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
 </div>
 <div class="paragraph">
+<p><strong>TODO: Edit diagram towards the end to reflect final names or changes</strong></p>
+</div>
+<div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts (e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>GroupListPanel</code>, <code>StatusBarFooter</code>, <code>ContactDetailsPanel</code>, etc.). All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses the JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.
+<code>.fxml</code> files should only be used to <strong>define the basic layout or content placeholders</strong> in the UI. <strong>Actual content values should be instantiated by code</strong> as much as possible.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <code>.fxml</code> files may not immediately reflect all the UI parts that are seen on run-time. This is because some UI parts are instantiated by code only on run-time, so opening the <code>.fxml</code> files in Scene Builder will not show certain parts of the UI
+(e.g. the circular contact image in the contact details panel, instantiated inside <code>setContactImage()</code> in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a>).</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component does the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
+<p>Uses <code>.fxml</code> and resource files (e.g. images, fonts) in <code>src\main\resources</code> that gives the application its look.</p>
+</li>
+<li>
 <p>Executes user commands using the <code>Logic</code> component.</p>
 </li>
 <li>
-<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</p>
+<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> changes.</p>
 </li>
 <li>
-<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
+<p>Responds to events raised from various parts of the application (through event subscribers such as <code>handlePersonPanelSelectionChangedEvent</code> in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a>) and updates the UI accordingly.</p>
+</li>
+<li>
+<p>Animates certain parts of the application, mostly in the contact details panel.</p>
 </li>
 </ul>
 </div>
@@ -825,10 +839,10 @@ any future changes to these classes may be more contrived and difficult.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#configuration">Configuration</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#configuration">Configuration</a>).</p>
 </li>
 <li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
 </li>
 <li>
 <p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
@@ -841,16 +855,16 @@ any future changes to these classes may be more contrived and difficult.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application.</p>
 </li>
 <li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
+<p><code>WARNING</code> : Can continue, but with caution.</p>
 </li>
 <li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+<p><code>INFO</code> : Information showing the noteworthy actions by the application.</p>
 </li>
 <li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size.</p>
 </li>
 </ul>
 </div>
@@ -867,7 +881,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 <p>The commands related to the Favourite system rely on the "Favourite" attribute class found in the Person class. name, email &amp; address are some other attribute classes in a Person class.</p>
 </div>
 <div class="sect3">
-<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">3.5.1. Add &amp; Remove contact from Favourites (Since V1.2)</a></h4>
+<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">3.5.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
 <p><strong>addFave:</strong> This command&#8217;s class accepts the parsed index of the contact from the current list of contacts displayed on the GUI. The contact&#8217;s Person class is then retrieved and modified to have it&#8217;s Favourite attribute marked as true and the in-memory model of the addressbook is updated with the modified Person.</p>
 </div>
@@ -876,7 +890,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-of-favourite-contacts-coming-in-v1-3"><a class="link" href="#listing-of-favourite-contacts-coming-in-v1-3">3.5.2. Listing of Favourite contacts (Coming in V1.3)</a></h4>
+<h4 id="listing-of-favourite-contacts-coming-in-v1-3"><a class="link" href="#listing-of-favourite-contacts-coming-in-v1-3">3.5.2. Listing of Favourite contacts (coming in V1.3)</a></h4>
 <div class="paragraph">
 <p><strong>listFave:</strong> This command will list all contacts who have their Favourite attribute marked as "true".</p>
 </div>
@@ -885,6 +899,12 @@ any future changes to these classes may be more contrived and difficult.</p>
 <h4 id="modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4"><a class="link" href="#modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4">3.5.3. Modifications to existing commands in regards to Favourite system (Coming in V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>List Command:</strong> Favourite contacts will be loaded before all other contacts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">3.5.4. Animation in the contact details panel (since V1.2)</a></h4>
+<div class="paragraph">
+<p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in any node(s) and animates it through the use of various <code>Transitions</code>.</p>
 </div>
 </div>
 </div>
@@ -971,7 +991,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The most reliable way to run tests is the 3rd one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies.
+The most reliable way to run tests is the 3rd one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies. Refer to <code>5.3 Troubleshooting Testing</code> if test failures occur.
 </td>
 </tr>
 </table>
@@ -985,7 +1005,7 @@ The most reliable way to run tests is the 3rd one. The first two methods might f
 <p>To run all tests, right-click on the <code>src/test/java</code> folder and choose <code>Run 'All Tests'</code></p>
 </li>
 <li>
-<p>To run a subset of tests, you can right-click on a test package, test class, or a test and choose <code>Run 'ABC'</code></p>
+<p>To run a subset of tests, right-click on a test package or test class and choose <code>Run 'ABC'</code>, where <code>ABC</code> is your desired test.</p>
 </li>
 </ul>
 </div>
@@ -995,7 +1015,7 @@ The most reliable way to run tests is the 3rd one. The first two methods might f
 <div class="ulist">
 <ul>
 <li>
-<p>Open a console and run the command <code>gradlew clean allTests</code> (Mac/Linux: <code>./gradlew clean allTests</code>)</p>
+<p>Open a console and run the command <code>gradlew clean allTests</code> (Mac/Linux: <code>./gradlew clean allTests</code>).</p>
 </li>
 </ul>
 </div>
@@ -1018,7 +1038,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <p>Thanks to the <a href="https://github.com/TestFX/TestFX">TestFX</a> library we use, our GUI tests can be run in the <em>headless</em> mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.</p>
 </div>
 <div class="paragraph">
-<p>To run tests in headless mode, open a console and run the command <code>gradlew clean headless allTests</code> (Mac/Linux: <code>./gradlew clean headless allTests</code>)</p>
+<p>To run tests in headless mode, open a console and run the command <code>gradlew clean headless allTests</code> (Mac/Linux: <code>./gradlew clean headless allTests</code>).</p>
 </div>
 </div>
 <div class="sect2">
@@ -1029,7 +1049,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>GUI Tests</strong> - These are tests involving the GUI. They include,</p>
+<p><strong>GUI Tests</strong> - These are tests involving the GUI. They include:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1042,7 +1062,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </li>
 <li>
-<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include,</p>
+<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1075,6 +1095,19 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 <li>
 <p>Solution: Execute Gradle task <code>processResources</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>BoundsLocatorException</code>.</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reason: The window size of the test application is too small.</p>
+</li>
+<li>
+<p>Solution: Open <code>src/test/java/seedu/address/TestApp.java</code> and find the <code>initPrefs</code> method. Find <code>new GuiSettings</code> inside the method and enlarge the window size accordingly.</p>
 </li>
 </ul>
 </div>
@@ -2294,6 +2327,14 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect1">
 <h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
+<div id="checkstyle" class="paragraph">
+<p>Checkstyle</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A development tool to help programmers write Java code that adheres to a coding standard by automatically checking Java code.</pre>
+</div>
+</div>
 <div id="command" class="paragraph">
 <p>Command(s)</p>
 </div>
@@ -2307,15 +2348,23 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>The events center is a module in the application that handles any user inputs or events that occur, reducing direct coupling between components</pre>
+<pre>The events center is a module in the application that handles any user inputs or events that occur, reducing direct coupling between components.</pre>
 </div>
 </div>
-<div id="jdk" class="paragraph">
-<p>Java Development Kit</p>
+<div id="forking" class="paragraph">
+<p>Forking</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>The development kit that is required for developing the application (default location is "C:\Program Files\Java\jdkx.x.x_xxx", where the x's denote the version number)</pre>
+<pre>The cloning/copying of a repository.</pre>
+</div>
+</div>
+<div id="jdk" class="paragraph">
+<p>Java Development Kit.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The development kit that is required for developing the application (default location is "C:\Program Files\Java\jdkx.x.x_xxx", where the x's denote the version number).</pre>
 </div>
 </div>
 <div id="json" class="paragraph">
@@ -2323,7 +2372,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>An easy-to-read data storage format</pre>
+<pre>An easy-to-read data storage format.</pre>
 </div>
 </div>
 <div id="mainstream-os" class="paragraph">
@@ -2331,7 +2380,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Windows, Linux, Unix, OS-X</pre>
+<pre>Windows, Linux, Unix, OS-X.</pre>
 </div>
 </div>
 <div id="parser" class="paragraph">
@@ -2339,7 +2388,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Parsers are used to verify the format of commands used. e.g. Adding a contact while parsing given parameters such as email and tags</pre>
+<pre>Parsers are used to verify the format of commands used. e.g. Adding a contact while parsing given parameters such as email and tags.</pre>
 </div>
 </div>
 <div id="private-contact-detail" class="paragraph">
@@ -2347,7 +2396,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>A contact detail that is not meant to be shared with others</pre>
+<pre>A contact detail that is not meant to be shared with others.</pre>
 </div>
 </div>
 <div id="tag" class="paragraph">
@@ -2355,23 +2404,23 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>The label(s) attached to a contact for the purpose of identification or related groupings</pre>
+<pre>The label(s) attached to a contact for the purpose of identification or related groupings.</pre>
 </div>
 </div>
 <div id="travisci" class="paragraph">
-<p>Travis Continuous Integration</p>
+<p>Continuous Integration (CI)</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Travis-CI is a build automation tool that helps developers understand if their application is working by building, testing and reporting on the build sequences the developer has configured</pre>
+<pre>Build automation tool that helps developers understand if their application is working by building, testing and reporting on the build sequences the developer has configured. This project uses Travis and AppVeyor.</pre>
 </div>
 </div>
 <div id="ui" class="paragraph">
-<p>User Interface</p>
+<p>User Interface (UI)</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>The user interface is a front-facing component and is what the user sees. It is used to show information, as well as get user input for different operations such as adding and deleting contacts</pre>
+<pre>The user interface is a front-facing component and is what the user sees. It is used to show information, as well as get user input for different operations such as adding and deleting contacts.</pre>
 </div>
 </div>
 <div id="undoredostack" class="paragraph">
@@ -2379,7 +2428,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>The application's state(s) that are stored on two stacks, which allow undo's and redo's, reverting the state of the application to before or after commands are run respectively</pre>
+<pre>The application's state(s) that are stored on two stacks, which allow undo's and redo's, reverting the state of the application to before or after commands are run respectively.</pre>
 </div>
 </div>
 </div>
@@ -2387,7 +2436,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-21 16:43:16 +00:00
+Last updated 2017-10-21 16:52:15 +00:00
 </div>
 </div>
 </body>
