@@ -31,7 +31,7 @@
 <li><a href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></li>
 <li><a href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></li>
 <li><a href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></li>
+<li><a href="#locating-persons-by-name-address-or-phone-number-code-find-code">2.5. Locating persons by name, address or phone number: <code>find</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></li>
 <li><a href="#marking-a-person-as-favourite-code-fadd-code-since-v1-2">2.8. Marking a person as 'Favourite': <code>fadd</code> (Since V1.2)</a></li>
@@ -238,9 +238,9 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">2.5. Locating persons by name: <code>find</code></a></h3>
+<h3 id="locating-persons-by-name-address-or-phone-number-code-find-code"><a class="link" href="#locating-persons-by-name-address-or-phone-number-code-find-code">2.5. Locating persons by name, address or phone number: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
+<p>Finds persons whose names or name initial or address or phone number contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code><br>
 Alias: <code>f</code></p>
 </div>
@@ -252,10 +252,13 @@ Alias: <code>f</code></p>
 <p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
 </li>
 <li>
+<p>The search can be done with initials. e.g. <code>AY</code> will match <code>Alex Yeoh</code></p>
+</li>
+<li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>Name, phone number and addresses are searched.</p>
 </li>
 <li>
 <p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
@@ -273,12 +276,24 @@ Alias: <code>f</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
+<p><code>find (n/)John</code><br>
 Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
+<p><code>find (n/)Betsy Tim John</code><br>
 Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+<li>
+<p><code>find (n/)AY</code><br>
+Returns <code>Alex Yeoh</code> whose name initial is <code>AY</code></p>
+</li>
+<li>
+<p><code>find p/83537423</code><br>
+Returns any person with phone number <code>83537423</code></p>
+</li>
+<li>
+<p><code>find a/earth</code><br>
+Returns any person with address <code>earth</code></p>
 </li>
 </ul>
 </div>
@@ -790,7 +805,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-31 15:27:04 +00:00
+Last updated 2017-10-31 20:00:25 +00:00
 </div>
 </div>
 </body>
