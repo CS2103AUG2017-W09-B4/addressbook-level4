@@ -31,21 +31,25 @@
 <li><a href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></li>
 <li><a href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></li>
 <li><a href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-address-or-phone-number-code-find-code">2.5. Locating persons by name, address or phone number: <code>find</code></a></li>
+<li><a href="#locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4">2.5. Locating persons by name, address or phone number: <code>find</code> (Since V1.4)</a></li>
 <li><a href="#deleting-a-person-code-delete-code">2.6. Deleting a person : <code>delete</code></a></li>
 <li><a href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></li>
 <li><a href="#marking-a-person-as-favourite-code-fadd-code-since-v1-2">2.8. Marking a person as 'Favourite': <code>fadd</code> (Since V1.2)</a></li>
 <li><a href="#unmarking-a-person-as-favourite-code-fremove-code-since-v1-2">2.9. Unmarking a person as 'Favourite': <code>fremove</code> (Since V1.2)</a></li>
 <li><a href="#creating-a-group-code-gcreate-code-since-v1-2">2.10. Creating a group: <code>gcreate</code> (Since V1.2)</a></li>
 <li><a href="#adding-a-person-to-a-group-code-gadd-code-since-v1-3">2.11. Adding a person to a group: <code>gadd</code> (Since V1.3)</a></li>
-<li><a href="#deleting-a-group-code-gdelete-code-since-v1-2">2.12. Deleting a group: <code>gdelete</code> (Since V1.2)</a></li>
-<li><a href="#sorting-persons-code-sort-code-since-v1-1">2.13. Sorting persons : <code>sort</code> (Since V1.1)</a></li>
-<li><a href="#listing-entered-commands-code-history-code">2.14. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">2.15. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.16. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">2.17. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">2.19. Saving the data</a></li>
+<li><a href="#removing-a-person-to-a-group-code-gremove-code-since-v1-3">2.12. Removing a person to a group: <code>gremove</code> (Since V1.3)</a></li>
+<li><a href="#deleting-a-group-code-gdelete-code-since-v1-2">2.13. Deleting a group: <code>gdelete</code> (Since V1.2)</a></li>
+<li><a href="#adding-a-schedule-to-a-person-code-cadd-code-since-v1-4">2.14. Adding a schedule to a person : <code>cadd</code> (Since V1.4)</a></li>
+<li><a href="#setting-the-photo-of-a-person-code-ppset-code-since-v1-4">2.15. Setting the photo of a person: <code>ppset</code> (Since V1.4)</a></li>
+<li><a href="#resetting-the-photo-of-a-person-code-ppreset-code-since-v1-4">2.16. Resetting the photo of a person: <code>ppreset</code> (Since V1.4)</a></li>
+<li><a href="#sorting-persons-code-sort-code-since-v1-1">2.17. Sorting persons : <code>sort</code> (Since V1.1)</a></li>
+<li><a href="#listing-entered-commands-code-history-code">2.18. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">2.19. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">2.20. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">2.21. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.22. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">2.23. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">3. FAQ</a></li>
@@ -238,10 +242,10 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-address-or-phone-number-code-find-code"><a class="link" href="#locating-persons-by-name-address-or-phone-number-code-find-code">2.5. Locating persons by name, address or phone number: <code>find</code></a></h3>
+<h3 id="locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4"><a class="link" href="#locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4">2.5. Locating persons by name, address or phone number: <code>find</code> (Since V1.4)</a></h3>
 <div class="paragraph">
-<p>Finds persons whose names or name initial or address or phone number contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code><br>
+<p>Finds persons whose names or name initials or address or phone number contain any of the given keywords.<br>
+Format: <code>find [n/] [p/] [a/] KEYWORD [MORE_KEYWORDS]</code><br>
 Alias: <code>f</code></p>
 </div>
 <div class="sidebarblock">
@@ -276,15 +280,15 @@ Alias: <code>f</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find (n/)John</code><br>
+<p><code>find John</code><br>
 Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>find (n/)Betsy Tim John</code><br>
+<p><code>find Betsy Tim John</code><br>
 Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 <li>
-<p><code>find (n/)AY</code><br>
+<p><code>find AY</code><br>
 Returns <code>Alex Yeoh</code> whose name initial is <code>AY</code></p>
 </li>
 <li>
@@ -520,7 +524,45 @@ Alias: <code>ga</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-group-code-gdelete-code-since-v1-2"><a class="link" href="#deleting-a-group-code-gdelete-code-since-v1-2">2.12. Deleting a group: <code>gdelete</code> (Since V1.2)</a></h3>
+<h3 id="removing-a-person-to-a-group-code-gremove-code-since-v1-3"><a class="link" href="#removing-a-person-to-a-group-code-gremove-code-since-v1-3">2.12. Removing a person to a group: <code>gremove</code> (Since V1.3)</a></h3>
+<div class="paragraph">
+<p>Adds a group to the address book.<br>
+Format: <code>gremove g/GROUP INDEX p/PERSON INDEX</code><br>
+Alias: <code>gr</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes person from the group at the specified <code>GROUP INDEX</code> and <code>PERSON INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gremove g/1 p/2</code></p>
+</li>
+<li>
+<p><code>gr g/3 p/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group-code-gdelete-code-since-v1-2"><a class="link" href="#deleting-a-group-code-gdelete-code-since-v1-2">2.13. Deleting a group: <code>gdelete</code> (Since V1.2)</a></h3>
 <div class="paragraph">
 <p>Deletes a group from address book.<br>
 Format: <code>gdelete INDEX</code><br>
@@ -559,7 +601,115 @@ Deletes the 2nd group in the address book.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sorting-persons-code-sort-code-since-v1-1"><a class="link" href="#sorting-persons-code-sort-code-since-v1-1">2.13. Sorting persons : <code>sort</code> (Since V1.1)</a></h3>
+<h3 id="adding-a-schedule-to-a-person-code-cadd-code-since-v1-4"><a class="link" href="#adding-a-schedule-to-a-person-code-cadd-code-since-v1-4">2.14. Adding a schedule to a person : <code>cadd</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Adds a person&#8217;s Google Calendar events to schedules.<br>
+Format: <code>cadd p/PERSON INDEX i/GOOGLE CALENDAR ID</code>
+Alias: <code>ca</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds schedule list to person at specified <code>INDEX</code></p>
+</li>
+<li>
+<p>Calendar ID must be from publicly shared Calendar.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cadd p/2 i/b8dyuv028k71krma10abbc8f3s</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-the-photo-of-a-person-code-ppset-code-since-v1-4"><a class="link" href="#setting-the-photo-of-a-person-code-ppset-code-since-v1-4">2.15. Setting the photo of a person: <code>ppset</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Sets the photo of a person.<br>
+Format: <code>ppset INDEX fp/FILEPATH</code>
+Alias: pps</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds photo to person at specified <code>INDEX</code></p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ppset 1 fp/C:\Users\nas.png</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resetting-the-photo-of-a-person-code-ppreset-code-since-v1-4"><a class="link" href="#resetting-the-photo-of-a-person-code-ppreset-code-since-v1-4">2.16. Resetting the photo of a person: <code>ppreset</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Resets photo of a person to default picture.<br>
+Format: <code>ppreset INDEX</code>
+Alias: ppr</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Resets photo of person at specified <code>INDEX</code></p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ppreset 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-persons-code-sort-code-since-v1-1"><a class="link" href="#sorting-persons-code-sort-code-since-v1-1">2.17. Sorting persons : <code>sort</code> (Since V1.1)</a></h3>
 <div class="paragraph">
 <p>Sorts persons based on prefix specified in either ascending or descending order.<br>
 Format: <code>sort [PREFIX/[r]]</code><br>
@@ -602,7 +752,7 @@ Sorts persons by phone in descending order.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.14. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">2.18. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code><br>
@@ -624,7 +774,7 @@ Alias: <code>h</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.15. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">2.19. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code><br>
@@ -670,7 +820,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.16. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">2.20. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code><br>
@@ -703,7 +853,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.17. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">2.21. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code><br>
@@ -711,14 +861,14 @@ Alias: <code>c</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.18. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.22. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">2.23. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -805,7 +955,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-10-31 20:00:25 +00:00
+Last updated 2017-10-31 21:01:04 +00:00
 </div>
 </div>
 </body>
