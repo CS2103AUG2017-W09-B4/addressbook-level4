@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author cjianhui
+
 /**
  * Parses input arguments and creates a new SelectCommand object
  */

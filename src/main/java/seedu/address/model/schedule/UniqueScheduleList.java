@@ -16,6 +16,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.schedule.exceptions.DuplicateScheduleException;
 import seedu.address.model.schedule.exceptions.ScheduleNotFoundException;
 
+//@@author Procrastinatus
 
 /**
  * A list of schedules that enforces no nulls and uniqueness between its elements.

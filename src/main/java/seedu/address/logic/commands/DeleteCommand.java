@@ -25,6 +25,7 @@ public class DeleteCommand extends UndoableCommand {
 
     private Index targetIndex;
 
+    //@@author Procrastinatus
     private Index[] targetIndexes;
 
     public DeleteCommand(Index targetIndex) {
@@ -69,6 +70,7 @@ public class DeleteCommand extends UndoableCommand {
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

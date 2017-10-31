@@ -76,9 +76,11 @@ public abstract class AddressBookGuiTest {
         return mainWindowHandle.getPersonListPanel();
     }
 
+    //@@author Procrastinatus
     protected GroupListPanelHandle getGroupListPanel() {
         return mainWindowHandle.getGroupListPanel();
     }
+    //@@author
 
     protected MainMenuHandle getMainMenu() {
         return mainWindowHandle.getMainMenu();

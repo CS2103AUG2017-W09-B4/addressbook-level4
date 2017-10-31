@@ -57,8 +57,10 @@ public class MainWindow extends UiPart<Region> {
     @FXML
     private StackPane personListPanelPlaceholder;
 
+    //@@author Procrastinatus
     @FXML
     private StackPane groupListPanelPlaceholder;
+    //@@author
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,14 +134,18 @@ public class MainWindow extends UiPart<Region> {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
 
+        //@@author Procrastinatus
         ScheduleListPanel scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         browserPanel.getSchedulePlaceholder().getChildren().add(scheduleListPanel.getRoot());
+        //@@author
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        //@@author Procrastinatus
         GroupListPanel groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
+        //@@author
 
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -9,6 +9,7 @@ import seedu.address.model.schedule.ReadOnlySchedule;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleName;
 
+//@@author Procrastinatus
 
 /**
  * JAXB-friendly adapted version of the Schedule.

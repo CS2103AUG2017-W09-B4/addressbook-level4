@@ -20,6 +20,8 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
+//@@author nassy93
+
 /**
  * Sets Favourite attribute of Indexed person as false in the address book. (remove from favourites)
  */

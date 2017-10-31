@@ -23,11 +23,14 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlyPerson> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    //@@author cjianhui
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlyGroup> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
 
+    //@@author Procrastinatus
     /** {@code Predicate} that always evaluate to true */
     Predicate<ReadOnlySchedule> PREDICATE_SHOW_ALL_SCHEDULES = unused -> true;
+    //@@author
 
     /** Clears existing backing model and replaces with the provided new data. */
     void resetData(ReadOnlyAddressBook newData);
@@ -38,12 +41,15 @@ public interface Model {
     /** Deletes the given person. */
     void deletePerson(ReadOnlyPerson target) throws PersonNotFoundException;
 
+    //@@author Procrastinatus
     /** Deletes the given persons. */
     void deletePersons(ReadOnlyPerson[] targets) throws PersonNotFoundException;
+    //@@author
 
     /** Adds the given person */
     void addPerson(ReadOnlyPerson person) throws DuplicatePersonException;
 
+    //@@author cjianhui
     /** Sorts address book list */
     void sortPerson(Comparator<ReadOnlyPerson> sortComparator, boolean isReverseOrder) throws NoPersonsException;
 
@@ -53,12 +59,14 @@ public interface Model {
     /** Deletes the given group */
     void deleteGroup(ReadOnlyGroup group) throws GroupNotFoundException;
 
+    //@@author Procrastinatus
     /** Adds the given schedule */
     void addSchedule(ReadOnlySchedule schedule) throws DuplicateScheduleException;
 
     /** Deletes the given schedule */
     void deleteSchedule(ReadOnlySchedule schedule) throws ScheduleNotFoundException;
 
+    //@@author cjianhui
     /** Adds given person to given group */
     void addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd) throws
             GroupNotFoundException, PersonNotFoundException, DuplicatePersonException;
@@ -81,9 +89,11 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
+    //@@author cjianhui
     /** Returns an unmodifiable view of the filtered group list */
     ObservableList<ReadOnlyGroup> getFilteredGroupList();
 
+    //@@author Procrastinatus
     /** Returns an unmodifiable view of the filtered schedule list */
     ObservableList<ReadOnlySchedule> getFilteredScheduleList();
 
@@ -95,12 +105,14 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
 
+    //@@author cjianhui
     /**
      * Updates the filter of the filtered group list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGroupList(Predicate<ReadOnlyGroup> predicate);
 
+    //@@author Procrastinatus
     /**
      * Updates the filter of the filtered schedule list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

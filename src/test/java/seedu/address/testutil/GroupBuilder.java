@@ -5,6 +5,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.group.ReadOnlyGroup;
 
+//@@author Procrastinatus
 
 /**
  * A utility class to help with building Group objects.

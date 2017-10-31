@@ -80,6 +80,7 @@ public class TypicalPersons {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
+    //@@author cjianhui
     public static AddressBook getEmptyAddressBook() {
         AddressBook ab = new AddressBook();
         return ab;

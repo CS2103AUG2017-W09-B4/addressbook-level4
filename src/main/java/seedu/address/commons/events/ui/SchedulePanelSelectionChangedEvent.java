@@ -3,8 +3,10 @@ package seedu.address.commons.events.ui;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.ui.ScheduleCard;
 
+//@@author Procrastinatus
+
 /**
- * Represents a selection change in the Person List Panel
+ * Represents a selection change in the Schedule List Panel
  */
 public class SchedulePanelSelectionChangedEvent extends BaseEvent {
 

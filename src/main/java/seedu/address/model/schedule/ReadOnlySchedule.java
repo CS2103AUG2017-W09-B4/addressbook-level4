@@ -3,6 +3,8 @@ package seedu.address.model.schedule;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 
+//@@author Procrastinatus
+
 /**
  * A read-only immutable interface for a Group in the addressbook.
  * Implementations should guarantee: details are present and not null, field values are validated.

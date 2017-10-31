@@ -1,23 +1,41 @@
-package seedu.address.logic.commands;
+# cjianhui
+###### \java\seedu\address\logic\commands\AddCommandTest.java
+``` java
+        @Override
+        public void addGroup(ReadOnlyGroup group) throws DuplicateGroupException {
+            fail("This method should not be called.");
+        }
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getEmptyAddressBook;
-import static seedu.address.testutil.TypicalPersons.getSortedAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+        @Override
+        public void deleteGroup(ReadOnlyGroup group) throws GroupNotFoundException {
+            fail("This method should not be called.");
+        }
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+```
+###### \java\seedu\address\logic\commands\AddCommandTest.java
+``` java
+        @Override
+        public void addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd)
+                throws GroupNotFoundException, PersonNotFoundException, DuplicatePersonException {
+            fail("This method should not be called.");
+        }
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.UndoRedoStack;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.CliSyntax;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+        @Override
+        public void deletePersonFromGroup(Index targetGroup, ReadOnlyPerson toRemove)
+                throws GroupNotFoundException, PersonNotFoundException, NoPersonsException {
+            fail("This method should not be called.");
+        }
+```
+###### \java\seedu\address\logic\commands\AddCommandTest.java
+``` java
+        @Override
+        public void updateFilteredGroupList(Predicate<ReadOnlyGroup> predicate) {
+            fail("This method should not be called.");
+        }
 
-//@@author cjianhui
+```
+###### \java\seedu\address\logic\commands\SortCommandTest.java
+``` java
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
@@ -124,3 +142,62 @@ public class SortCommandTest {
 
 
 }
+```
+###### \java\seedu\address\testutil\TypicalPersons.java
+``` java
+    public static AddressBook getEmptyAddressBook() {
+        AddressBook ab = new AddressBook();
+        return ab;
+    }
+
+    public static AddressBook getSortedAddressBook(String type, boolean isReverseOrder) {
+        AddressBook ab = new AddressBook();
+        List<ReadOnlyPerson> personList;
+
+        switch(type) {
+        case "name":
+            personList = getTypicalPersons();
+            break;
+        case "phone":
+            personList = getTypicalPersonsSortedByPhone();
+            break;
+        case "email":
+            personList = getTypicalPersonsSortedByEmail();
+            break;
+        case "address":
+            personList = getTypicalPersonsSortedByAddress();
+            break;
+        default:
+            personList = getTypicalPersons();
+        }
+
+        if (isReverseOrder) {
+            Collections.reverse(personList);
+        }
+
+        for (ReadOnlyPerson person : personList) {
+            try {
+                ab.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                assert false : "not possible";
+            }
+        }
+
+        return ab;
+    }
+
+    public static List<ReadOnlyPerson> getTypicalPersonsSortedByPhone() {
+        return new ArrayList<>(Arrays.asList(ALICE, DANIEL, ELLE, FIONA, GEORGE, CARL, BENSON));
+    }
+
+    public static List<ReadOnlyPerson> getTypicalPersonsSortedByEmail() {
+        return new ArrayList<>(Arrays.asList(ALICE, GEORGE, DANIEL, CARL, BENSON, FIONA, ELLE));
+    }
+
+    public static List<ReadOnlyPerson> getTypicalPersonsSortedByAddress() {
+        return new ArrayList<>(Arrays.asList(DANIEL, ALICE, BENSON, GEORGE, FIONA, ELLE, CARL));
+    }
+
+
+}
+```

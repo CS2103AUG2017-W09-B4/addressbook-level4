@@ -81,6 +81,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author Procrastinatus
     @Override
     public synchronized void deletePersons(ReadOnlyPerson[] targets) throws PersonNotFoundException {
         for (ReadOnlyPerson target : targets) {
@@ -89,6 +90,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
     }
+    //@@author
 
     @Override
     public synchronized void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
@@ -105,6 +107,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author cjianhui
     @Override
     public void sortPerson(Comparator<ReadOnlyPerson> sortComparator, boolean isReverseOrder)
             throws NoPersonsException {
@@ -124,12 +127,14 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author Procrastinatus
     @Override
     public void addSchedule(ReadOnlySchedule schedule) throws DuplicateScheduleException {
         addressBook.addSchedule(schedule);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
+    //@@author cjianhui
     @Override
     public void addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd)
             throws GroupNotFoundException, PersonNotFoundException, DuplicatePersonException {
@@ -138,12 +143,14 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author Procrastinatus
     @Override
     public void deleteSchedule(ReadOnlySchedule target) throws ScheduleNotFoundException {
         addressBook.removeSchedule(target);
         indicateAddressBookChanged();
     }
 
+    //@@author cjianhui
     @Override
     public void deletePersonFromGroup(Index targetGroup, ReadOnlyPerson toRemove)
             throws GroupNotFoundException, PersonNotFoundException, NoPersonsException {
@@ -167,15 +174,18 @@ public class ModelManager extends ComponentManager implements Model {
         return FXCollections.unmodifiableObservableList(filteredPersons);
     }
 
+    //@@author cjianhui
     @Override
     public ObservableList<ReadOnlyGroup> getFilteredGroupList() {
         return FXCollections.unmodifiableObservableList(filteredGroups);
     }
 
+    //@@author Procrastinatus
     @Override
     public ObservableList<ReadOnlySchedule> getFilteredScheduleList() {
         return FXCollections.unmodifiableObservableList(filteredSchedules);
     }
+    //@@author
 
     @Override
     public void showUnfilteredPersonList() {
@@ -189,6 +199,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     }
 
+    //@@author cjianhui
     @Override
     public void updateFilteredGroupList(Predicate<ReadOnlyGroup> predicate) {
         requireNonNull(predicate);
@@ -200,6 +211,7 @@ public class ModelManager extends ComponentManager implements Model {
     public Predicate<ReadOnlyPerson> getGroupMembersPredicate(ObservableList<ReadOnlyPerson> personList) {
         return personList::contains;
     }
+    //@@author
 
     /** Handle any GroupPanelSelectionChangedEvent raised and set predicate to show group members only */
     @Subscribe
@@ -210,11 +222,14 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredPersonList(getGroupMembersPredicate(personList));
     }
 
+    //@@author Procrastinatus
     @Override
     public void updateFilteredScheduleList(Predicate<ReadOnlySchedule> predicate) {
         requireNonNull(predicate);
         filteredSchedules.setPredicate(predicate);
     }
+    //@@author
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

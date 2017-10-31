@@ -9,6 +9,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.schedule.exceptions.DuplicateScheduleException;
 import seedu.address.model.schedule.exceptions.ScheduleNotFoundException;
 
+//@@author Procrastinatus
+
 /**
  * Represents a Schedule in an address book.
  * Guarantees: details are present and not null, field values are validated.

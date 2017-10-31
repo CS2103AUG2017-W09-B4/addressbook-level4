@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.group.ReadOnlyGroup;
 
+//@@author Procrastinatus
+
 /**
  * A utility class for Group.
  */

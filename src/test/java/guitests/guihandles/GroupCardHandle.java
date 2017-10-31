@@ -3,6 +3,8 @@ package guitests.guihandles;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
+//@@author Procrastinatus
+
 /**
  * Provides a handle to a person card in the person list panel.
  */

@@ -11,6 +11,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.group.ReadOnlyGroup;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 
+//@@author Procrastinatus
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */

@@ -116,6 +116,7 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        //@@author cjianhui
         @Override
         public void addGroup(ReadOnlyGroup group) throws DuplicateGroupException {
             fail("This method should not be called.");
@@ -126,6 +127,7 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        //@@author Procrastinatus
         @Override
         public void addSchedule(ReadOnlySchedule schedule) throws DuplicateScheduleException {
             fail("This method should not be called.");
@@ -136,6 +138,7 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        //@@author cjianhui
         @Override
         public void addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd)
                 throws GroupNotFoundException, PersonNotFoundException, DuplicatePersonException {
@@ -147,6 +150,7 @@ public class AddCommandTest {
                 throws GroupNotFoundException, PersonNotFoundException, NoPersonsException {
             fail("This method should not be called.");
         }
+        //@@author
 
         @Override
         public void resetData(ReadOnlyAddressBook newData) {
@@ -164,10 +168,12 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        //@@author Procrastinatus
         @Override
         public void deletePersons(ReadOnlyPerson[] targets) throws PersonNotFoundException {
             fail("This method should not be called.");
         }
+        //@@author
 
         @Override
         public void updatePerson(ReadOnlyPerson target, ReadOnlyPerson editedPerson)
@@ -186,10 +192,12 @@ public class AddCommandTest {
             return null;
         }
 
+        //@@author Procrastinatus
         @Override
         public ObservableList<ReadOnlySchedule> getFilteredScheduleList() {
             return null;
         }
+        //@@author
 
         public void showUnfilteredPersonList() {
             fail("This method should not be called.");
@@ -200,15 +208,18 @@ public class AddCommandTest {
             fail("This method should not be called.");
         }
 
+        //@@author cjianhui
         @Override
         public void updateFilteredGroupList(Predicate<ReadOnlyGroup> predicate) {
             fail("This method should not be called.");
         }
 
+        //@@author Procrastinatus
         @Override
         public void updateFilteredScheduleList(Predicate<ReadOnlySchedule> predicate) {
             fail("This method should not be called.");
         }
+        //@@author
     }
 
     /**

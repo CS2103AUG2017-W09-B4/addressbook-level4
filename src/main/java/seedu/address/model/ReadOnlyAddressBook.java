@@ -23,12 +23,14 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Tag> getTagList();
 
+    //@@author cjianhui
     /**
      * Returns an unmodifiable view of the groups list.
      * This list will not contain any duplicate groups.
      */
     ObservableList<ReadOnlyGroup> getGroupList();
 
+    //@@author Procrastinatus
     /**
      * Returns an unmodifiable view of the schedules list.
      * This list will not contain any duplicate schedules.

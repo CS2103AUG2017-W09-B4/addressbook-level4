@@ -6,6 +6,8 @@ import org.junit.rules.ExpectedException;
 
 import seedu.address.model.group.UniqueGroupList;
 
+//@@author Procrastinatus
+
 public class UniqueGroupListTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
