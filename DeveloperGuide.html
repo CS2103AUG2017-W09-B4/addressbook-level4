@@ -24,54 +24,60 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a>
+<li><a href="#introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites">1.1. Prerequisites</a></li>
-<li><a href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></li>
-<li><a href="#verifying-the-setup">1.3. Verifying the setup</a></li>
-<li><a href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></li>
+<li><a href="#about-bamboo">1.1. About Bamboo</a></li>
+<li><a href="#purpose">1.2. Purpose</a></li>
 </ul>
 </li>
-<li><a href="#design">2. Design</a>
+<li><a href="#setting-up">2. Setting up</a>
 <ul class="sectlevel2">
-<li><a href="#architecture">2.1. Architecture</a></li>
-<li><a href="#ui-component">2.2. UI component</a></li>
-<li><a href="#logic-component">2.3. Logic component</a></li>
-<li><a href="#model-component">2.4. Model component</a></li>
-<li><a href="#storage-component">2.5. Storage component</a></li>
-<li><a href="#common-classes">2.6. Common classes</a></li>
+<li><a href="#prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></li>
+<li><a href="#verifying-the-setup">2.3. Verifying the setup</a></li>
+<li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></li>
-<li><a href="#sorting">3.2. Sorting</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#configuration">3.4. Configuration</a></li>
-<li><a href="#favourite-contact-system">3.5. Favourite Contact System</a></li>
-<li><a href="#user-interface-ui">3.6. User Interface (UI)</a></li>
+<li><a href="#architecture">3.1. Architecture</a></li>
+<li><a href="#ui-component">3.2. UI component</a></li>
+<li><a href="#logic-component">3.3. Logic component</a></li>
+<li><a href="#model-component">3.4. Model component</a></li>
+<li><a href="#storage-component">3.5. Storage component</a></li>
+<li><a href="#common-classes">3.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a>
+<li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#editing-documentation">4.1. Editing Documentation</a></li>
-<li><a href="#publishing-documentation">4.2. Publishing Documentation</a></li>
-<li><a href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></li>
+<li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
+<li><a href="#sorting">4.2. Sorting</a></li>
+<li><a href="#logging">4.3. Logging</a></li>
+<li><a href="#configuration">4.4. Configuration</a></li>
+<li><a href="#favourite-contact-system">4.5. Favourite Contact System</a></li>
+<li><a href="#user-interface-ui">4.6. User Interface (UI)</a></li>
 </ul>
 </li>
-<li><a href="#testing">5. Testing</a>
+<li><a href="#documentation">5. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#running-tests">5.1. Running Tests</a></li>
-<li><a href="#types-of-tests">5.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></li>
+<li><a href="#editing-documentation">5.1. Editing Documentation</a></li>
+<li><a href="#publishing-documentation">5.2. Publishing Documentation</a></li>
+<li><a href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></li>
 </ul>
 </li>
-<li><a href="#dev-ops">6. Dev Ops</a>
+<li><a href="#testing">6. Testing</a>
 <ul class="sectlevel2">
-<li><a href="#build-automation">6.1. Build Automation</a></li>
-<li><a href="#continuous-integration">6.2. Continuous Integration</a></li>
-<li><a href="#making-a-release">6.3. Making a Release</a></li>
-<li><a href="#managing-dependencies">6.4. Managing Dependencies</a></li>
+<li><a href="#running-tests">6.1. Running Tests</a></li>
+<li><a href="#types-of-tests">6.2. Types of tests</a></li>
+<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
+</ul>
+</li>
+<li><a href="#dev-ops">7. Dev Ops</a>
+<ul class="sectlevel2">
+<li><a href="#build-automation">7.1. Build Automation</a></li>
+<li><a href="#continuous-integration">7.2. Continuous Integration</a></li>
+<li><a href="#making-a-release">7.3. Making a Release</a></li>
+<li><a href="#managing-dependencies">7.4. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#user-stories">Appendix A: User Stories</a></li>
@@ -82,10 +88,33 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites"><a class="link" href="#prerequisites">1.1. Prerequisites</a></h3>
+<h3 id="about-bamboo"><a class="link" href="#about-bamboo">1.1. About Bamboo</a></h3>
+<div class="paragraph">
+<p>Bamboo is a command-line interface (CLI) based address book application.
+It is a one-stop solution to help you manage your contacts in an efficient and
+convenient manner. Using Bamboo, you can organize contacts into groups,
+find common schedules and get connected to your contacts’ social media platforms.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="purpose"><a class="link" href="#purpose">1.2. Purpose</a></h3>
+<div class="paragraph">
+<p>This document serves as the developers' guide for developing Bamboo.
+It assumes that you have an intermediate understanding of Java.
+It describes how to start developing Bamboo with the Intellij IDE,
+as well as the structure of various components in the Bamboo application.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -124,7 +153,7 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">1.2. Setting up the project in your computer</a></h3>
+<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -166,7 +195,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">1.3. Verifying the setup</a></h3>
+<h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -179,9 +208,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">1.4. Configurations to do before writing code</a></h3>
+<h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></h3>
 <div class="sect3">
-<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">1.4.1. Configuring the coding style</a></h4>
+<h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
 <p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order. To rectify this,</p>
 </div>
@@ -213,13 +242,13 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
+<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
 <p>After forking the repo, links in the documentation will still point to the <code>se-edu/addressbook-level4</code> repo. If you plan to develop this as a separate product (i.e. instead of contributing to the <code>se-edu/addressbook-level4</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">2.4.3. Setting up CI</a></h4>
 <div class="paragraph">
 <p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
@@ -240,7 +269,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
 <p>When you are ready to start coding,</p>
 </div>
@@ -259,10 +288,10 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="architecture"><a class="link" href="#architecture">2.1. Architecture</a></h3>
+<h3 id="architecture"><a class="link" href="#architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/Architecture.png" alt="Architecture" width="600">
@@ -407,7 +436,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="ui-component"><a class="link" href="#ui-component">2.2. UI component</a></h3>
+<h3 id="ui-component"><a class="link" href="#ui-component">3.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
@@ -457,7 +486,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="logic-component"><a class="link" href="#logic-component">2.3. Logic component</a></h3>
+<h3 id="logic-component"><a class="link" href="#logic-component">3.3. Logic component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -507,7 +536,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="model-component"><a class="link" href="#model-component">2.4. Model component</a></h3>
+<h3 id="model-component"><a class="link" href="#model-component">3.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
@@ -540,7 +569,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-component"><a class="link" href="#storage-component">2.5. Storage component</a></h3>
+<h3 id="storage-component"><a class="link" href="#storage-component">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -567,7 +596,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="common-classes"><a class="link" href="#common-classes">2.6. Common classes</a></h3>
+<h3 id="common-classes"><a class="link" href="#common-classes">3.6. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -575,13 +604,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">3.1. Undo/Redo mechanism</a></h3>
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -733,7 +762,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.1. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
@@ -777,7 +806,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="sorting"><a class="link" href="#sorting">3.2. Sorting</a></h3>
+<h3 id="sorting"><a class="link" href="#sorting">4.2. Sorting</a></h3>
 <div class="paragraph">
 <p>The sort mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
 It supports the sorting of persons in the address book by the <code>PREFIX</code> specified.
@@ -801,7 +830,7 @@ However, the change is transient and the order of the list will return to its
 original starting order as when the App initializes.</p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.1. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>sort</code><br>
 <strong>Alternative 1 (current choice):</strong> Sort persons through <code>UniquePersonList</code><br>
@@ -827,7 +856,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -865,18 +894,18 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">3.4. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">3.5. Favourite Contact System</a></h3>
+<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">4.5. Favourite Contact System</a></h3>
 <div class="paragraph">
 <p>The commands related to the Favourite system rely on the <code>Favourite</code> attribute class which is a <code>model</code> component.</p>
 </div>
 <div class="sect3">
-<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">3.5.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
+<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.5.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
 <p><strong>addFave:</strong> This command&#8217;s class, <code>addFaveCommand</code>, accepts the parsed index of the contact from the current list of contacts displayed on the GUI. The contact&#8217;s <code>Person</code> class is then retrieved and modified to have it&#8217;s <code>Favourite</code> attribute marked as true and the in-memory model of the addressbook is updated with the modified <code>Person</code>.</p>
 </div>
@@ -885,29 +914,29 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-of-favourite-contacts-coming-in-v1-3"><a class="link" href="#listing-of-favourite-contacts-coming-in-v1-3">3.5.2. Listing of Favourite contacts (coming in V1.3)</a></h4>
+<h4 id="listing-of-favourite-contacts-coming-in-v1-3"><a class="link" href="#listing-of-favourite-contacts-coming-in-v1-3">4.5.2. Listing of Favourite contacts (coming in V1.3)</a></h4>
 <div class="paragraph">
 <p><strong>listFave:</strong> This command will list all contacts who have their Favourite attribute marked as "true".</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4"><a class="link" href="#modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4">3.5.3. Modifications to existing commands in regards to Favourite system (Coming in V1.4)</a></h4>
+<h4 id="modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4"><a class="link" href="#modifications-to-existing-commands-in-regards-to-favourite-system-coming-in-v1-4">4.5.3. Modifications to existing commands in regards to Favourite system (Coming in V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>List Command:</strong> Favourite contacts will be loaded before all other contacts.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">3.6. User Interface (UI)</a></h3>
+<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">4.6. User Interface (UI)</a></h3>
 <div class="sect3">
-<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">3.6.1. Layout of the user interface (since V1.1)</a></h4>
+<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">4.6.1. Layout of the user interface (since V1.1)</a></h4>
 <div class="paragraph">
 <p>The application uses various panels such as <code>StackPanes</code> and <code>BorderPanes</code> defined in <code>.fxml</code> files that define the basic layout, with no content inside of it.
 Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">3.6.2. Layout of the contact details panel (since V1.2)</a></h4>
+<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">4.6.2. Layout of the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The contact details <strong>main</strong> panel (ContactDetailsPanel.fxml) uses a 2x2 <code>GridPane</code> to show the following:</p>
 </div>
@@ -929,7 +958,7 @@ Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">3.6.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
+<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">4.6.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (0, 0) and (1, 0) cells of the contact details main panel contains nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
 </div>
@@ -942,7 +971,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">3.6.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
+<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.6.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (1,0) cell of the contact details main panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.
 The values of these <code>Label</code> objects are updated in <code>setContactDetails()</code> when a person is selected in the person list panel.</p>
@@ -952,7 +981,7 @@ The values of these <code>Label</code> objects are updated in <code>setContactDe
 </div>
 </div>
 <div class="sect3">
-<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">3.6.5. Animation in the contact details panel (since V1.2)</a></h4>
+<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">4.6.5. Animation in the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
 <p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in any node(s) and animates it through the use of various <code>Transitions</code>.</p>
 </div>
@@ -964,7 +993,7 @@ The values of these <code>Label</code> objects are updated in <code>setContactDe
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We use asciidoc for writing documentation.</p>
@@ -982,20 +1011,20 @@ We chose asciidoc over Markdown because asciidoc, although a bit more complex th
 </table>
 </div>
 <div class="sect2">
-<h3 id="editing-documentation"><a class="link" href="#editing-documentation">4.1. Editing Documentation</a></h3>
+<h3 id="editing-documentation"><a class="link" href="#editing-documentation">5.1. Editing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html#rendering-asciidoc-files">UsingGradle.adoc</a> to learn how to render <code>.adoc</code> files locally to preview the end result of your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your <code>.adoc</code> files in real-time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">4.2. Publishing Documentation</a></h3>
+<h3 id="publishing-documentation"><a class="link" href="#publishing-documentation">5.2. Publishing Documentation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingTravis.html#deploying-github-pages">UsingTravis.adoc</a> to learn how to deploy GitHub Pages using Travis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">4.3. Converting Documentation to PDF format</a></h3>
+<h3 id="converting-documentation-to-pdf-format"><a class="link" href="#converting-documentation-to-pdf-format">5.3. Converting Documentation to PDF format</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://www.google.com/chrome/browser/desktop/">Google Chrome</a> for converting documentation to PDF format, as Chrome&#8217;s PDF engine preserves hyperlinks used in webpages.</p>
 </div>
@@ -1030,10 +1059,10 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="running-tests"><a class="link" href="#running-tests">5.1. Running Tests</a></h3>
+<h3 id="running-tests"><a class="link" href="#running-tests">6.1. Running Tests</a></h3>
 <div class="paragraph">
 <p>There are three ways to run tests.</p>
 </div>
@@ -1095,7 +1124,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </div>
 <div class="sect2">
-<h3 id="types-of-tests"><a class="link" href="#types-of-tests">5.2. Types of tests</a></h3>
+<h3 id="types-of-tests"><a class="link" href="#types-of-tests">6.2. Types of tests</a></h3>
 <div class="paragraph">
 <p>We have two types of tests:</p>
 </div>
@@ -1137,7 +1166,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">5.3. Troubleshooting Testing</a></h3>
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
 <div class="paragraph">
 <p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
 </div>
@@ -1168,22 +1197,22 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="build-automation"><a class="link" href="#build-automation">6.1. Build Automation</a></h3>
+<h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
 <div class="paragraph">
 <p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="continuous-integration"><a class="link" href="#continuous-integration">6.2. Continuous Integration</a></h3>
+<h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
 <p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="making-a-release"><a class="link" href="#making-a-release">6.3. Making a Release</a></h3>
+<h3 id="making-a-release"><a class="link" href="#making-a-release">7.3. Making a Release</a></h3>
 <div class="paragraph">
 <p>Here are the steps to create a new release.</p>
 </div>
@@ -1205,7 +1234,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.4. Managing Dependencies</a></h3>
+<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.4. Managing Dependencies</a></h3>
 <div class="paragraph">
 <p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
@@ -1855,7 +1884,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-01 11:57:41 +00:00
+Last updated 2017-11-01 19:36:13 +00:00
 </div>
 </div>
 </body>
