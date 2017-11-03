@@ -269,6 +269,9 @@ Alias: <code>f</code></p>
 <p>The search can be done with initials. e.g. <code>AY</code> will match <code>Alex Yeoh</code></p>
 </li>
 <li>
+<p>The search can be done with partial string. e.g. <code>Ber</code> will match <code>Bernice Yu</code></p>
+</li>
+<li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
@@ -300,6 +303,10 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 <li>
 <p><code>find AY</code><br>
 Returns <code>Alex Yeoh</code> whose name initial is <code>AY</code></p>
+</li>
+<li>
+<p><code>find Ber</code><br>
+Returns <code>Bernice Yu</code> whose name contains the partial string <code>Ber</code></p>
 </li>
 <li>
 <p><code>find p/83537423</code><br>
@@ -965,7 +972,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-03 06:44:23 +00:00
+Last updated 2017-11-03 08:16:57 +00:00
 </div>
 </div>
 </body>
