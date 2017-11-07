@@ -112,22 +112,72 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="deleting-person-s-code-delete-code"><a class="link" href="#deleting-person-s-code-delete-code">Deleting person(s) : <code>delete</code></a></h3>
+<div class="paragraph">
+<p>Deletes the specified person(s) from the address book.<br>
+Format: <code>delete INDEX [INDEX&#8230;&#8203;]</code><br>
+Alias: <code>d</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the person(s) at the specified <code>INDEX(s)</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>delete 2 3 4</code><br>
+Deletes the 2nd, 3rd and 4th persons in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>delete 1</code><br>
+Deletes the 1st person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
-<div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="multi-delete"><a class="link" href="#multi-delete">Multi-delete</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Multi-delete allows users to delete single, as well as multiple persons in one command.
+This prevents the need for executing multiple delete commands to delete multiple persons,
+which provides convenience.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
 <hr>
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -324,12 +374,260 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <strong>Pros:</strong> We do not need to maintain a separate stack, and just reuse what is already in the codebase.<br>
 <strong>Cons:</strong> Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.<br></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="purpose"><a class="link" href="#purpose">Purpose</a></h3>
+<div class="paragraph">
+<p>This document serves as the developers' guide for developing Bamboo.
+It assumes that you have an intermediate understanding of Java.
+It describes how to start developing Bamboo with the Intellij IDE,
+as well as the structure of various components in the Bamboo application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ui-component"><a class="link" href="#ui-component">UI component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
+</div>
+<div class="paragraph">
+<p><strong>TODO: Edit diagram towards the end to reflect final names or changes</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts (e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>GroupListPanel</code>, <code>StatusBarFooter</code>, <code>ContactDetailsPanel</code>, etc.). All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses the JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="{repoURL}/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.
+<code>.fxml</code> files should only be used to <strong>define the basic layout or content placeholders</strong> in the UI. <strong>Actual content values should be instantiated by code</strong> as much as possible.</p>
+</div>
+<div class="paragraph">
+<p>The <code>.fxml</code> files may not immediately reflect all the UI parts that are seen on run-time. This is because some UI parts are instantiated by code only on run-time, so opening the <code>.fxml</code> files in Scene Builder will not show certain parts of the UI
+(e.g. the circular contact image in the contact details panel, instantiated inside <code>setContactImage()</code> in <a href="{repoURL}/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a>).</p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component does the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Uses <code>.fxml</code> and resource files (e.g. images, fonts) in <code>src\main\resources</code> that gives the application its look.</p>
+</li>
+<li>
+<p>Executes user commands using the <code>Logic</code> component.</p>
+</li>
+<li>
+<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> changes.</p>
+</li>
+<li>
+<p>Responds to events raised from various parts of the application (through event subscribers such as <code>handlePersonPanelSelectionChangedEvent</code> in <a href="{repoURL}/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a>) and updates the UI accordingly.</p>
+</li>
+<li>
+<p>Animates certain parts of the application, mostly in the contact details panel.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">User Interface (UI)</a></h3>
+<div class="sect3">
+<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">Layout of the user interface (since V1.1)</a></h4>
+<div class="paragraph">
+<p>The application uses various panels such as <code>StackPanes</code> and <code>BorderPanes</code> defined in <code>.fxml</code> files that define the basic layout, with no content inside of it.
+Content is usually created or instantiated by code.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">Layout of the contact details panel (since V1.2)</a></h4>
+<div class="paragraph">
+<p>The contact details <strong>main</strong> panel (ContactDetailsPanel.fxml) uses a 2x2 <code>GridPane</code> to show the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Contact&#8217;s image</p>
+</li>
+<li>
+<p>Contact&#8217;s details</p>
+</li>
+<li>
+<p>Four social media icons</p>
+</li>
+<li>
+<p>Common available schedules with the contact</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
+<div class="paragraph">
+<p>The (0, 0) and (1, 0) cells of the contact details main panel contains nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
+</div>
+<div class="paragraph">
+<p>These <code>Circle</code> objects are created when the <code>setContactImage()</code> and <code>setIcons()</code> methods are run. These two methods run inside <code>handlePersonPanelSelectionChangedEvent()</code> when the user selects a person in the person list panel.</p>
+</div>
+<div class="paragraph">
+<p>The reason for using <code>BorderPane</code> objects is to allow centering and resizing of the <code>Circle</code> objects. Using a <code>Pane</code> will not allow for positioning of objects, while using a <code>StackPane</code> will not allow for resizing of objects inside of it.
+A <code>BorderPane</code> supports both positioning and resizing of objects inside of it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">Layout of the contact&#8217;s details (since V1.2)</a></h4>
+<div class="paragraph">
+<p>The (1,0) cell of the contact details main panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.
+The values of these <code>Label</code> objects are updated in <code>setContactDetails()</code> when a person is selected in the person list panel.</p>
+</div>
+<div class="paragraph">
+<p>The <code>setContactDetails()</code> method takes in a <code>ReadOnlyPerson</code> object as an argument, which holds the values of a person&#8217;s contact details that are used to update the <code>Label</code> objects.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">Animation in the contact details panel (since V1.2)</a></h4>
+<div class="paragraph">
+<p>UI parts (nodes) in <a href="{repoURL}/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in any node(s) and animates it through the use of various <code>Transitions</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>ParallelTransition</code> is used to play multiple <code>Transition</code> objects simultaneously. In this case, it plays <code>FadeTransition</code> and <code>TranslateTransition</code> together, resulting in what looks like a fade-in from the right.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">Troubleshooting Testing</a></h3>
+<div class="paragraph">
+<p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>BoundsLocatorException</code>.</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reason: The window size of the test application is too small.</p>
+</li>
+<li>
+<p>Solution: Open <code>src/test/java/seedu/address/TestApp.java</code> and find the <code>initPrefs</code> method. Find <code>new GuiSettings</code> inside the method and enlarge the window size accordingly.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Glossary</a></h2>
+<div class="sectionbody">
+<div id="checkstyle" class="paragraph">
+<p>Checkstyle</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A development tool to help programmers write Java code that adheres to a coding standard by automatically checking Java code.</pre>
+</div>
+</div>
+<div id="command" class="paragraph">
+<p>Command(s)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Keywords that are used to do certain tasks. The list of commands for the application can be accessed by typing "help" in the application. All commands extend the "Command" class</pre>
+</div>
+</div>
+<div id="eventscenter" class="paragraph">
+<p>Events Center</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The events center is a module in the application that handles any user inputs or events that occur, reducing direct coupling between components.</pre>
+</div>
+</div>
+<div id="forking" class="paragraph">
+<p>Forking</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The cloning/copying of a repository.</pre>
+</div>
+</div>
+<div id="jdk" class="paragraph">
+<p>Java Development Kit.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The development kit that is required for developing the application (default location is "C:\Program Files\Java\jdkx.x.x_xxx", where the x's denote the version number).</pre>
+</div>
+</div>
+<div id="json" class="paragraph">
+<p>JavaScript Object Notation</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>An easy-to-read data storage format.</pre>
+</div>
+</div>
+<div id="mainstream-os" class="paragraph">
+<p>Mainstream OS</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Windows, Linux, Unix, OS-X.</pre>
+</div>
+</div>
+<div id="parser" class="paragraph">
+<p>Parser</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Parsers are used to verify the format of commands used. e.g. Adding a contact while parsing given parameters such as email and tags.</pre>
+</div>
+</div>
+<div id="private-contact-detail" class="paragraph">
+<p>Private contact detail</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>A contact detail that is not meant to be shared with others.</pre>
+</div>
+</div>
+<div id="tag" class="paragraph">
+<p>Tag(s)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The label(s) attached to a contact for the purpose of identification or related groupings.</pre>
+</div>
+</div>
+<div id="travisci" class="paragraph">
+<p>Continuous Integration (CI)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Build automation tool that helps developers understand if their application is working by building, testing and reporting on the build sequences the developer has configured. This project uses Travis and AppVeyor.</pre>
+</div>
+</div>
+<div id="ui" class="paragraph">
+<p>User Interface (UI)</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The user interface is a front-facing component and is what the user sees. It is used to show information, as well as get user input for different operations such as adding and deleting contacts.</pre>
+</div>
+</div>
+<div id="undoredostack" class="paragraph">
+<p>Undo/redo stack mechanism</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The application's state(s) that are stored on two stacks, which allow undo's and redo's, reverting the state of the application to before or after commands are run respectively.</pre>
+</div>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
-</div>
 <div class="sect2">
 <h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
 <div class="paragraph">
@@ -351,18 +649,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project"><a class="link" href="#project">Project:</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 08:46:27 +00:00
+Last updated 2017-11-07 11:23:01 +00:00
 </div>
 </div>
 </body>
