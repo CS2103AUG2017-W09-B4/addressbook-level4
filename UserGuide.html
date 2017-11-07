@@ -31,9 +31,9 @@
 <li><a href="#adding-a-person-code-add-code">2.2. Adding a person: <code>add</code></a></li>
 <li><a href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></li>
 <li><a href="#editing-a-person-code-edit-code">2.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4">2.5. Locating persons by name, address or phone number: <code>find</code> (Since V1.4)</a></li>
+<li><a href="#locating-persons-by-name-address-email-or-phone-number-code-find-code-since-v1-4">2.5. Locating persons by name, address, email or phone number: <code>find</code> (Since V1.4)</a></li>
 <li><a href="#deleting-person-s-code-delete-code">2.6. Deleting person(s) : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></li>
+<li><a href="#selecting-a-person-or-a-group-code-select-code">2.7. Selecting a person or a group : <code>select</code></a></li>
 <li><a href="#marking-a-person-as-favourite-code-fadd-code-since-v1-2">2.8. Marking a person as 'Favourite': <code>fadd</code> (Since V1.2)</a></li>
 <li><a href="#unmarking-a-person-as-favourite-code-fremove-code-since-v1-2">2.9. Unmarking a person as 'Favourite': <code>fremove</code> (Since V1.2)</a></li>
 <li><a href="#creating-a-group-code-gcreate-code-since-v1-2">2.10. Creating a group: <code>gcreate</code> (Since V1.2)</a></li>
@@ -191,7 +191,7 @@ A person can have any number of tags (including 0)
 <h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">2.3. Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all persons in the address book. Has the option of showing only favourite contacts<br>
-Format: <code>list [/f]</code><br>
+Format: <code>list [f/]</code><br>
 Alias: <code>l</code></p>
 </div>
 <div class="ulist">
@@ -200,7 +200,7 @@ Alias: <code>l</code></p>
 <p><code>list</code> will show all contacts</p>
 </li>
 <li>
-<p><code>list /f</code> will show only contacts that have been marked as favourites</p>
+<p><code>list f/</code> will show only contacts that have been marked as favourites</p>
 </li>
 </ul>
 </div>
@@ -252,10 +252,10 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4"><a class="link" href="#locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4">2.5. Locating persons by name, address or phone number: <code>find</code> (Since V1.4)</a></h3>
+<h3 id="locating-persons-by-name-address-email-or-phone-number-code-find-code-since-v1-4"><a class="link" href="#locating-persons-by-name-address-email-or-phone-number-code-find-code-since-v1-4">2.5. Locating persons by name, address, email or phone number: <code>find</code> (Since V1.4)</a></h3>
 <div class="paragraph">
-<p>Finds persons whose names or name initials or address or phone number contain any of the given keywords.<br>
-Format: <code>find [n/] [p/] [a/] KEYWORD [MORE_KEYWORDS]</code><br>
+<p>Finds persons whose names or name initials or address or phone number or email contain any of the given keywords.<br>
+Format: <code>find [n/] [p/] [e/] [a/] [t/] KEYWORD [MORE_KEYWORDS]</code><br>
 Alias: <code>f</code></p>
 </div>
 <div class="sidebarblock">
@@ -269,16 +269,13 @@ Alias: <code>f</code></p>
 <p>The search can be done with initials. e.g. <code>AY</code> will match <code>Alex Yeoh</code></p>
 </li>
 <li>
-<p>The search can be done with partial string. e.g. <code>Ber</code> will match <code>Bernice Yu</code></p>
+<p>The search can be done with partial strings. e.g. <code>Ber</code> will match <code>Bernice Yu</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Name, phone number and addresses are searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>Persons can be searched by name, phone number, email or address.</p>
 </li>
 <li>
 <p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
@@ -314,7 +311,15 @@ Returns any person with phone number <code>83537423</code></p>
 </li>
 <li>
 <p><code>find a/earth</code><br>
-Returns any person with address <code>earth</code></p>
+Returns any person with address containing <code>earth</code></p>
+</li>
+<li>
+<p><code>find e/gmail</code><br>
+Returns any person with email containing keyword <code>gmail</code></p>
+</li>
+<li>
+<p><code>find t/friends</code><br>
+Returns any person with tags containing keyword <code>friends</code></p>
 </li>
 </ul>
 </div>
@@ -362,10 +367,10 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">2.7. Selecting a person : <code>select</code></a></h3>
+<h3 id="selecting-a-person-or-a-group-code-select-code"><a class="link" href="#selecting-a-person-or-a-group-code-select-code">2.7. Selecting a person or a group : <code>select</code></a></h3>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the last person listing.<br>
-Format: <code>select INDEX</code><br>
+<p>Selects the person or group identified by the index number used in the last person listing.<br>
+Format: <code>select [g/] INDEX</code><br>
 Alias: <code>sel</code></p>
 </div>
 <div class="sidebarblock">
@@ -374,6 +379,9 @@ Alias: <code>sel</code></p>
 <ul>
 <li>
 <p>Selects the person and loads the contact card of the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>If <code>g/</code> is specified, selects and loads the group member list of the group at the specified <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -398,7 +406,9 @@ Selects the 2nd person in the address book.</p>
 <li>
 <p><code>find Betsy</code><br>
 <code>select 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command.</p>
+Selects the 1st person in the results of the <code>find</code> command.
+<code>select g/2</code><br>
+Selects the 2nd group in the address book.</p>
 </li>
 </ul>
 </div>
@@ -422,6 +432,9 @@ Alias: <code>fa</code></p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Contact marked as 'Favourite' will move to the top of the contact list in lexographical order.</p>
 </li>
 </ul>
 </div>
@@ -461,6 +474,9 @@ Alias: <code>fr</code></p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Contact unmarked as 'Favourite' will move down the contact list till there are no 'Favourite' persons above it.</p>
 </li>
 </ul>
 </div>
@@ -629,7 +645,7 @@ Alias: <code>ca</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Adds schedule list to person at specified <code>INDEX</code></p>
+<p>Adds events pulled from <code>GOOGLE CALENDAR ID</code> to person at specified <code>PERSON INDEX</code></p>
 </li>
 <li>
 <p>Calendar ID must be from publicly shared Calendar.</p>
@@ -650,7 +666,7 @@ Alias: <code>ca</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>cadd p/2 i/b8dkov028k71krma20qbbc8f3s</code></p>
+<p><code>cadd p/2 i/xderek105243x@gmail.com</code></p>
 </li>
 </ul>
 </div>
@@ -923,7 +939,7 @@ e.g. <code>delete 3 4</code></p>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
+<p><strong>Find</strong> : <code>find [n/] [p/] [e/] [a/] [t/] KEYWORD [MORE_KEYWORDS]</code><br>
 e.g. <code>find James Jake</code></p>
 </li>
 <li>
@@ -943,6 +959,10 @@ e.g. <code>gcreate n/Bamboo</code></p>
 e.g. <code>gadd g/1 p/2</code></p>
 </li>
 <li>
+<p><strong>Remove Person To Group</strong> : <code>gremove g/GROUP INDEX p/PERSON INDEX</code><br>
+e.g. <code>gremove g/1 p/2</code></p>
+</li>
+<li>
 <p><strong>Delete Group</strong> : <code>gdelete INDEX</code><br>
 e.g. <code>gdelete 2</code></p>
 </li>
@@ -953,7 +973,7 @@ e.g. <code>gdelete 2</code></p>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
-<p><strong>Select</strong> : <code>select INDEX</code><br>
+<p><strong>Select</strong> : <code>select [g/] INDEX</code><br>
 e.g.<code>select 2</code></p>
 </li>
 <li>
@@ -972,7 +992,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 18:18:22 +00:00
+Last updated 2017-11-07 18:57:44 +00:00
 </div>
 </div>
 </body>
