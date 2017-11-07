@@ -25,7 +25,7 @@
 <p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-favourite-function"><a class="link" href="#enhancement-added-favourite-function">Enhancement Added: Favourite Function</a></h3>
+<h3 id="enhancement-added-favourite-function-profile-picture-function"><a class="link" href="#enhancement-added-favourite-function-profile-picture-function">Enhancement Added: Favourite Function &amp; Profile Picture Function</a></h3>
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
@@ -35,25 +35,28 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<h3 id="marking-a-person-as-favourite-code-fadd-code-since-v1-2"><a class="link" href="#marking-a-person-as-favourite-code-fadd-code-since-v1-2">Marking a person as 'Favourite': <code>fadd</code> (Since V1.2)</a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code><br>
-Alias: <code>u</code></p>
+<p>Marks the person identified by the index number used in the last person listing as a 'Favourite'.<br>
+Format: <code>fadd INDEX</code><br>
+Alias: <code>fa</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Marks the contact  at the specified <code>INDEX</code> as a 'Favourite'.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
 </div>
-</td>
-</tr>
-</table>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -61,31 +64,38 @@ Alias: <code>u</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>fadd 1</code>
+Marks the 1st contact as a 'Favourite' in the address book.</p>
 </li>
 <li>
-<p><code>select 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<p><code>fa 1</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="unmarking-a-person-as-favourite-code-fremove-code-since-v1-2"><a class="link" href="#unmarking-a-person-as-favourite-code-fremove-code-since-v1-2">Unmarking a person as 'Favourite': <code>fremove</code> (Since V1.2)</a></h3>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code><br>
-Alias: <code>r</code></p>
+<p>Unmarks the person identified by the index number used in the last person listing as a 'Favourite'<br>
+Format: <code>fremove INDEX</code><br>
+Alias: <code>fr</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Unmarks the contact at the specified <code>INDEX</code> as a 'Favourite'.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -93,22 +103,81 @@ Alias: <code>r</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
+<p><code>fremove 1</code>
+Unmarks the 1st contact as a 'Favourite' in the address book.</p>
 </li>
 <li>
-<p><code>delete 1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+<p><code>fr 1</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-the-photo-of-a-person-code-ppset-code-since-v1-4"><a class="link" href="#setting-the-photo-of-a-person-code-ppset-code-since-v1-4">Setting the photo of a person: <code>ppset</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Sets the photo of a person.<br>
+Format: <code>ppset INDEX fp/FILEPATH</code><br>
+Alias: pps</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds photo to person at specified <code>INDEX</code></p>
 </li>
 <li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ppset 1 fp/C:\Users\nas.png</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resetting-the-photo-of-a-person-code-ppreset-code-since-v1-4"><a class="link" href="#resetting-the-photo-of-a-person-code-ppreset-code-since-v1-4">Resetting the photo of a person: <code>ppreset</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Resets photo of a person to default picture.<br>
+Format: <code>ppreset INDEX</code><br>
+Alias: ppr</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Resets photo of person at specified <code>INDEX</code></p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ppreset 1</code></p>
 </li>
 </ul>
 </div>
@@ -118,8 +187,18 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <hr>
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
-<div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Having a "Favourite Contacts" system allows our users to find information about contacts that they frequently contact.
+This saves users time that would have been spent searching through the address book for that one specific contact
+as they are able to find their favourite contacts the moment they open Bamboo!</p>
+</li>
+<li>
+<p>Allowing all contacts to have profile pictures allows us to identify forgotten contacts easier as people tend to forget
+names but remember faces or pictures associated with certain people.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -131,198 +210,137 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">Undo/Redo mechanism</a></h3>
+<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">Favourite Contact System</a></h3>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The commands related to the Favourite system rely on the <code>Favourite</code> attribute class which is a <code>model</code> component.</p>
 </div>
+<div class="sect3">
+<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
+<p><strong>Adding a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>AddFavouriteCommand</code> with it&#8217;s
+supporting parser class <code>AddFavouriteCommandParser</code>:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the address book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
-</div>
-<div class="paragraph">
-<p>Commands that are not undoable are implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ListCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... list logic ...</span>
-    }
-}</code></pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddFaveCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument and
+passes the parsed index on to an initialised <strong>AddFavouriteCommand</strong> object.</p>
+</li>
+<li>
+<p><code>AddFavouriteCommand</code>: You may modify the command word (fadd), usage instructions and all other functions necessary for
+the command to mark a <code>Person</code> as a Favourite in this class.<br>
+The current implementation takes in the parsed index, retrieves the <code>Person</code> object of the parsed index, set&#8217;s the
+<code>Favourite</code> attribute to true and updates the in-memory model list of <strong>Persons</strong> with the updated <strong>Person</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>With the extra layer, the commands that are undoable are implemented this way:</p>
+<p><strong>Removing a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>RemoveFavouriteCommand</code> with
+ it&#8217;s supporting parser class <code>RemoveFavouriteCommandParser</code>:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... undo logic ...</span>
-
-        executeUndoableCommand();
-    }
-}
-
-<span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteCommand</span> <span class="directive">extends</span> UndoableCommand {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult executeUndoableCommand() {
-        <span class="comment">// ... delete logic ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
-</div>
-<div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the address book. The current state of the address book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new person.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not be pushed to the <code>UndoRedoStack</code> at all.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The user now decides that adding the person was a mistake, and decides to undo that action using <code>undo</code>.</p>
-</div>
-<div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the address book to the state before the <code>add</code> command executed.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>undoStack</code> is empty, then there are no other commands left to be undone, and an <code>Exception</code> will be thrown when popping the <code>undoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and an <code>Exception</code> will be thrown when popping the <code>redoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarize what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="200">
+<div class="ulist">
+<ul>
+<li>
+<p><code>RemoveFaveCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument and
+passes the parsed index on to an initialised <strong>RemoveFavouriteCommand</strong> object.</p>
+</li>
+<li>
+<p><code>RemoveFavouriteCommand</code>: You may modify the command word (fremove), usage instructions and all other functions necessary for
+the command to unmark a <code>Person</code> as a Favourite in this class.<br>
+The current implementation of this function works exactly like it does in <code>AddFavouriteCommand</code> except that the <code>Person</code>
+retreived from the parsed index has their <code>Favourite</code> attribute updated to false.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">Listing of only Favourite contacts (Since V1.3)</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
-<strong>Pros:</strong> We will not lose any undone/redone functionality as it is now part of the default behaviour. Classes that deal with <code>Command</code> do not have to know that <code>executeUndoableCommand()</code> exist.<br>
-<strong>Cons:</strong> Hard for new developers to understand the template pattern.<br>
-<strong>Alternative 2:</strong> Just override <code>execute()</code><br>
-<strong>Pros:</strong> Does not involve the template pattern, easier for new developers to understand.<br>
-<strong>Cons:</strong> Classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to undo/redo.</p>
+<p><strong>List command option:</strong> The <strong>list</strong> command can now list only contacts marked as favourites with "list /f"<br>
+This feature works by updating the model&#8217;s person filteredList with the predicate <strong>isFavourite()</strong> in <code>ListCommand</code>.</p>
 </div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> How undo &amp; redo executes<br>
-<strong>Alternative 1 (current choice):</strong> Saves the entire address book.<br>
-<strong>Pros:</strong> Easy to implement.<br>
-<strong>Cons:</strong> May have performance issues in terms of memory usage.<br>
-<strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.<br>
-<strong>Pros:</strong> Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).<br>
-<strong>Cons:</strong> We must ensure that the implementation of each individual command are correct.</p>
 </div>
-<hr>
+<div class="sect3">
+<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">Other modifications to existing components to handle favourites (Since V1.4)</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Type of commands that can be undone/redone<br>
-<strong>Alternative 1 (current choice):</strong> Only include commands that modifies the address book (<code>add</code>, <code>clear</code>, <code>edit</code>).<br>
-<strong>Pros:</strong> We only revert changes that are hard to change back (the view can easily be re-modified as no data are lost).<br>
-<strong>Cons:</strong> User might think that undo also applies when the list is modified (undoing filtering for example), only to realize that it does not do that, after executing <code>undo</code>.<br>
-<strong>Alternative 2:</strong> Include all commands.<br>
-<strong>Pros:</strong> Might be more intuitive for the user.<br>
-<strong>Cons:</strong> User have no way of skipping such commands if he or she just want to reset the state of the address book and not the view.<br>
-<strong>Additional Info:</strong> See our discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
+<p><code>UniquePersonList</code>: The <strong>setPerson()</strong> function that is called whenever a <strong>Person</strong> object has been modified to to
+also change a <strong>Person&#8217;s</strong> order in the model list if their <strong>Favourite</strong> attribute&#8217;s value has been changed.</p>
 </div>
-<hr>
+<div class="ulist">
+<ul>
+<li>
+<p>If the <strong>Favourite</strong>'s value has been changed to true, the modified <strong>Person</strong> is removed from the internal model list and
+reinserted at the top of the list among the other favourites in lexicographical order.</p>
+</li>
+<li>
+<p>If the <strong>Favourite</strong>'s value has been changed to false, the modified <strong>Person</strong> moved from it&#8217;s position among the favourites
+and inserted into the position after the last favourite person in the internal model list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">Profile Picture Feature</a></h3>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Data structure to support the undo/redo commands<br>
-<strong>Alternative 1 (current choice):</strong> Use separate stack for undo and redo<br>
-<strong>Pros:</strong> Easy to understand for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.<br>
-<strong>Cons:</strong> Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>UndoRedoStack</code>.<br>
-<strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo<br>
-<strong>Pros:</strong> We do not need to maintain a separate stack, and just reuse what is already in the codebase.<br>
-<strong>Cons:</strong> Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.<br></p>
+<p>A user&#8217;s profile picture is retrieved by and displayed in the UI class <code>BrowserPanel</code> with <strong>setContactImage(Person)</strong>
+a contact&#8217;s  path stored in a contact&#8217;s <code>ProfPic</code> person attribute and can be modified with the use of 2 commands
+explain below.</p>
+</div>
+<div class="sect3">
+<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">Setting profile picture (Since V1.4)</a></h4>
+<div class="paragraph">
+<p><strong>Setting a new profile picture</strong>: This feature&#8217;s functions are mainly contained in the command class <code>SetPictureCommand</code>
+with it&#8217;s supporting parser class <code>SetPictureCommandParser</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SetPictureCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument
+and provided filepath and passes the parsed index and filepath on to an initialised <strong>SetPictureCommand</strong> object.</p>
+</li>
+<li>
+<p><code>SetPictureCommand</code>: You may modify the command word (ppset) and it&#8217;s syntax, usage instructions and all other functions necessary for
+the set picture command in this class.<br>
+The current implementation takes in the parsed index and filepath and stores them. Then,</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The given filepath is checked to see if there exists a .png image file with <strong>Files.probeContentType(filepath)</strong></p>
+</li>
+<li>
+<p>The verified .png is then copied to the local folder <strong>images</strong> of the application and stored under the contact name of the
+provided index as <strong>images\contactName.png</strong></p>
+</li>
+<li>
+<p>The <strong>Person</strong> provided by the index has it&#8217;s <code>ProfPic</code> attribute&#8217;s path var modified to <strong>contactName.png</strong> and
+the modified <strong>Person</strong> saved to the in-memory model list of <strong>Persons</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">Resetting profile picture (Since V1.4)</a></h4>
+<div class="paragraph">
+<p><strong>Resetting a contact&#8217;s profile picture</strong> This feature&#8217;s functions are mainly contained in the command class <code>ResetPictureCommand</code>
+with it&#8217;s supporting parser class <code>ResetPictureCommandParser</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ResetPictureCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument
+and passes the parsed index on to an initialised <strong>ResetPictureCommand</strong> object.</p>
+</li>
+<li>
+<p><code>ResetPictureCommand</code>: You may modify the command word (ppreset), usage instructions and all other functions necessary for
+the reset picture command in this class.<br>
+The current implementation takes in the parsed index, retrieves the <strong>Person</strong> at that index and modifies their <code>ProfPic</code>
+attribute&#8217;s path var to the default "maleIcon.png before saving the modified <strong>Person</strong> to the in-memory model list of <strong>Persons</strong></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -331,9 +349,11 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="enhancement-proposed-add-command-code-backup-code-and-code-restore-code"><a class="link" href="#enhancement-proposed-add-command-code-backup-code-and-code-restore-code">Enhancement Proposed: Add command <code>backup</code> and <code>restore</code></a></h3>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p>An enhancement that i proposed was to be able to backup all contacts to an external file or online backup service.<br>
+This would allow users to have peace of mind in case of data corruption and the commands can also be used when
+users decide to move to other devices and yet want to continue using Bamboo on new devices.</p>
 </div>
 </div>
 <div class="sect2">
@@ -341,28 +361,18 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Bug fixes for small problems in various functions (Commit
+<a href="https://github.com/CS2103AUG2017-W09-B4/main/commit/027e506c917ea4d4bb7df200dcbe3471dc2aa97b">#36</a>)</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project"><a class="link" href="#project">Project:</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 07:46:44 +00:00
+Last updated 2017-11-07 08:46:27 +00:00
 </div>
 </div>
 </body>

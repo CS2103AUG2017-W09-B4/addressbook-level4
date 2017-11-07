@@ -908,45 +908,130 @@ any future changes to these classes may be more contrived and difficult.</p>
 <div class="sect3">
 <h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.5.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
-<p><strong>addFave:</strong> This command&#8217;s class, <code>addFaveCommand</code>, accepts the parsed index of the contact from the current list of contacts displayed on the GUI. The contact&#8217;s <code>Person</code> class is then retrieved and modified to have it&#8217;s <code>Favourite</code> attribute marked as true and the in-memory model of the addressbook is updated with the modified <code>Person</code>.</p>
+<p><strong>Adding a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>AddFavouriteCommand</code> with it&#8217;s
+supporting parser class <code>AddFavouriteCommandParser</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddFaveCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument and
+passes the parsed index on to an initialised <strong>AddFavouriteCommand</strong> object.</p>
+</li>
+<li>
+<p><code>AddFavouriteCommand</code>: You may modify the command word (fadd), usage instructions and all other functions necessary for
+the command to mark a <code>Person</code> as a Favourite in this class.<br>
+The current implementation takes in the parsed index, retrieves the <code>Person</code> object of the parsed index, set&#8217;s the
+<code>Favourite</code> attribute to true and updates the in-memory model list of <strong>Persons</strong> with the updated <strong>Person</strong>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p><strong>removeFave:</strong> This command&#8217;s class, <code>removeFaveCommand</code>, accepts the parsed index of the contact from the current list of contacts displayed on the GUI. The contact&#8217;s <code>Person</code> class is then retrieved and modified to have it&#8217;s <code>Favourite</code> attribute marked as false and the in-memory model of the addressbook is updated with the modified <code>Person</code>.</p>
+<p><strong>Removing a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>RemoveFavouriteCommand</code> with
+ it&#8217;s supporting parser class <code>RemoveFavouriteCommandParser</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RemoveFaveCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument and
+passes the parsed index on to an initialised <strong>RemoveFavouriteCommand</strong> object.</p>
+</li>
+<li>
+<p><code>RemoveFavouriteCommand</code>: You may modify the command word (fremove), usage instructions and all other functions necessary for
+the command to unmark a <code>Person</code> as a Favourite in this class.<br>
+The current implementation of this function works exactly like it does in <code>AddFavouriteCommand</code> except that the <code>Person</code>
+retreived from the parsed index has their <code>Favourite</code> attribute updated to false.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.5.2. Listing of only Favourite contacts (Since V1.3)</a></h4>
 <div class="paragraph">
-<p><strong>List command option:</strong> The list command has been modified with the option to only show favourite contacts if you enter "list /f".
-This feature works by updating the model&#8217;s person filteredList with the predicate <code>isFavourite()</code> in <code>ListCommand.java</code></p>
+<p><strong>List command option:</strong> The <strong>list</strong> command can now list only contacts marked as favourites with "list /f"<br>
+This feature works by updating the model&#8217;s person filteredList with the predicate <strong>isFavourite()</strong> in <code>ListCommand</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="modifications-to-existing-commands-in-regards-to-favourite-system-since-v1-4"><a class="link" href="#modifications-to-existing-commands-in-regards-to-favourite-system-since-v1-4">4.5.3. Modifications to existing commands in regards to Favourite system (Since V1.4)</a></h4>
+<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.5.3. Other modifications to existing components to handle favourites (Since V1.4)</a></h4>
 <div class="paragraph">
-<p><strong>List2 Command:</strong> Favourite contacts will be loaded before all other contacts. Favourite contacts are pushed to the
-top of the displayed list by using <code>model.sortPerson(comparator)</code> with comparator <code>getFaveComparator()</code></p>
+<p><code>UniquePersonList</code>: The <strong>setPerson()</strong> function that is called whenever a <strong>Person</strong> object has been modified to to
+also change a <strong>Person&#8217;s</strong> order in the model list if their <strong>Favourite</strong> attribute&#8217;s value has been changed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the <strong>Favourite</strong>'s value has been changed to true, the modified <strong>Person</strong> is removed from the internal model list and
+reinserted at the top of the list among the other favourites in lexicographical order.</p>
+</li>
+<li>
+<p>If the <strong>Favourite</strong>'s value has been changed to false, the modified <strong>Person</strong> moved from it&#8217;s position among the favourites
+and inserted into the position after the last favourite person in the internal model list</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">4.6. Profile Picture Feature</a></h3>
 <div class="paragraph">
-<p>A user&#8217;s profile picture is defined with the path stored in a contact&#8217;s <code>ProfPic</code> person attribute and can be
-changed with the use of 2 commands explain below.</p>
+<p>A user&#8217;s profile picture is retrieved by and displayed in the UI class <code>BrowserPanel</code> with <strong>setContactImage(Person)</strong>
+a contact&#8217;s  path stored in a contact&#8217;s <code>ProfPic</code> person attribute and can be modified with the use of 2 commands
+explain below.</p>
 </div>
 <div class="sect3">
 <h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.6.1. Setting profile picture (Since V1.4)</a></h4>
 <div class="paragraph">
-<p><code>ppset</code>: The command first checks if the file given in the filepath is a valid .png file. Then it copies the file to
-addressBook&#8217;s resource/image folder and renames the file to the contact&#8217;s name e.g. "eric.png" while setting the ProfPic
- attribute&#8217;s path variable of the selected contact to point to the copied image file.</p>
+<p><strong>Setting a new profile picture</strong>: This feature&#8217;s functions are mainly contained in the command class <code>SetPictureCommand</code>
+with it&#8217;s supporting parser class <code>SetPictureCommandParser</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SetPictureCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument
+and provided filepath and passes the parsed index and filepath on to an initialised <strong>SetPictureCommand</strong> object.</p>
+</li>
+<li>
+<p><code>SetPictureCommand</code>: You may modify the command word (ppset) and it&#8217;s syntax, usage instructions and all other functions necessary for
+the set picture command in this class.<br>
+The current implementation takes in the parsed index and filepath and stores them. Then,</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The given filepath is checked to see if there exists a .png image file with <strong>Files.probeContentType(filepath)</strong></p>
+</li>
+<li>
+<p>The verified .png is then copied to the local folder <strong>images</strong> of the application and stored under the contact name of the
+provided index as <strong>images\contactName.png</strong></p>
+</li>
+<li>
+<p>The <strong>Person</strong> provided by the index has it&#8217;s <code>ProfPic</code> attribute&#8217;s path var modified to <strong>contactName.png</strong> and
+the modified <strong>Person</strong> saved to the in-memory model list of <strong>Persons</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.6.2. Resetting profile picture (Since V1.4)</a></h4>
 <div class="paragraph">
-<p><code>ppreset</code>: The command resets the contact&#8217;s <code>ProfPic</code> attribute&#8217;s path variable to point back to the stock photo&#8217;s filepath.</p>
+<p><strong>Resetting a contact&#8217;s profile picture</strong> This feature&#8217;s functions are mainly contained in the command class <code>ResetPictureCommand</code>
+with it&#8217;s supporting parser class <code>ResetPictureCommandParser</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ResetPictureCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument
+and passes the parsed index on to an initialised <strong>ResetPictureCommand</strong> object.</p>
+</li>
+<li>
+<p><code>ResetPictureCommand</code>: You may modify the command word (ppreset), usage instructions and all other functions necessary for
+the reset picture command in this class.<br>
+The current implementation takes in the parsed index, retrieves the <strong>Person</strong> at that index and modifies their <code>ProfPic</code>
+attribute&#8217;s path var to the default "maleIcon.png before saving the modified <strong>Person</strong> to the in-memory model list of <strong>Persons</strong></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1908,7 +1993,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 07:46:44 +00:00
+Last updated 2017-11-07 08:46:27 +00:00
 </div>
 </div>
 </body>
