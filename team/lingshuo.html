@@ -22,10 +22,10 @@
 <p>Bamboo is a desktop address book application developed as part of a Software Engineering module requirement. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W09-B4/main/edit/collate/collated/main/jiangLingshuo.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W09-B4/main/blob/collate/collated/test/jiangLingshuo.md">Test code</a>] {give links to collated code files}</p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-group-function"><a class="link" href="#enhancement-added-group-function">Enhancement Added: Group Function</a></h3>
+<h3 id="enhancement-added-group-function-find-function"><a class="link" href="#enhancement-added-group-function-find-function">Enhancement Added: Group Function&amp;Find Function</a></h3>
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
@@ -112,14 +112,102 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4"><a class="link" href="#locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4">Locating persons by name, address or phone number: <code>find</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Finds persons whose names or name initials or address or phone number contain any of the given keywords.<br>
+Format: <code>find [n/] [p/] [e/] [a/] [t/] KEYWORD [MORE_KEYWORDS]</code><br>
+Alias: <code>f</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The search can be done with initials. e.g. <code>AY</code> will match <code>Alex Yeoh</code></p>
+</li>
+<li>
+<p>The search can be done with partial string. e.g. <code>Ber</code> will match <code>Bernice Yu</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Name, phone number and addresses are searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+<li>
+<p><code>find AY</code><br>
+Returns <code>Alex Yeoh</code> whose name initial is <code>AY</code></p>
+</li>
+<li>
+<p><code>find Ber</code><br>
+Returns <code>Bernice Yu</code> whose name contains the partial string <code>Ber</code></p>
+</li>
+<li>
+<p><code>find p/83537423</code><br>
+Returns any person with phone number <code>83537423</code></p>
+</li>
+<li>
+<p><code>find a/earth</code><br>
+Returns any person with address containing <code>earth</code></p>
+</li>
+<li>
+<p><code>find e/gmail</code><br>
+Returns any person with email containing keyword <code>gmail</code></p>
+</li>
+<li>
+<p><code>find t/friends</code><br>
+Returns any person with tags containing keyword <code>friends</code></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
-<div class="paragraph">
-<p>{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Having a group feature can be regarded as a new framework under our current project.
+It is different from tag system although both serve as linking one person with a particular
+attribute. However, with group implementation, this software can be furthered evolved with more group
+applications such as group meeting tasks</p>
+</li>
+<li>
+<p>Enhancing find functions is essential for a large size address book. By allowing multiple ways of finding,
+users could actually access the contacts by remembering anything, names, emails, address&#8230;&#8203; and even
+partial name searching is supported</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -331,9 +419,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-add-command-code-remark-code"><a class="link" href="#enhancement-proposed-add-command-code-remark-code">Enhancement Proposed: Add command <code>remark</code></a></h3>
+<h3 id="enhancement-proposed-enhance-add-command-so-that-can-take-in-a-incomplete-field-and-propose-for-completion"><a class="link" href="#enhancement-proposed-enhance-add-command-so-that-can-take-in-a-incomplete-field-and-propose-for-completion">Enhancement Proposed: Enhance add command so that can take in a incomplete field and propose for completion</a></h3>
 <div class="paragraph">
-<p>{Explain similar to the Undo/Redo feature above.}</p>
+<p>Support adding a person by a few fields included with <code>PREFIX</code>, and search for persons with empty field
+as well as propose for completion to the user every time address book is launched</p>
 </div>
 </div>
 <div class="sect2">
@@ -341,10 +430,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Write Test Case Group Test (Pull requests <a href="https://github.com/CS2103AUG2017-W09-B4/main/pull/84">#36</a>)</p>
 </li>
 </ul>
 </div>
@@ -362,7 +448,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 17:12:57 +00:00
+Last updated 2017-11-07 18:18:22 +00:00
 </div>
 </div>
 </body>
