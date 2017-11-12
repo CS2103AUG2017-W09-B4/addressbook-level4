@@ -116,7 +116,7 @@ as well as the structure of various components in the Bamboo application.</p>
 <h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section provides developers with the steps required to set up everything before beginning development
+<p>This section provides you with the steps required to set up everything before beginning development
 on Bamboo.</p>
 </div>
 <div class="sect2">
@@ -444,8 +444,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect2">
 <h3 id="ui-component"><a class="link" href="#ui-component">3.2. UI component</a></h3>
 <div class="paragraph">
-<p>The <code>UI</code> component, or user interface, houses all the different front-end components that users see upon running
-Bamboo. It allows users to interact with Bamboo through its components, such as buttons and input boxes.</p>
+<p>The <code>UI</code> component, or user interface, houses all the different front-end components that you see upon running
+Bamboo. It allows you to interact with Bamboo through its components, such as buttons and input boxes.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -478,7 +478,7 @@ Bamboo. It allows users to interact with Bamboo through its components, such as 
 <p>Uses <code>.fxml</code> and resource files (e.g. images, fonts) in <code>src\main\resources</code> that gives the application its look.</p>
 </li>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes your commands using the <code>Logic</code> component.</p>
 </li>
 <li>
 <p>Binds itself to some data in the <code>Model</code> so that the UI can automatically update when data in the <code>Model</code> component changes.</p>
@@ -1116,10 +1116,10 @@ Content is usually created or instantiated by code.</p>
 <p>The (0, 0) and (1, 0) cells of the main contact panel contain nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
 </div>
 <div class="paragraph">
-<p>These <code>Circle</code> objects are created when the <code>setContactImage()</code> and <code>setIcons()</code> methods are run. These two methods run inside <code>handlePersonPanelSelectionChangedEvent()</code> when the user selects a person in the person list panel.</p>
+<p>These <code>Circle</code> objects are created when the <code>setContactImage()</code> and <code>setIcons()</code> methods are run. These two methods run inside <code>handlePersonPanelSelectionChangedEvent()</code> when you select a person in the person list panel.</p>
 </div>
 <div class="paragraph">
-<p>The reason for using <code>BorderPane</code> objects is to allow centering and resizing of the <code>Circle</code> objects. Using a <code>Pane</code> will not allow for positioning of objects, while using a <code>StackPane</code> will not allow for resizing of objects inside of it.
+<p>The reason for using <code>BorderPane</code> objects is to allow centering and resizing of the <code>Circle</code> objects. Using a <code>Pane</code> will not allow positioning of objects, while using a <code>StackPane</code> will not allow resizing of objects inside of it.
 A <code>BorderPane</code> supports both positioning and resizing of objects inside of it.</p>
 </div>
 </div>
@@ -1127,7 +1127,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 <h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.8.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (1,0) cell of the main contact panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.
-The values of these <code>Label</code> objects are updated in <code>setContactDetails()</code> when a person is selected in the person list panel.</p>
+The values of these <code>Label</code> objects are updated in <code>setContactDetails()</code> when you select a person in the person list panel.</p>
 </div>
 <div class="paragraph">
 <p>The <code>setContactDetails()</code> method takes in a <code>ReadOnlyPerson</code> object as an argument, which holds the values of a person&#8217;s contact details that are used to update the <code>Label</code> objects.</p>
@@ -1139,7 +1139,7 @@ The values of these <code>Label</code> objects are updated in <code>setContactDe
 <p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in <code>Node</code> objects and animates them through the use of various <code>Transitions</code> objects.</p>
 </div>
 <div class="paragraph">
-<p><code>ParallelTransition</code> is used to play multiple <code>Transition</code> objects simultaneously. In this case, it plays <code>FadeTransition</code> and <code>TranslateTransition</code> together, resulting in what looks like text and images fading in from nothing.</p>
+<p><code>ParallelTransition</code> is used to play multiple <code>Transition</code> objects simultaneously. In this case, it plays <code>FadeTransition</code> and <code>TranslateTransition</code> together, resulting in what you see - text and images fading in from nothing.</p>
 </div>
 </div>
 </div>
@@ -2037,7 +2037,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 18:30:00 +00:00
+Last updated 2017-11-12 19:11:39 +00:00
 </div>
 </div>
 </body>
