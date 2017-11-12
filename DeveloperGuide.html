@@ -94,7 +94,7 @@
 <div class="sect2">
 <h3 id="about-bamboo"><a class="link" href="#about-bamboo">1.1. About Bamboo</a></h3>
 <div class="paragraph">
-<p>Bamboo is a command-line interface (CLI) based address book application.
+<p>Bamboo is a command-line interface (CLI) based address book application directed at students.
 It is a one-stop solution to help you manage your contacts in an efficient and
 convenient manner. Using Bamboo, you can organize contacts into groups,
 find common schedules and get connected to your contacts’ social media platforms.</p>
@@ -104,7 +104,7 @@ find common schedules and get connected to your contacts’ social media platfor
 <h3 id="purpose"><a class="link" href="#purpose">1.2. Purpose</a></h3>
 <div class="paragraph">
 <p>This document serves as the developers' guide for developing Bamboo.
-It assumes that you have an intermediate understanding of Java.
+It assumes that you have an intermediate level of understanding of Java.
 It describes how to start developing Bamboo with the Intellij IDE,
 as well as the structure of various components in the Bamboo application.</p>
 </div>
@@ -114,6 +114,10 @@ as well as the structure of various components in the Bamboo application.</p>
 <div class="sect1">
 <h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section provides developers with the steps required to set up everything before beginning development
+on Bamboo.</p>
+</div>
 <div class="sect2">
 <h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="olist arabic">
@@ -348,7 +352,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#ui-component"><strong><code>UI</code></strong></a> : The UI of the App.</p>
+<p><a href="#ui-component"><strong><code>UI</code></strong></a> : The user interface of the application.</p>
 </li>
 <li>
 <p><a href="#logic-component"><strong><code>Logic</code></strong></a> : The command executor.</p>
@@ -438,6 +442,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect2">
 <h3 id="ui-component"><a class="link" href="#ui-component">3.2. UI component</a></h3>
+<div class="paragraph">
+<p>The <code>UI</code> component, or user interface, houses all the different front-end components that users see upon running
+Bamboo. It allows users to interact with Bamboo through its components, such as buttons and input boxes.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
@@ -447,24 +455,21 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
 </div>
 <div class="paragraph">
-<p><strong>TODO: Edit diagram towards the end to reflect final names or changes</strong></p>
-</div>
-<div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts (e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>GroupListPanel</code>, <code>StatusBarFooter</code>, <code>ContactDetailsPanel</code>, etc.). All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts (e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>GroupListPanel</code>, <code>StatusBarFooter</code>, <code>MainContactPanel</code>, etc.). All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses the JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.
+<p>The <code>UI</code> component uses the JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>.
 <code>.fxml</code> files should only be used to <strong>define the basic layout or content placeholders</strong> in the UI. <strong>Actual content values should be instantiated by code</strong> as much as possible.</p>
 </div>
 <div class="paragraph">
-<p>The <code>.fxml</code> files may not immediately reflect all the UI parts that are seen on run-time. This is because some UI parts are instantiated by code only on run-time, so opening the <code>.fxml</code> files in Scene Builder will not show certain parts of the UI
+<p>The <code>.fxml</code> files may not immediately reflect all the UI parts that are seen in <code>Scene Builder</code>. This is because some UI parts are instantiated by code only on run-time, so opening the <code>.fxml</code> files in <code>Scene Builder</code> will not show certain parts of the UI
 (e.g. the circular contact image in the contact details panel, instantiated inside <code>setContactImage()</code> in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a>).</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component does the following:</p>
+<p>The <code>UI</code> component does the following things:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -475,7 +480,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>Executes user commands using the <code>Logic</code> component.</p>
 </li>
 <li>
-<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> changes.</p>
+<p>Binds itself to some data in the <code>Model</code> so that the UI can automatically update when data in the <code>Model</code> component changes.</p>
 </li>
 <li>
 <p>Responds to events raised from various parts of the application (through event subscribers such as <code>handlePersonPanelSelectionChangedEvent</code> in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a>) and updates the UI accordingly.</p>
@@ -488,6 +493,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect2">
 <h3 id="logic-component"><a class="link" href="#logic-component">3.3. Logic component</a></h3>
+<div class="paragraph">
+<p>The <code>Logic</code> component houses the main logical components of the application, which processes commands
+entered by users and handles them accordingly.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -502,7 +511,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2.3.2 : Structure of Commands in the Logic Component. This diagram shows finer details concerning <code>XYZCommand</code> and <code>Command</code> in Figure 2.3.1</em></p>
+<p><em>Figure 2.3.2 : Structure of Commands in the Logic Component</em></p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -538,6 +547,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect2">
 <h3 id="model-component"><a class="link" href="#model-component">3.4. Model component</a></h3>
+<div class="paragraph">
+<p>The <code>Model</code> component houses all the main data of Bamboo (e.g. contact details, schedules, numbers, etc.).</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
@@ -571,6 +583,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="sect2">
 <h3 id="storage-component"><a class="link" href="#storage-component">3.5. Storage component</a></h3>
+<div class="paragraph">
+<p>The <code>Storage</code> component reads data from the hard disk and writes to it as well. This gives
+Bamboo data persistence, so that data does not disappear upon closing Bamboo.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -809,7 +825,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect2">
 <h3 id="sorting"><a class="link" href="#sorting">4.2. Sorting</a></h3>
 <div class="paragraph">
-<p>The sort mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
+<p>The sorting mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
 It supports the sorting of persons in the address book by the <code>PREFIX</code> specified.
 If the <code>r</code> flag is specified, the list of persons will be sorted in descending order.</p>
 </div>
@@ -835,12 +851,12 @@ original starting order as when the App initializes.</p>
 <h3 id="finding"><a class="link" href="#finding">4.3. Finding</a></h3>
 <div class="paragraph">
 <p>The finding mechanism is facilitated by <code>FindCommand</code>, which extends <code>Command</code>.
-It supports finding a list of specific persons by offering any substring of person&#8217;s contact field
-(including name, by default, phone numbers, email, address or even their tags) with <code>PREFIX</code> specified.</p>
+It supports finding a list of specific persons by entering any substring of a person&#8217;s contact field.
+This includes a person&#8217;s name, phone number, email, address or even their tags with <code>PREFIX</code> specified.</p>
 </div>
 <div class="paragraph">
-<p>Finding a person is facilitated using PartialSearchUtil which examine whether a base list contains any word whose
-substring appears in the target list. Mapping each attribute to the find Parser and returns a list of persons
+<p>Finding a person is facilitated using <code>PartialSearchUtil</code>, which examines whether a base list contains any word whose
+substring appears in the target list. It maps each attribute to the <code>find</code> parser and returns a list of persons
 matching find condition.</p>
 </div>
 <div class="sect3">
@@ -919,32 +935,32 @@ any future changes to these classes may be more contrived and difficult.</p>
 <div class="sect3">
 <h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.5.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
-<p><strong>Adding a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>AddFavouriteCommand</code> with it&#8217;s
+<p><strong>Adding a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>AddFavouriteCommand</code> with its
 supporting parser class <code>AddFavouriteCommandParser</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>AddFaveCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument and
-passes the parsed index on to an initialised <strong>AddFavouriteCommand</strong> object.</p>
+passes the parsed index into an initialised <strong>AddFavouriteCommand</strong> object.</p>
 </li>
 <li>
 <p><code>AddFavouriteCommand</code>: You may modify the command word (fadd), usage instructions and all other functions necessary for
 the command to mark a <code>Person</code> as a Favourite in this class.<br>
-The current implementation takes in the parsed index, retrieves the <code>Person</code> object of the parsed index, set&#8217;s the
+The current implementation takes in the parsed index, retrieves the <code>Person</code> object of the parsed index, sets the
 <code>Favourite</code> attribute to true and updates the in-memory model list of <strong>Persons</strong> with the updated <strong>Person</strong>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p><strong>Removing a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>RemoveFavouriteCommand</code> with
- it&#8217;s supporting parser class <code>RemoveFavouriteCommandParser</code>:</p>
+ its supporting parser class <code>RemoveFavouriteCommandParser</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>RemoveFaveCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument and
-passes the parsed index on to an initialised <strong>RemoveFavouriteCommand</strong> object.</p>
+passes the parsed index into an initialised <strong>RemoveFavouriteCommand</strong> object.</p>
 </li>
 <li>
 <p><code>RemoveFavouriteCommand</code>: You may modify the command word (fremove), usage instructions and all other functions necessary for
@@ -956,17 +972,17 @@ retreived from the parsed index has their <code>Favourite</code> attribute updat
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.5.2. Listing of only Favourite contacts (Since V1.3)</a></h4>
+<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.5.2. Listing of only Favourite contacts (since V1.3)</a></h4>
 <div class="paragraph">
-<p><strong>List command option:</strong> The <strong>list</strong> command can now list only contacts marked as favourites with "list /f"<br>
-This feature works by updating the model&#8217;s person filteredList with the predicate <strong>isFavourite()</strong> in <code>ListCommand</code>.</p>
+<p><strong>List command option:</strong> The <strong>list</strong> command can now list only contacts marked as favourites with "list /f".
+This feature works by updating the model&#8217;s <code>filteredList</code> of <code>Person</code> objects with the predicate <strong>isFavourite()</strong> in <code>ListCommand</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.5.3. Other modifications to existing components to handle favourites (Since V1.4)</a></h4>
+<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.5.3. Other modifications to existing components to handle favourites (since V1.4)</a></h4>
 <div class="paragraph">
-<p><code>UniquePersonList</code>: The <strong>setPerson()</strong> function that is called whenever a <strong>Person</strong> object has been modified to to
-also change a <strong>Person&#8217;s</strong> order in the model list if their <strong>Favourite</strong> attribute&#8217;s value has been changed.</p>
+<p><code>UniquePersonList</code>: The <strong>setPerson()</strong> function (that is called whenever a <strong>Person</strong> object has been modified)
+also changes a `Person&#8217;s order in the model list if their <strong>Favourite</strong> attribute&#8217;s value has been changed.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -975,8 +991,8 @@ also change a <strong>Person&#8217;s</strong> order in the model list if their <
 reinserted at the top of the list among the other favourites in lexicographical order.</p>
 </li>
 <li>
-<p>If the <strong>Favourite</strong>'s value has been changed to false, the modified <strong>Person</strong> moved from it&#8217;s position among the favourites
-and inserted into the position after the last favourite person in the internal model list</p>
+<p>If the <strong>Favourite</strong>'s value has been changed to false, the modified <strong>Person</strong> is moved from its position among the favourites
+and inserted into the position after the last favourite person in the internal model list.</p>
 </li>
 </ul>
 </div>
@@ -985,24 +1001,24 @@ and inserted into the position after the last favourite person in the internal m
 <div class="sect2">
 <h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">4.6. Profile Picture Feature</a></h3>
 <div class="paragraph">
-<p>A user&#8217;s profile picture is retrieved by and displayed in the UI class <code>MainContactPanel</code> with <strong>setContactImage(Person)</strong>
-a contact&#8217;s  path stored in a contact&#8217;s <code>ProfPic</code> person attribute and can be modified with the use of 2 commands
-explain below.</p>
+<p>A user&#8217;s profile picture is retrieved by and displayed in the UI class <code>MainContactPanel</code> with <strong>setContactImage(Person)</strong>.
+A contact&#8217;s path stored in a contact&#8217;s <code>ProfPic</code> person attribute can be modified with the use of 2 commands
+explained below.</p>
 </div>
 <div class="sect3">
-<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.6.1. Setting profile picture (Since V1.4)</a></h4>
+<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.6.1. Setting profile picture (since V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Setting a new profile picture</strong>: This feature&#8217;s functions are mainly contained in the command class <code>SetPictureCommand</code>
-with it&#8217;s supporting parser class <code>SetPictureCommandParser</code>:</p>
+with its supporting parser class <code>SetPictureCommandParser</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>SetPictureCommandParser</code>: This class is called by <code>AddressBookParser</code> and handles the parsing of the index argument
-and provided filepath and passes the parsed index and filepath on to an initialised <strong>SetPictureCommand</strong> object.</p>
+and provided filepath, then passes the parsed index and filepath into an initialised <strong>SetPictureCommand</strong> object.</p>
 </li>
 <li>
-<p><code>SetPictureCommand</code>: You may modify the command word (ppset) and it&#8217;s syntax, usage instructions and all other functions necessary for
+<p><code>SetPictureCommand</code>: You may modify the command word (ppset) and its syntax, usage instructions and all other functions necessary for
 the set picture command in this class.<br>
 The current implementation takes in the parsed index and filepath and stores them. Then,</p>
 <div class="ulist">
@@ -1015,7 +1031,7 @@ The current implementation takes in the parsed index and filepath and stores the
 provided index as <strong>images\contactName.png</strong></p>
 </li>
 <li>
-<p>The <strong>Person</strong> provided by the index has it&#8217;s <code>ProfPic</code> attribute&#8217;s path var modified to <strong>contactName.png</strong> and
+<p>The <strong>Person</strong> provided by the index has its <code>ProfPic</code> attribute&#8217;s path var modified to <strong>contactName.png</strong> and
 the modified <strong>Person</strong> saved to the in-memory model list of <strong>Persons</strong></p>
 </li>
 </ul>
@@ -1025,7 +1041,7 @@ the modified <strong>Person</strong> saved to the in-memory model list of <stron
 </div>
 </div>
 <div class="sect3">
-<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.6.2. Resetting profile picture (Since V1.4)</a></h4>
+<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.6.2. Resetting profile picture (since V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Resetting a contact&#8217;s profile picture</strong> This feature&#8217;s functions are mainly contained in the command class <code>ResetPictureCommand</code>
 with it&#8217;s supporting parser class <code>ResetPictureCommandParser</code>:</p>
@@ -1051,14 +1067,14 @@ attribute&#8217;s path var to the default "maleIcon.png before saving the modifi
 <div class="sect3">
 <h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">4.7.1. Layout of the user interface (since V1.1)</a></h4>
 <div class="paragraph">
-<p>The application uses various panels such as <code>StackPanes</code> and <code>BorderPanes</code> defined in <code>.fxml</code> files that define the basic layout, with no content inside of it.
+<p>The application uses various panels such as <code>StackPanes</code> and <code>BorderPanes</code> inside <code>.fxml</code> files that define the basic layout, with no content inside of it.
 Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">4.7.2. Layout of the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
-<p>The contact details <strong>main</strong> panel (ContactDetailsPanel.fxml) uses a 2x2 <code>GridPane</code> to show the following:</p>
+<p>The main contact panel (MainContactPanel.fxml) uses a 2x2 <code>GridPane</code> to show the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1072,7 +1088,7 @@ Content is usually created or instantiated by code.</p>
 <p>Four social media icons</p>
 </li>
 <li>
-<p>Common available schedules with the contact</p>
+<p>Contact&#8217;s schedule</p>
 </li>
 </ul>
 </div>
@@ -1080,7 +1096,7 @@ Content is usually created or instantiated by code.</p>
 <div class="sect3">
 <h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">4.7.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
 <div class="paragraph">
-<p>The (0, 0) and (1, 0) cells of the contact details main panel contains nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
+<p>The (0, 0) and (1, 0) cells of the main contact panel contain nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
 </div>
 <div class="paragraph">
 <p>These <code>Circle</code> objects are created when the <code>setContactImage()</code> and <code>setIcons()</code> methods are run. These two methods run inside <code>handlePersonPanelSelectionChangedEvent()</code> when the user selects a person in the person list panel.</p>
@@ -1093,7 +1109,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 <div class="sect3">
 <h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.7.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
 <div class="paragraph">
-<p>The (1,0) cell of the contact details main panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.
+<p>The (1,0) cell of the main contact panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.
 The values of these <code>Label</code> objects are updated in <code>setContactDetails()</code> when a person is selected in the person list panel.</p>
 </div>
 <div class="paragraph">
@@ -1103,10 +1119,10 @@ The values of these <code>Label</code> objects are updated in <code>setContactDe
 <div class="sect3">
 <h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">4.7.5. Animation in the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
-<p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in any node(s) and animates it through the use of various <code>Transitions</code>.</p>
+<p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in <code>Node</code> objects and animates them through the use of various <code>Transitions</code> objects.</p>
 </div>
 <div class="paragraph">
-<p><code>ParallelTransition</code> is used to play multiple <code>Transition</code> objects simultaneously. In this case, it plays <code>FadeTransition</code> and <code>TranslateTransition</code> together, resulting in what looks like a fade-in from the right.</p>
+<p><code>ParallelTransition</code> is used to play multiple <code>Transition</code> objects simultaneously. In this case, it plays <code>FadeTransition</code> and <code>TranslateTransition</code> together, resulting in what looks like text and images fading in from nothing.</p>
 </div>
 </div>
 </div>
@@ -1193,7 +1209,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The most reliable way to run tests is the 3rd one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies. Refer to <code>5.3 Troubleshooting Testing</code> if test failures occur.
+The most reliable way to run tests is the third one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies. Refer to <code>5.3 Troubleshooting Testing</code> if test failures occur.
 </td>
 </tr>
 </table>
@@ -2004,7 +2020,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 08:03:54 +00:00
+Last updated 2017-11-12 12:24:44 +00:00
 </div>
 </div>
 </body>

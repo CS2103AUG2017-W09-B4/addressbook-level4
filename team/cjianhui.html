@@ -286,7 +286,7 @@ track of their schedule through a calendar of some sort and Google Calendar is a
 <div class="sect2">
 <h3 id="sorting"><a class="link" href="#sorting">Sorting</a></h3>
 <div class="paragraph">
-<p>The sort mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
+<p>The sorting mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
 It supports the sorting of persons in the address book by the <code>PREFIX</code> specified.
 If the <code>r</code> flag is specified, the list of persons will be sorted in descending order.</p>
 </div>
@@ -312,12 +312,12 @@ original starting order as when the App initializes.</p>
 <h3 id="finding"><a class="link" href="#finding">Finding</a></h3>
 <div class="paragraph">
 <p>The finding mechanism is facilitated by <code>FindCommand</code>, which extends <code>Command</code>.
-It supports finding a list of specific persons by offering any substring of person&#8217;s contact field
-(including name, by default, phone numbers, email, address or even their tags) with <code>PREFIX</code> specified.</p>
+It supports finding a list of specific persons by entering any substring of a person&#8217;s contact field.
+This includes a person&#8217;s name, phone number, email, address or even their tags with <code>PREFIX</code> specified.</p>
 </div>
 <div class="paragraph">
-<p>Finding a person is facilitated using PartialSearchUtil which examine whether a base list contains any word whose
-substring appears in the target list. Mapping each attribute to the find Parser and returns a list of persons
+<p>Finding a person is facilitated using <code>PartialSearchUtil</code>, which examines whether a base list contains any word whose
+substring appears in the target list. It maps each attribute to the <code>find</code> parser and returns a list of persons
 matching find condition.</p>
 </div>
 <div class="sect3">
@@ -369,7 +369,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 08:03:54 +00:00
+Last updated 2017-11-12 12:24:44 +00:00
 </div>
 </div>
 </body>
