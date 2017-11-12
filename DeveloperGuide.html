@@ -933,7 +933,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 <div class="sect2">
 <h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">4.6. Favourite Contact System</a></h3>
 <div class="paragraph">
-<p>The commands related to the Favourite system rely on the <code>Favourite</code> attribute class which is a <code>model</code> component.</p>
+<p>The commands related to the Favourite system rely on the <code>Favourite</code> attribute class which is a <code>Person</code> component.</p>
 </div>
 <div class="sect3">
 <h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.6.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
@@ -977,8 +977,9 @@ retreived from the parsed index has their <code>Favourite</code> attribute updat
 <div class="sect3">
 <h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.6.2. Listing of only Favourite contacts (since V1.3)</a></h4>
 <div class="paragraph">
-<p><strong>List command option:</strong> The <strong>list</strong> command can now list only contacts marked as favourites with "list /f".
-This feature works by updating the model&#8217;s <code>filteredList</code> of <code>Person</code> objects with the predicate <strong>isFavourite()</strong> in <code>ListCommand</code>.</p>
+<p><strong>List command option:</strong> The <strong>list</strong> command now has an option to list only contacts marked as favourites with
+"list /f". This feature works by updating the model&#8217;s <code>filteredList</code> of <code>Person</code> objects with the predicate
+<strong>isFavourite()</strong> in <code>ListCommand</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -998,6 +999,19 @@ reinserted at the top of the list among the other favourites in lexicographical 
 and inserted into the position after the last favourite person in the internal model list.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.6.4. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Storage of <code>Favourite</code> status<br>
+<strong>Alternative 1 (current choice):</strong> Add a new attribute class to Person, <code>Favourite</code><br>
+<strong>Pros:</strong> No need for additional overhead from maintaining a second list of Persons in model.<br>
+<strong>Cons:</strong> Have to manually arrange contacts when they are added/removed from favourite status as favourite
+ contacts must be at top of normal listings<br>
+<strong>Alternative 2:</strong> Create and maintain a list in <code>model</code> containing favourite contacts<br>
+<strong>Pros:</strong> No need to organise favourite contacts in original list, just present favourite list before normal contact list when executing <code>list</code><br>
+<strong>Cons:</strong> Tedious to manage secondary list of Persons, additional overhead when searching favourite list for specific contact</p>
 </div>
 </div>
 </div>
@@ -1027,14 +1041,14 @@ The current implementation takes in the parsed index and filepath and stores the
 <div class="ulist">
 <ul>
 <li>
-<p>The given filepath is checked to see if there exists a .png image file with <strong>Files.probeContentType(filepath)</strong></p>
+<p>The given filepath is checked to see if there exists a .png or .jpg image file with <strong>Files.probeContentType(filepath)</strong></p>
 </li>
 <li>
-<p>The verified .png is then copied to the local folder <strong>images</strong> of the application and stored under the contact name of the
-provided index as <strong>images\contactName.png</strong></p>
+<p>The verified .png/.jpg is then copied to the local folder <strong>images</strong> of the application and stored under the contact name of the
+provided index as <strong>images\contactName.png</strong> or <strong>images\contactName.jpg</strong> if the set file is a .jpg</p>
 </li>
 <li>
-<p>The <strong>Person</strong> provided by the index has its <code>ProfPic</code> attribute&#8217;s path var modified to <strong>contactName.png</strong> and
+<p>The <strong>Person</strong> provided by the index has its <code>ProfPic</code> attribute&#8217;s path var modified to <strong>contactName.png/.jpg</strong> and
 the modified <strong>Person</strong> saved to the in-memory model list of <strong>Persons</strong></p>
 </li>
 </ul>
@@ -2023,7 +2037,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 15:24:24 +00:00
+Last updated 2017-11-12 15:39:07 +00:00
 </div>
 </div>
 </body>
