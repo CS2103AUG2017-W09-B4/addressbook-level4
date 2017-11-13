@@ -253,6 +253,88 @@ Alias: <code>ca</code></p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="adding-an-event-to-a-person-s-schedule-code-eadd-code-since-v1-5"><a class="link" href="#adding-an-event-to-a-person-s-schedule-code-eadd-code-since-v1-5">Adding an event to a person&#8217;s schedule : <code>eadd</code> (Since V1.5)</a></h3>
+<div class="paragraph">
+<p>Adds an event to a person&#8217;s schedule.<br>
+Format: <code>eadd p/PERSON INDEX n/EVENT NAME s/EVENT START DATE e/EVENT END DATE [d/EVENT DETAILS]</code><br>
+Alias: <code>ea</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Add an event to person&#8217;s schedule list at specified <code>PERSON INDEX</code></p>
+</li>
+<li>
+<p><code>EVENT START DATE</code> and <code>EVENT END DATE</code> must be in <strong>YYYY-MM-DD HH:MM</strong> format.</p>
+</li>
+<li>
+<p><code>EVENT START DATE</code> must come before <code>EVENT END DATE</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>eadd p/2 n/CS2103 Meeting s/2017-11-23 10:30 e/2017-11-23 11:45 d/Prepare for Demo</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-event-s-from-a-person-s-schedule-code-edelete-code-since-v1-5"><a class="link" href="#removing-event-s-from-a-person-s-schedule-code-edelete-code-since-v1-5">Removing event(s) from a person&#8217;s schedule : <code>edelete</code> (Since V1.5)</a></h3>
+<div class="paragraph">
+<p>Removes event(s) from a person&#8217;s schedule.<br>
+Format: <code>edelete p/PERSON INDEX e/EVENT INDEX [EVENT INDEX&#8230;&#8203;]</code><br>
+Alias: <code>ed</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes event(s) from a person&#8217;s schedule list at specified <code>PERSON INDEX</code></p>
+</li>
+<li>
+<p>At least one <code>EVENT INDEX</code> must be specified</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edelete p/1 e/1</code></p>
+</li>
+<li>
+<p><code>ed p/2 e/4 5 6</code></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -449,7 +531,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:54:14 +00:00
+Last updated 2017-11-13 13:57:49 +00:00
 </div>
 </div>
 </body>
