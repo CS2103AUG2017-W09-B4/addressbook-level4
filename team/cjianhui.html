@@ -294,21 +294,94 @@ It supports the sorting of persons in the address book by the <code>PREFIX</code
 If the <code>r</code> flag is specified, the list of persons will be sorted in descending order.</p>
 </div>
 <div class="paragraph">
-<p>The sorting of persons occur in <code>UniquePersonList</code>, where a call to <code>Collections.sort</code> is
-made with the respective comparator and a <code>isReverse</code> boolean flag as parameters.</p>
+<p><code>SortCommand</code> would return a <code>Comparator</code> depending on the <code>PREFIX</code> specified through this code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">Comparator</span>&lt;ReadOnlyPerson&gt; getSortComparator(<span class="predefined-type">String</span> field) {
+        <span class="keyword">return</span> (o1, o2) -&gt; {
+            <span class="comment">/** Person(s) marked as 'Favourite' will always remain at the top of the list **/</span>
+            <span class="keyword">if</span> (o1.getFavourite().getStatus()) {
+                <span class="keyword">if</span> (isReverseOrder) {
+                    <span class="comment">/** Ensure 'Favourite' persons is always greater than when sorted in descending order**/</span>
+                    <span class="keyword">return</span> <span class="integer">1</span>;
+                } <span class="keyword">else</span> {
+                    <span class="comment">/** Ensure 'Favourite' persons is always smaller than when sorted in ascending order**/</span>
+                    <span class="keyword">return</span> -<span class="integer">1</span>;
+                }
+            }
+
+            <span class="keyword">switch</span> (field) {
+            <span class="keyword">case</span> PREFIX_NAME_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getName().toString()
+                        .compareToIgnoreCase(o2.getName().toString()
+                        );
+
+            <span class="keyword">case</span> PREFIX_PHONE_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">phone</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getPhone().toString()
+                        .compareToIgnoreCase(o2.getPhone().toString()
+                        );
+
+            <span class="keyword">case</span> PREFIX_EMAIL_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getEmail().toString()
+                        .compareToIgnoreCase(o2.getEmail().toString()
+                        );
+
+            <span class="keyword">case</span> PREFIX_ADDRESS_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">address</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getAddress().toString()
+                        .compareToIgnoreCase(o2.getAddress().toString()
+                        );
+
+            <span class="keyword">default</span>:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getName().toString()
+                        .compareToIgnoreCase(o2.getName().toString()
+                        );
+            }
+        };
+
+    }</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The sequence diagram below details the flow the execution of a <code>sort n/r</code> command.</p>
+<p>A person marked as <strong>'Favourite'</strong> will always be given priority during sorting to ensure consistency of the <code>Favourite</code> feature as
+<strong>'Favourite'</strong> persons should always stay at the top of the contact list to locate them easily.
+Thereafter, the sorting of persons occur in <code>UniquePersonList</code>, where a call to <code>Collections.sort</code> is
+made with the respective comparator and an <code>isReverse</code> boolean flag as parameters.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>The sort feature is implemented in <code>UniquePersonList</code> in this manner:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="../images/SortSequenceDiagram.png" alt="SortSequenceDiagram" width="800">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> sort(<span class="predefined-type">Comparator</span> sortComparator, <span class="predefined-type">Boolean</span> isReverseOrder) <span class="directive">throws</span> NoPersonsException {
+        requireNonNull(sortComparator);
+        requireNonNull(isReverseOrder);
+
+        <span class="keyword">if</span> (internalList.size() &lt; <span class="integer">1</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> NoPersonsException();
+        }
+
+        <span class="predefined-type">Collections</span>.sort(internalList, sortComparator);
+
+        <span class="keyword">if</span> (isReverseOrder) {
+            <span class="predefined-type">Collections</span>.reverse(internalList);
+        }
+    }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the flow of program execution when a <code>SortCommand</code> is executed by the user:
+image::SortPersonSdForLogic.png[width="800"]</p>
 </div>
 <div class="paragraph">
 <p>The execution of <code>sort</code> results in the reordering of the in-memory <code>UniquePersonList</code>.
-However, the change is transient and the order of the list will return to its
-original starting order as when the App initializes.</p>
+The change is transient and the order of the list will return to its
+original starting order as when the application starts up.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
@@ -333,6 +406,16 @@ any future changes to these classes may be more contrived and difficult.</p>
 <strong>Alternative 2:</strong> Save address book after every sort<br>
 <strong>Pros:</strong> Sorting order is preserved after program exits.<br>
 <strong>Cons:</strong> The original order of the address book is lost during every sort.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Sorting <code>Favourite</code> Person(s)<br>
+<strong>Alternative 1 (current choice):</strong> <code>Favourite</code> person(s) are not subjected to sorting.<br>
+<strong>Pros:</strong> Presents a coherent and uniform <code>Favourite</code> feature as <code>Favourite</code> person(s) should always be found at the top of the list.<br>
+<strong>Cons:</strong> A user is unable to sort every person according to the <code>PREFIX</code> specified.<br>
+<strong>Alternative 2:</strong> <code>Favourite</code> person(s) are subjected to sorting.<br>
+<strong>Pros:</strong> A user is able to sort every person according to the <code>PREFIX</code> specified, regardless of the <code>Favourite</code> status.<br>
+<strong>Cons:</strong> <code>Favourite</code> person(s) will not remain at the top of the list after a user sorts the address book.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -359,7 +442,7 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 09:38:17 +00:00
+Last updated 2017-11-13 10:01:53 +00:00
 </div>
 </div>
 </body>
