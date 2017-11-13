@@ -506,6 +506,181 @@ any future changes to these classes may be more contrived and difficult.</p>
 <strong>Pros:</strong> A user is able to sort every person according to the <code>PREFIX</code> specified, regardless of the <code>Favourite</code> status.<br>
 <strong>Cons:</strong> <code>Favourite</code> person(s) will not remain at the top of the list after a user sorts the address book.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="groups"><a class="link" href="#groups">Groups</a></h3>
+<div class="paragraph">
+<p>The <code>Group</code> suite of features are implemented by creating a new <code>Group</code> model with its constituent components as shown in the class
+diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/GroupClassDiagram.png" alt="GroupClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.1 : Class Diagram for `Group`</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Group</code> is composed of a <code>GroupName</code> and <code>UniquePersonList</code> which is responsible for storing group members.
+The Groups in address book are contained in <code>UniqueGroupList</code>, which exposes itself through a
+<code>FilteredGroupList</code> in the <code>Model</code>. All groups commands are performed through the <code>Model</code> where the
+<code>UniqueGroupList</code> is accessed to either create groups, delete groups, add person(s) to groups or remove
+person(s) from groups.</p>
+</div>
+<div class="sect3">
+<h4 id="creating-and-deleting-groups"><a class="link" href="#creating-and-deleting-groups">Creating and Deleting Groups</a></h4>
+<div class="paragraph">
+<p>The create and delete group mechanism is facilitated by <code>CreateGroupCommand</code> and <code>DeleteGroupCommand</code> respectively, which extends <code>UndoableCommand</code>.
+The <code>CreateGroupCommand</code> allows a user to create a group with a desired <code>GroupName</code> specified by the
+<code>n/</code> flag while the
+<code>DeleteGroupCommand</code> allows a user to delete a group at the specified <code>INDEX</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>CreateGroupCommand</code> interfaces with <code>ModelManager</code>, which exposes the <code>UniqueGroupList</code> and is implemented in this manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> addGroup(ReadOnlyGroup group) <span class="directive">throws</span> DuplicateGroupException {
+        addressBook.addGroup(group);
+        updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>DuplicateGroupException</code> is thrown if a duplicate <code>Group</code> is added to <code>UniqueGroupList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the <code>DeleteGroupCommand</code> interfaces with <code>ModelManager</code>, which exposes the <code>UniqueGroupList</code> and is implemented in the following manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> <span class="type">void</span> deleteGroup(ReadOnlyGroup target) <span class="directive">throws</span> GroupNotFoundException {
+        addressBook.removeGroup(target);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>GroupNotFoundException</code> is thrown if the <code>Group</code> speicfied by the <code>INDEX</code> is not found in
+<code>UniqueGroupList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Both creating and deleting groups result in a change in the model of the address book, and these
+changes are saved to storage as well.
+The following sequence diagram captures the program flow when a user creates a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CreateGroupSdForLogic.png" alt="CreateGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.2a : Interactions Inside the Logic Component for the <code>gcreate n/Bamboo</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>Similarly, the following sequence diagram captures the program flow when a user deletes a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteGroupSdForLogic.png" alt="DeleteGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.2b : Interactions Inside the Logic Component for the <code>gdelete 1</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-and-removing-a-person-from-a-group"><a class="link" href="#adding-and-removing-a-person-from-a-group">Adding and removing a person from a Group</a></h4>
+<div class="paragraph">
+<p>The <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code>, which extends <code>UndoableCommand</code>, is
+responsible for adding and removing a person from a group.
+Both commands allow a user to add or remove a person from a group by specifying a <code>PERSON INDEX</code> through the
+<code>p/</code> flag and a <code>GROUP INDEX</code> through a <code>g/</code> flag.</p>
+</div>
+<div class="paragraph">
+<p>Both <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code> both interfaces with <code>ModelManager</code>,
+which exposes <code>UniqueGroupList</code> and its corresponding <code>UniquePersonList</code> and
+they are implemented in the following manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd)
+            <span class="directive">throws</span> GroupNotFoundException, PersonNotFoundException, DuplicatePersonException {
+        addressBook.addPersonToGroup(targetGroup, toAdd);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GroupNotFoundException</code>, <code>PersonNotFoundException</code> and <code>DuplicatePersonException</code> are thrown
+in the event the <code>Group</code> specified does not exist, or if <code>Person</code> specified is not found, or
+if a duplicate <code>Person</code> exists in the <code>UniquePersonList</code> in the group.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> <span class="type">void</span> deletePersonFromGroup(Index targetGroup, ReadOnlyPerson toRemove)
+            <span class="directive">throws</span> GroupNotFoundException, PersonNotFoundException, NoPersonsException {
+        addressBook.deletePersonFromGroup(targetGroup, toRemove);
+        <span class="comment">/** Update filtered list with predicate for current group members in group after removing a person */</span>
+        ObservableList&lt;ReadOnlyPerson&gt; personList = addressBook.getGroupList()
+                .get(targetGroup.getZeroBased()).groupMembersProperty().get().asObservableList();
+        updateFilteredPersonList(getGroupMembersPredicate(personList));
+        indicateAddressBookChanged();
+
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GroupNotFoundException</code>, <code>PersonNotFoundException</code> and <code>NoPersonsException</code> are thrown
+in the event the <code>Group</code> specified does not exist, or if <code>Person</code> specified is not found, or
+if the <code>UniquePersonList</code> in the <code>Group</code> specified is empty.</p>
+</div>
+<div class="paragraph">
+<p>Both adding and removing a person from a group will result in a change in the model of the address book, and these
+changes are saved to storage as well.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram captures the program flow when a user adds a person to a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddPersonToGroupSdForLogic.png" alt="AddPersonToGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.3a : Interactions Inside the Logic Component for the <code>gadd p/1 g/1</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram captures the program flow when a user removes a person from a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddPersonToGroupSdForLogic.png" alt="AddPersonToGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.3b : Interactions Inside the Logic Component for the <code>gremove p/1 g/1</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>Group</code><br>
+<strong>Alternative 1 (current choice):</strong> Implement a completely new <code>Group</code> model.<br>
+<strong>Pros:</strong> Creating a completely new <code>Group</code> Model gives the developer fine-grained control
+over a <code>Group</code> and logically separates <code>Group</code> from a <code>Tag</code>, which makes implementation
+of <code>Group</code> commands distinct from <code>Tag</code> commands. This allows a developer to freely extend
+and add new <code>Group</code> commands without affecting or being confined by the <code>Tag</code> model.<br>
+<strong>Cons:</strong> It takes alot of time to create and integrate a new <code>Group</code> model.<br>
+<strong>Alternative 2:</strong> Modify the <code>Tag</code> model to perform 'Group-like` functions. <br>
+<strong>Pros:</strong> Less time is needed to modify <code>Tag</code> and integration of new commands will be simple.<br>
+<strong>Cons:</strong> The <code>Tag</code> model does not provide a clear and logical separation of duties for
+<code>Group</code> functions and is limited in its structure to allow fine-grained control over
+the addition and removal of 'members'.</p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -518,20 +693,26 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 <div class="sect2">
 <h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
-
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote additional tests to increase coverage (Pull requests <a href="https://github.com/CS2103AUG2017-W09-B4/main/pull/49">#49</a>)</p>
+</li>
+<li>
+<p>'Favourite' Feature: Modified setPerson to insert <code>Favourite</code> person(s) at the top and remove <code>Favourite</code> person(s) appropriately (Pull requests <a href="https://github.com/CS2103AUG2017-W09-B4/main/pull/71">#71</a>)</p>
+</li>
+<li>
+<p>Identified bugs during acceptance testing (Issues <a href="https://github.com/CS2103AUG2017-T16-B2/main/issues/102">#102</a>)</p>
+</li>
+</ul>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="project"><a class="link" href="#project">Project:</a></h2>
-<div class="sectionbody">
-
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:57:49 +00:00
+Last updated 2017-11-13 14:10:20 +00:00
 </div>
 </div>
 </body>
