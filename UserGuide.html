@@ -52,12 +52,14 @@
 <li><a href="#setting-the-photo-of-a-person-code-ppset-code-since-v1-4">3.17. Setting the photo of a person: <code>ppset</code> (Since V1.4)</a></li>
 <li><a href="#resetting-the-photo-of-a-person-code-ppreset-code-since-v1-4">3.18. Resetting the photo of a person: <code>ppreset</code> (Since V1.4)</a></li>
 <li><a href="#sorting-persons-code-sort-code-since-v1-1">3.19. Sorting persons : <code>sort</code> (Since V1.1)</a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.20. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.21. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.22. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.23. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.24. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.25. Saving the data</a></li>
+<li><a href="#adding-social-media-profiles-code-sadd-code-coming-in-v2-0">3.20. Adding social media profiles : <code>sadd</code> (coming in V2.0)</a></li>
+<li><a href="#showing-social-media-profiles-code-sshow-code-coming-in-v2-0">3.21. Showing social media profiles : <code>sshow</code> (coming in V2.0)</a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.22. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.23. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.24. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.25. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.26. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.27. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -929,7 +931,85 @@ Sorts persons by phone in descending order.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.20. Listing entered commands : <code>history</code></a></h3>
+<h3 id="adding-social-media-profiles-code-sadd-code-coming-in-v2-0"><a class="link" href="#adding-social-media-profiles-code-sadd-code-coming-in-v2-0">3.20. Adding social media profiles : <code>sadd</code> (coming in V2.0)</a></h3>
+<div class="paragraph">
+<p>Adds social media profiles to a contact based on prefixes specified.
+Format: <code>sadd [fb/FacebookURL] [tw/TwitterURL] [in/InstagramURL] [gp/GooglePlusURL]</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds social media profiles with <code>PREFIX</code>-es <code>fb, tw, in, gp</code> to a person specified by <code>INDEX</code>.</p>
+</li>
+<li>
+<p>At least one of the four prefixes is needed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sadd p/1 fb/https://www.facebook.com/samplename123</code><br>
+Adds a Facebook profile page to the person with <code>INDEX</code> 1.<br></p>
+</li>
+<li>
+<p><code>sadd p/2 fb/https://www.facebook.com/samplename123 tw/https://www.twitter.com/samplename123
+ gp/https://plus.google.com/samplename123</code><br>
+Adds a Facebook profile page, Twitter profile page
+ and Google Plus profile page to the person with <code>INDEX</code> 2.<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="showing-social-media-profiles-code-sshow-code-coming-in-v2-0"><a class="link" href="#showing-social-media-profiles-code-sshow-code-coming-in-v2-0">3.21. Showing social media profiles : <code>sshow</code> (coming in V2.0)</a></h3>
+<div class="paragraph">
+<p>Shows social media profiles of a contact based on prefixes specified.
+Format: <code>sshow INDEX [fb tw in gp]</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Shows social media profiles with options <code>fb, tw, in, gp</code> of the person specified by <code>INDEX</code>.</p>
+</li>
+<li>
+<p>Person <code>INDEX</code> is mandatory.</p>
+</li>
+<li>
+<p>At least one of the four social media prefixes are needed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sshow 1 fb</code><br>
+Shows the Facebook profile page of the person with <code>INDEX</code> 1.<br></p>
+</li>
+<li>
+<p><code>sshow 2 fb tw gp</code><br>
+Shows the Facebook, Twitter and Google Plus profile page
+of the person with <code>INDEX</code> 2.<br></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.22. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code><br>
@@ -951,7 +1031,7 @@ Alias: <code>h</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.21. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.23. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code><br>
@@ -997,7 +1077,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.22. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.24. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code><br>
@@ -1030,7 +1110,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.23. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.25. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code><br>
@@ -1038,14 +1118,14 @@ Alias: <code>c</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.24. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.26. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.25. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.27. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1148,7 +1228,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:09:51 +00:00
+Last updated 2017-11-13 13:31:19 +00:00
 </div>
 </div>
 </body>
