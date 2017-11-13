@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addressbook>
+    <persons>
+        <name>Aik Sheng</name>
+        <phone>12345678</phone>
+        <email>nas939@gmail.com</email>
+        <address>Kallang Road</address>
+        <favourite>true</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>friends</tagged>
+        <schedule>
+            <scheduleName>Eat sushi</scheduleName>
+            <startDateTime>2017-11-07 18:30:00+0800</startDateTime>
+            <endDateTime>2017-11-07 20:30:00+0800</endDateTime>
+            <scheduleDuration>Tue, 07 Nov 2017
+18:30 - 20:30</scheduleDuration>
+            <scheduleDetails>Too bad no bamboo sushi</scheduleDetails>
+        </schedule>
+    </persons>
+    <persons>
+        <name>Derek Kok</name>
+        <phone>91234567</phone>
+        <email>derekkok@gmail.com</email>
+        <address>Ulu Yewtee</address>
+        <favourite>true</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>procrastinator</tagged>
+    </persons>
+    <persons>
+        <name>Eldric Lim</name>
+        <phone>12344124</phone>
+        <email>dricdric@mail.com</email>
+        <address>Jurong East</address>
+        <favourite>true</favourite>
+        <profPic>Eldric Lim.png</profPic>
+        <tagged>cheeky</tagged>
+    </persons>
+    <persons>
+        <name>Farhan</name>
+        <phone>---</phone>
+        <email>---</email>
+        <address>---</address>
+        <favourite>true</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>friend</tagged>
+    </persons>
+    <persons>
+        <name>Irfan Ibrahim</name>
+        <phone>92492021</phone>
+        <email>irfan@example.com</email>
+        <address>Blk 47 Tampines Street 20, #17-35</address>
+        <favourite>true</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>classmates</tagged>
+    </persons>
+    <persons>
+        <name>Jian Hui</name>
+        <phone>91919191</phone>
+        <email>cjianhui@gmail.com</email>
+        <address>Bendemeer Light</address>
+        <favourite>true</favourite>
+        <profPic>Jian Hui.png</profPic>
+        <tagged>punmaster</tagged>
+    </persons>
+    <persons>
+        <name>Jiang Lingshuo</name>
+        <phone>12351234</phone>
+        <email>jianglingshuo@weibuo.com</email>
+        <address>Some NUS Dorm</address>
+        <favourite>true</favourite>
+        <profPic>Jiang Lingshuo.png</profPic>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Alex Yeoh</name>
+        <phone>87438807</phone>
+        <email>alexyeoh@example.com</email>
+        <address>Blk 30 Geylang Street 29, #06-40</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Bernice Yu</name>
+        <phone>99272758</phone>
+        <email>berniceyu@example.com</email>
+        <address>lk 30 Lorong 3 Serangoon Gardens, #07-18</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>colleagues</tagged>
+        <tagged>friends</tagged>
+        <schedule>
+            <scheduleName>CS2103 Submission</scheduleName>
+            <startDateTime>2017-11-23 10:30</startDateTime>
+            <endDateTime>2017-11-23 11:59</endDateTime>
+            <scheduleDuration>Thu, 23 Nov 2017
+10:30 - 11:59</scheduleDuration>
+            <scheduleDetails>Final Submission [V1.5]</scheduleDetails>
+        </schedule>
+    </persons>
+    <persons>
+        <name>Bruce Banner</name>
+        <phone>09123941</phone>
+        <email>bruced@banner.com</email>
+        <address>Hulk Cave</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>triggered</tagged>
+    </persons>
+    <persons>
+        <name>Charlotte Oliveiro</name>
+        <phone>93210283</phone>
+        <email>charlotte@example.com</email>
+        <address>Blk 11 Ang Mo Kio Street 74, #11-04</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>neighbours</tagged>
+    </persons>
+    <persons>
+        <name>Clinton Francis Barton</name>
+        <phone>12345678</phone>
+        <email>bullseye@avengers.com</email>
+        <address>Farm Ranch</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>topshot</tagged>
+    </persons>
+    <persons>
+        <name>David Li</name>
+        <phone>91031282</phone>
+        <email>lidavid@example.com</email>
+        <address>Blk 436 Serangoon Gardens Street 26, #16-43</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>family</tagged>
+    </persons>
+    <persons>
+        <name>Roy Balakrishnan</name>
+        <phone>92624417</phone>
+        <email>royb@example.com</email>
+        <address>Blk 45 Aljunied Street 85, #11-31</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>colleagues</tagged>
+    </persons>
+    <persons>
+        <name>Steven Rogers</name>
+        <phone>29103551</phone>
+        <email>rogerthat@america.com</email>
+        <address>American Dream</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>old</tagged>
+    </persons>
+    <persons>
+        <name>Tony Stark</name>
+        <phone>11234091</phone>
+        <email>tonystark@mail.com</email>
+        <address>Stark Towers</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>rich</tagged>
+    </persons>
+    <persons>
+        <name>Wanda Maximoff</name>
+        <phone>10101010</phone>
+        <email>scarlett@witch.com</email>
+        <address>Russia Facility</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>sorcerer</tagged>
+    </persons>
+    <persons>
+        <name>Sun ShengRan</name>
+        <phone>90909090</phone>
+        <email>shengran@example.com</email>
+        <address>PGP</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Zhang Hui</name>
+        <phone>91091091</phone>
+        <email>zhanghui@gmail.com</email>
+        <address>PGP</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Peng Yu</name>
+        <phone>10203040</phone>
+        <email>pengyuz@example.com</email>
+        <address>PGP</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>friends</tagged>
+    </persons>
+    <persons>
+        <name>Derp Derek</name>
+        <phone>12121212</phone>
+        <email>Derpy@mail.com</email>
+        <address>Derp Town</address>
+        <favourite>false</favourite>
+        <profPic>maleIcon.png</profPic>
+        <tagged>weird</tagged>
+    </persons>
+    <tags>sorcerer</tags>
+    <tags>triggered</tags>
+    <tags>brothers</tags>
+    <tags>old</tags>
+    <tags>rich</tags>
+    <tags>neighbours</tags>
+    <tags>cheeky</tags>
+    <tags>friends</tags>
+    <tags>weird</tags>
+    <tags>topshot</tags>
+    <tags>colleagues</tags>
+    <tags>friend</tags>
+    <tags>classmates</tags>
+    <tags>family</tags>
+    <tags>procrastinator</tags>
+    <tags>punmaster</tags>
+    <groups>
+        <groupName>Bamboo</groupName>
+        <members>
+            <name>Derek Kok</name>
+            <phone>91234567</phone>
+            <email>derekkok@gmail.com</email>
+            <address>Ulu Yewtee</address>
+            <favourite>true</favourite>
+            <profPic>maleIcon.png</profPic>
+            <tagged>procrastinator</tagged>
+        </members>
+    </groups>
+    <groups>
+        <groupName>W09-B4</groupName>
+    </groups>
+    <groups>
+        <groupName>Night Owls</groupName>
+    </groups>
+    <groups>
+        <groupName>Avengers</groupName>
+    </groups>
+    <groups>
+        <groupName>Justice League</groupName>
+    </groups>
+    <groups>
+        <groupName>The Republic</groupName>
+    </groups>
+</addressbook>
