@@ -210,7 +210,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
+Format: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
 Alias: <code>a</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -220,6 +220,7 @@ Alias: <code>a</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
+A person can have 0 or 1 phone number, email and address
 A person can have any number of tags (including 0)
 </td>
 </tr>
@@ -230,6 +231,12 @@ A person can have any number of tags (including 0)
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><code>add n/John Doe</code></p>
+</li>
+<li>
+<p><code>add n/John Doe p/71625387</code></p>
+</li>
 <li>
 <p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
 </li>
@@ -1141,7 +1148,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 19:17:13 +00:00
+Last updated 2017-11-13 04:41:49 +00:00
 </div>
 </div>
 </body>
