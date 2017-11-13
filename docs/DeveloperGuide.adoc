@@ -480,7 +480,6 @@ The change is transient and the order of the list will return to its
 original starting order as when the application starts up.
 
 ==== Design Considerations
-
 **Aspect:** Implementation of `sort` +
 **Alternative 1 (current choice):** Sort persons through `UniquePersonList` +
 **Pros:** Imputes responsibility of sorting to `UniquePersonList`, which is the class person list is declared from. +
@@ -512,6 +511,60 @@ any future changes to these classes may be more contrived and difficult.
 **Pros:** A user is able to sort every person according to the `PREFIX` specified, regardless of the `Favourite` status. +
 **Cons:** `Favourite` person(s) will not remain at the top of the list after a user sorts the address book.
 // end::sort[]
+
+// tag::find[]
+=== Finding
+The finding mechanism is facilitated by `FindCommand`, which extends `Command`.
+It supports finding a list of specific persons by entering any substring of a person's contact field.
+This includes a person's name, phone number, email, address or even their tags with `PREFIX` specified. +
+
+The sequence diagram below details the flow the execution of a `find p/1` command.
+
+image::FindSequenceDiagram.png[width="800"]
+
+Finding a person is facilitated using `PartialSearchUtil`, which examines whether a base list contains any word whose
+substring appears in the target list. It maps each attribute to the `find` parser and returns a list of persons
+matching find condition.
+
+==== Design Considerations
+**Aspect:** Implementation of `find` +
+**Alternative 1 (current choice):** Find person by a list of substrings or name initials +
+**Pros:** Easy and neat for implementation +
+A lot of real user case shows finding by substring and name initials are prevailing among users +
+**Cons:** Unable to handle typo mistakes and order mistakes +
+**Alternative 2:** Perform fuzzy search by editing distance +
+**Pros:** Able to fix typos and order mistakes +
+**Cons:** Slow in running and hard to implement +
+Partial string will have a big editing distance.
+
+// end::find[]
+
+// tag::add[]
+=== Adding
+The finding mechanism is facilitated by `AddCommand`, which extends `Command`.
+It supports adding a person into address book with name, and alternative fields phone, email, address and tag
+Missing field with be displayed as `---` +
+
+The sequence diagram below details the flow the execution of a `add n/Lingshuo` command.
+
+image::AddSequenceDiagram.png[width="800"]
+
+This functionality is supported by requiring only name in argMultimap. +
+Other empty field among email, address and phone number will be marked with name of `---`
+
+==== Design Considerations
+**Aspect:** Implementation of `add` +
+**Alternative 1 (current choice):** once detect a missing field in arguMultimap for phone, address or email,
+create the corresponding field with a false name of `---` +
+**Pros:** Easy and neat for implementation +
+Low coupling with other parts of the program +
+**Cons:** Not good for future detection and correction of missing fields +
+**Alternative 2:** replace required field phone, email and address in Person model with Optional +
+**Pros:** Standard implementation and implement the missing of the fields properly +
+**Cons:** SHigh coupling with other classes +
+Not user friendly on UI.
+
+// end::add[]
 
 // tag::group[]
 === Groups

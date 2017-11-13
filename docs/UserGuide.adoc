@@ -73,6 +73,7 @@ As Bamboo is primarily a CLI-based application, most of your interaction with Ba
 === Viewing help : `help`
 Format: `help`
 
+// tag::add[]
 === Adding a person: `add`
 
 Adds a person to the address book +
@@ -80,16 +81,23 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 Alias: `a`
 
 [TIP]
-A person can have 0 or 1 phone number, email and address
+A person must have 1 name +
+A person can have 0 or 1 phone number, email and address +
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe`
-* `add n/John Doe p/71625387`
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe` +
+Add person `John Doe` with empty phone, email and address as `---`
+* `add n/John Doe p/71625387` +
+Add person `John Doe` with phone `71625387`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` +
+Add `John Doe` with all fields
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal` +
+Add `Betsy Crowe` and the following fields with a tag `Criminal`
+// end::add[]
 
+// tag::list[]
 === Listing all persons : `list`
 
 Shows a list of all persons in the address book. Has the option of showing only favourite contacts +
@@ -98,7 +106,9 @@ Alias: `l`
 
 * `list` will show all contacts
 * `list f/` will show only contacts that have been marked as favourites
+// end::list[]
 
+// tag::edit[]
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
@@ -119,7 +129,9 @@ Examples:
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+// end::edit[]
 
+// tag::find[]
 === Locating persons by name, address, email or phone number: `find` (Since V1.4)
 
 Finds persons whose names or name initials or address or phone number or email contain any of the given keywords. +
@@ -153,8 +165,9 @@ Returns any person with address containing `earth`
 Returns any person with email containing keyword `gmail`
 * `find t/friends` +
 Returns any person with tags containing keyword `friends`
+// end::find[]
 
-
+// tag::delete[]
 === Deleting person(s) : `delete`
 
 Deletes the specified person(s) from the address book. +
@@ -175,7 +188,9 @@ Deletes the 2nd, 3rd and 4th persons in the address book.
 * `find Betsy` +
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
+// end::delete[]
 
+// tag::select[]
 === Selecting a person or a group : `select`
 
 Selects the person or group identified by the index number used in the last person listing. +
@@ -199,6 +214,7 @@ Selects the 2nd person in the address book.
 Selects the 1st person in the results of the `find` command.
 `select g/2` +
 Selects the 2nd group in the address book.
+// end::select[]
 
 // tag::faveSystem[]
 === Marking a person as 'Favourite': `fadd` (Since V1.2)
