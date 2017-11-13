@@ -52,12 +52,14 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
 <li><a href="#sorting">4.2. Sorting</a></li>
-<li><a href="#finding">4.3. Finding</a></li>
-<li><a href="#logging">4.4. Logging</a></li>
-<li><a href="#configuration">4.5. Configuration</a></li>
-<li><a href="#favourite-contact-system">4.6. Favourite Contact System</a></li>
-<li><a href="#profile-picture-feature">4.7. Profile Picture Feature</a></li>
-<li><a href="#user-interface-ui">4.8. User Interface (UI)</a></li>
+<li><a href="#groups">4.3. Groups</a></li>
+<li><a href="#schedule">4.4. Schedule</a></li>
+<li><a href="#finding">4.5. Finding</a></li>
+<li><a href="#logging">4.6. Logging</a></li>
+<li><a href="#configuration">4.7. Configuration</a></li>
+<li><a href="#favourite-contact-system">4.8. Favourite Contact System</a></li>
+<li><a href="#profile-picture-feature">4.9. Profile Picture Feature</a></li>
+<li><a href="#user-interface-ui">4.10. User Interface (UI)</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -751,7 +753,7 @@ If the <code>undoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>_Figure 4.1.3 : Interactions Inside the Logic Component for the <code>undo</code> Command</p>
+<p><em>Figure 4.1.3 : Interactions Inside the Logic Component for the <code>undo</code> Command</em></p>
 </div>
 <div class="paragraph">
 <p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
@@ -934,9 +936,15 @@ made with the respective comparator and an <code>isReverse</code> boolean flag a
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows the flow of program execution when a <code>SortCommand</code> is executed by the user:
-image::SortPersonSdForLogic.png[width="800"]
-<em>Figure 4.2.1 : Interactions Inside the Logic Component for the <code>sort n/r</code> Command</em></p>
+<p>The following sequence diagram shows the flow of program execution when a <code>SortCommand</code> is executed by the user:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortPersonSdForLogic.png" alt="SortPersonSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.2.1 : Interactions Inside the Logic Component for the <code>sort n/r</code> Command</em></p>
 </div>
 <div class="paragraph">
 <p>The execution of <code>sort</code> results in the reordering of the in-memory <code>UniquePersonList</code>.
@@ -980,7 +988,388 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding"><a class="link" href="#finding">4.3. Finding</a></h3>
+<h3 id="groups"><a class="link" href="#groups">4.3. Groups</a></h3>
+<div class="paragraph">
+<p>The <code>Group</code> suite of features are implemented by creating a new <code>Group</code> model with its constituent components as shown in the class
+diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GroupClassDiagram.png" alt="GroupClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.1 : Class Diagram for `Group`</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Group</code> is composed of a <code>GroupName</code> and <code>UniquePersonList</code> which is responsible for storing group members.
+The Groups in address book are contained in <code>UniqueGroupList</code>, which exposes itself through a
+<code>FilteredGroupList</code> in the <code>Model</code>. All groups commands are performed through the <code>Model</code> where the
+<code>UniqueGroupList</code> is accessed to either create groups, delete groups, add person(s) to groups or remove
+person(s) from groups.</p>
+</div>
+<div class="sect3">
+<h4 id="creating-and-deleting-groups"><a class="link" href="#creating-and-deleting-groups">4.3.1. Creating and Deleting Groups</a></h4>
+<div class="paragraph">
+<p>The create and delete group mechanism is facilitated by <code>CreateGroupCommand</code> and <code>DeleteGroupCommand</code> respectively, which extends <code>UndoableCommand</code>.
+The <code>CreateGroupCommand</code> allows a user to create a group with a desired <code>GroupName</code> specified by the
+<code>n/</code> flag while the
+<code>DeleteGroupCommand</code> allows a user to delete a group at the specified <code>INDEX</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>CreateGroupCommand</code> interfaces with <code>ModelManager</code>, which exposes the <code>UniqueGroupList</code> and is implemented in this manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> addGroup(ReadOnlyGroup group) <span class="directive">throws</span> DuplicateGroupException {
+        addressBook.addGroup(group);
+        updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>DuplicateGroupException</code> is thrown if a duplicate <code>Group</code> is added to <code>UniqueGroupList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the <code>DeleteGroupCommand</code> interfaces with <code>ModelManager</code>, which exposes the <code>UniqueGroupList</code> and is implemented in the following manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> <span class="type">void</span> deleteGroup(ReadOnlyGroup target) <span class="directive">throws</span> GroupNotFoundException {
+        addressBook.removeGroup(target);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>GroupNotFoundException</code> is thrown if the <code>Group</code> speicfied by the <code>INDEX</code> is not found in
+<code>UniqueGroupList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Both creating and deleting groups result in a change in the model of the address book, and these
+changes are saved to storage as well.
+The following sequence diagram captures the program flow when a user creates a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CreateGroupSdForLogic.png" alt="CreateGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.2a : Interactions Inside the Logic Component for the <code>gcreate n/Bamboo</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>Similarly, the following sequence diagram captures the program flow when a user deletes a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteGroupSdForLogic.png" alt="DeleteGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.2b : Interactions Inside the Logic Component for the <code>gdelete 1</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-and-removing-a-person-from-a-group"><a class="link" href="#adding-and-removing-a-person-from-a-group">4.3.2. Adding and removing a person from a Group</a></h4>
+<div class="paragraph">
+<p>The <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code>, which extends <code>UndoableCommand</code>, is
+responsible for adding and removing a person from a group.
+Both commands allow a user to add or remove a person from a group by specifying a <code>PERSON INDEX</code> through the
+<code>p/</code> flag and a <code>GROUP INDEX</code> through a <code>g/</code> flag.</p>
+</div>
+<div class="paragraph">
+<p>Both <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code> both interfaces with <code>ModelManager</code>,
+which exposes <code>UniqueGroupList</code> and its corresponding <code>UniquePersonList</code> and
+they are implemented in the following manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd)
+            <span class="directive">throws</span> GroupNotFoundException, PersonNotFoundException, DuplicatePersonException {
+        addressBook.addPersonToGroup(targetGroup, toAdd);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GroupNotFoundException</code>, <code>PersonNotFoundException</code> and <code>DuplicatePersonException</code> are thrown
+in the event the <code>Group</code> specified does not exist, or if <code>Person</code> specified is not found, or
+if a duplicate <code>Person</code> exists in the <code>UniquePersonList</code> in the group.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> <span class="type">void</span> deletePersonFromGroup(Index targetGroup, ReadOnlyPerson toRemove)
+            <span class="directive">throws</span> GroupNotFoundException, PersonNotFoundException, NoPersonsException {
+        addressBook.deletePersonFromGroup(targetGroup, toRemove);
+        <span class="comment">/** Update filtered list with predicate for current group members in group after removing a person */</span>
+        ObservableList&lt;ReadOnlyPerson&gt; personList = addressBook.getGroupList()
+                .get(targetGroup.getZeroBased()).groupMembersProperty().get().asObservableList();
+        updateFilteredPersonList(getGroupMembersPredicate(personList));
+        indicateAddressBookChanged();
+
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GroupNotFoundException</code>, <code>PersonNotFoundException</code> and <code>NoPersonsException</code> are thrown
+in the event the <code>Group</code> specified does not exist, or if <code>Person</code> specified is not found, or
+if the <code>UniquePersonList</code> in the <code>Group</code> specified is empty.</p>
+</div>
+<div class="paragraph">
+<p>Both adding and removing a person from a group will result in a change in the model of the address book, and these
+changes are saved to storage as well.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram captures the program flow when a user adds a person to a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddPersonToGroupSdForLogic.png" alt="AddPersonToGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.3a : Interactions Inside the Logic Component for the <code>gadd p/1 g/1</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram captures the program flow when a user removes a person from a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddPersonToGroupSdForLogic.png" alt="AddPersonToGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.3b : Interactions Inside the Logic Component for the <code>gremove p/1 g/1</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.3. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>Group</code><br>
+<strong>Alternative 1 (current choice):</strong> Implement a completely new <code>Group</code> model.<br>
+<strong>Pros:</strong> Creating a completely new <code>Group</code> Model gives the developer fine-grained control
+over a <code>Group</code> and logically separates <code>Group</code> from a <code>Tag</code>, which makes implementation
+of <code>Group</code> commands distinct from <code>Tag</code> commands. This allows a developer to freely extend
+and add new <code>Group</code> commands without affecting or being confined by the <code>Tag</code> model.<br>
+<strong>Cons:</strong> It takes alot of time to create and integrate a new <code>Group</code> model.<br>
+<strong>Alternative 2:</strong> Modify the <code>Tag</code> model to perform 'Group-like` functions. <br>
+<strong>Pros:</strong> Less time is needed to modify <code>Tag</code> and integration of new commands will be simple.<br>
+<strong>Cons:</strong> The <code>Tag</code> model does not provide a clear and logical separation of duties for
+<code>Group</code> functions and is limited in its structure to allow fine-grained control over
+the addition and removal of 'members'.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="schedule"><a class="link" href="#schedule">4.4. Schedule</a></h3>
+<div class="paragraph">
+<p>To allow a user to pull events from Google Calendar, add and remove events, a <code>Schedule</code> model is created with its constituent components as shown in the class diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ScheduleClassDiagram.png" alt="ScheduleClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.1 : Schedule Class Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Schedule</code> is composed of a <code>ScheduleName</code> and a <code>ScheduleDate</code>. Every <code>Person</code> in address book
+has a <code>UniqueScheduleList</code>, which contains a list of <code>Schedule</code> objects. A <code>Schedule</code> is accessed
+by accessing the <code>UniqueScheduleList</code> of a person through the <code>UniquePersonList</code> maintained in
+<code>ModelManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>googlecalendarutil</code> package is created and it contains helper methods to query the
+Google Calendar API, parse <code>JSON</code> reponses and the corresponding datetime strings.</p>
+</div>
+<div class="sect3">
+<h4 id="adding-events-from-a-person-s-google-calendar"><a class="link" href="#adding-events-from-a-person-s-google-calendar">4.4.1. Adding events from a person&#8217;s Google Calendar</a></h4>
+<div class="paragraph">
+<p>To obtain events from a person&#8217;s Google Calendar, <code>EventParserUtil</code> and <code>ServiceHandlerUtil</code> are used.
+<code>EventParserUtil</code> queries <code><a href="https://www.googleapis.com/calendar/v3/calendars/" class="bare">https://www.googleapis.com/calendar/v3/calendars/</a></code> with a user&#8217;s specified
+<code>CALENDAR_ID</code> and parses the corresponding <code>JSON</code> response as shown in the code snippet below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> UniqueScheduleList getScheduleList(<span class="predefined-type">String</span> calendarId) <span class="directive">throws</span> <span class="exception">IOException</span>, IllegalValueException {
+        UniqueScheduleList scheduleList = <span class="keyword">new</span> UniqueScheduleList();
+        <span class="predefined-type">String</span> apiUrl = API + calendarId + QUERY + KEY;
+        <span class="predefined-type">String</span> response = ServiceHandlerUtil.makeCall(apiUrl);
+        ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();
+        JsonNode root = mapper.readTree(response);
+        JsonNode events = root.at(EVENTS);
+        <span class="keyword">for</span> (JsonNode event: events) {
+            scheduleList.add(getSingleSchedule(event));
+        }
+        <span class="keyword">return</span> scheduleList;
+
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the <code>CALENDAR_ID</code> is valid, Google responds with a <code>JSON</code> response that is subsequently parsed and used
+to construct a <code>UniqueScheduleList</code> comprising of <code>Schedule</code> objects.</p>
+</div>
+<div class="paragraph">
+<p>The Google Calendar API is accessed by a <code>HTTP GET</code> which is implemented in <code>ServiceHandlerUtil</code> as shown
+below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public static String makeCall(String url) throws IOException {
+
+        URL obj = new URL(url);
+
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("GET");
+
+        return getResponseString(connection);
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After obtaining a <code>UniqueScheduleList</code> from <code>EventParserUtil</code>, a call to updatePerson is made
+with a new <code>UniqueSheduleList</code> inserted into the edited person.
+The sequence diagram below captures the program flow when an add calendar command is executed:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddCalendarSdForLogic.png" alt="AddCalendarSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.2 : Interactions Inside the Logic Component for the <code>cadd</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-and-removing-events"><a class="link" href="#adding-and-removing-events">4.4.2. Adding and removing events</a></h4>
+<div class="paragraph">
+<p>The add and remove event mechanism is facilitated by <code>AddEventCommand</code> and <code>DeleteEventCommand</code> respectively.
+A helper method is called in these commands to add or remove an event and is implemented as such:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    private Person addEventToPerson(ReadOnlyPerson personToEdit, String personName) throws ParseException {
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        ProfPic updatedProfPic = personToEdit.getProfPic();
+        Favourite updatedFavourite = personToEdit.getFavourite();
+        Set&lt;Tag&gt; updatedTags = personToEdit.getTags();
+        Set&lt;Group&gt; updatedGroups = personToEdit.getGroups();
+        UniqueScheduleList updatedScheduleList = personToEdit.scheduleProperty().get();
+        Set&lt;SocialMedia&gt; updatedSocialMediaList = personToEdit.getSocialMedia();
+
+        try {
+            updatedScheduleList.add(this.schedule);
+        } catch (DuplicateScheduleException e) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_SCHEDULE, personName));
+        }
+
+        /** Ensure scheduleList is in order **/
+        updatedScheduleList.sort();
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedFavourite,
+                updatedProfPic, updatedTags, updatedGroups, updatedScheduleList.toSet(), updatedSocialMediaList);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>DuplicateScheduleException</code> is thrown if an identical <code>Schedule</code> is present in the
+person&#8217;s <code>UniqueScheduleList</code>. Afterwhich, <code>updatePerson</code> in <code>ModelManager</code> is invoked to update
+the person with the updated <code>UniqueScheduleList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, a helper method is called to remove event(s) from a person in <code>DeleteEventCommand</code> as such:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>private Person removeEventFromPerson(ReadOnlyPerson personToEdit) throws ParseException {
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        Favourite updatedFavourite = personToEdit.getFavourite();
+        ProfPic updatedProfPic = personToEdit.getProfPic();
+        Set&lt;Tag&gt; updatedTags = personToEdit.getTags();
+        Set&lt;Group&gt; updatedGroups = personToEdit.getGroups();
+        UniqueScheduleList updatedScheduleList = personToEdit.scheduleProperty().get();
+        Set&lt;SocialMedia&gt; updatedSocialMediaList = personToEdit.getSocialMedia();
+
+        if (updatedScheduleList.asObservableList().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_NO_EVENTS, updatedName.fullName));
+        }
+
+        ReadOnlySchedule[] schedulesToDelete = new ReadOnlySchedule[eventIndexes.length];
+        for (int i = 0; i &lt; eventIndexes.length; i++) {
+            try {
+                schedulesToDelete[i] = updatedScheduleList.asObservableList().get(eventIndexes[i].getZeroBased());
+            } catch (IndexOutOfBoundsException e) {
+                throw new ParseException(MESSAGE_NO_SUCH_EVENT);
+            }
+        }
+
+        for (int i = 0; i &lt; eventIndexes.length; i++) {
+            try {
+                updatedScheduleList.remove(schedulesToDelete[i]);
+            } catch (ScheduleNotFoundException e) {
+                throw new ParseException(MESSAGE_NO_SUCH_EVENT);
+            }
+        }
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedFavourite, updatedProfPic, updatedTags, updatedGroups,
+                updatedScheduleList.toSet(), updatedSocialMediaList);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>ScheduleNotFoundException</code> is thrown if a specified <code>Schedule</code> is not present in the
+person&#8217;s <code>UniqueScheduleList</code>. Afterwhich, <code>updatePerson</code> in <code>ModelManager</code> is invoked to update
+the person with the updated <code>UniqueScheduleList</code>.</p>
+</div>
+<div class="paragraph">
+<p>The follow sequence diagrams capture the program flow during the execution of add event and delete event
+respectively:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddEventSdForLogic.png" alt="AddEventSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.3a : Interactions Inside the Logic Component for the <code>eadd</code> Command</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteEventSdForLogic.png" alt="DeleteEventSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.3b : Interactions Inside the Logic Component for the <code>edelete</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.3. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of pulling events from Google Calendar<br>
+<strong>Alternative 1 (current choice):</strong> Access Google Calendar API with an <code>API KEY</code><br>
+<strong>Pros:</strong> The developer&#8217;s <code>API KEY</code> can be used to obtain events for every user without<br>
+the user having to log in.<br>
+<strong>Cons:</strong> Using an <code>API KEY</code> only allows for limited Google Calendar functionality
+and there is no way to add or remove events to a user securely or easily.<br>
+<strong>Alternative 2:</strong> Log in to Google and access an oAuth token to access Google Calendar API. <br>
+<strong>Pros:</strong> Functionality such as adding or removing events from a user securely can be implemented.<br>
+<strong>Cons:</strong> Coding the login function to Google is highly involved and tedious.<br></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding"><a class="link" href="#finding">4.5. Finding</a></h3>
 <div class="paragraph">
 <p>The finding mechanism is facilitated by <code>FindCommand</code>, which extends <code>Command</code>.
 It supports finding a list of specific persons by entering any substring of a person&#8217;s contact field.
@@ -993,7 +1382,7 @@ matching find condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1031,18 +1420,18 @@ matching find condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.5. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">4.6. Favourite Contact System</a></h3>
+<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">4.8. Favourite Contact System</a></h3>
 <div class="paragraph">
 <p>The commands related to the Favourite system rely on the <code>Favourite</code> attribute class which is a <code>Person</code> component.</p>
 </div>
 <div class="sect3">
-<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.6.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
+<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.8.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
 <p><strong>Adding a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>AddFavouriteCommand</code> with its
 supporting parser class <code>AddFavouriteCommandParser</code>:</p>
@@ -1081,7 +1470,7 @@ retreived from the parsed index has their <code>Favourite</code> attribute updat
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.6.2. Listing of only Favourite contacts (since V1.3)</a></h4>
+<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.8.2. Listing of only Favourite contacts (since V1.3)</a></h4>
 <div class="paragraph">
 <p><strong>List command option:</strong> The <strong>list</strong> command now has an option to list only contacts marked as favourites with
 "list /f". This feature works by updating the model&#8217;s <code>filteredList</code> of <code>Person</code> objects with the predicate
@@ -1089,7 +1478,7 @@ retreived from the parsed index has their <code>Favourite</code> attribute updat
 </div>
 </div>
 <div class="sect3">
-<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.6.3. Other modifications to existing components to handle favourites (since V1.4)</a></h4>
+<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.8.3. Other modifications to existing components to handle favourites (since V1.4)</a></h4>
 <div class="paragraph">
 <p><code>UniquePersonList</code>: The <strong>setPerson()</strong> function (that is called whenever a <strong>Person</strong> object has been modified)
 also changes a `Person&#8217;s order in the model list if their <strong>Favourite</strong> attribute&#8217;s value has been changed.</p>
@@ -1108,7 +1497,7 @@ and inserted into the position after the last favourite person in the internal m
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.6.4. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.4. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Storage of <code>Favourite</code> status<br>
 <strong>Alternative 1 (current choice):</strong> Add a new attribute class to Person, <code>Favourite</code><br>
@@ -1122,14 +1511,14 @@ and inserted into the position after the last favourite person in the internal m
 </div>
 </div>
 <div class="sect2">
-<h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">4.7. Profile Picture Feature</a></h3>
+<h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">4.9. Profile Picture Feature</a></h3>
 <div class="paragraph">
 <p>A user&#8217;s profile picture is retrieved by and displayed in the UI class <code>MainContactPanel</code> with <strong>setContactImage(Person)</strong>.
 A contact&#8217;s path stored in a contact&#8217;s <code>ProfPic</code> person attribute can be modified with the use of 2 commands
 explained below.</p>
 </div>
 <div class="sect3">
-<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.7.1. Setting profile picture (since V1.4)</a></h4>
+<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.9.1. Setting profile picture (since V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Setting a new profile picture</strong>: This feature&#8217;s functions are mainly contained in the command class <code>SetPictureCommand</code>
 with its supporting parser class <code>SetPictureCommandParser</code>:</p>
@@ -1164,7 +1553,7 @@ the modified <strong>Person</strong> saved to the in-memory model list of <stron
 </div>
 </div>
 <div class="sect3">
-<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.7.2. Resetting profile picture (since V1.4)</a></h4>
+<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.9.2. Resetting profile picture (since V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Resetting a contact&#8217;s profile picture</strong> This feature&#8217;s functions are mainly contained in the command class <code>ResetPictureCommand</code>
 with it&#8217;s supporting parser class <code>ResetPictureCommandParser</code>:</p>
@@ -1186,16 +1575,16 @@ attribute&#8217;s path var to the default "maleIcon.png before saving the modifi
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">4.8. User Interface (UI)</a></h3>
+<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">4.10. User Interface (UI)</a></h3>
 <div class="sect3">
-<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">4.8.1. Layout of the user interface (since V1.1)</a></h4>
+<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">4.10.1. Layout of the user interface (since V1.1)</a></h4>
 <div class="paragraph">
 <p>The application uses various panels such as <code>StackPanes</code> and <code>BorderPanes</code> inside <code>.fxml</code> files that define the basic layout, with no content inside of it.
 Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">4.8.2. Layout of the contact details panel (since V1.2)</a></h4>
+<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">4.10.2. Layout of the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The main contact panel (MainContactPanel.fxml) uses a 2x2 <code>GridPane</code> to show the following:</p>
 </div>
@@ -1217,7 +1606,7 @@ Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">4.8.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
+<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">4.10.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (0, 0) and (1, 0) cells of the main contact panel contain nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
 </div>
@@ -1230,7 +1619,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.8.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
+<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.10.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (1,0) cell of the main contact panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.</p>
 </div>
@@ -1242,7 +1631,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 </div>
 </div>
 <div class="sect3">
-<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">4.8.5. Animation in the contact details panel (since V1.2)</a></h4>
+<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">4.10.5. Animation in the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
 <p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in <code>Node</code> objects and animates them through the use of various <code>Transitions</code> objects.</p>
 </div>
@@ -2145,7 +2534,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:29:10 +00:00
+Last updated 2017-11-13 13:09:51 +00:00
 </div>
 </div>
 </body>
