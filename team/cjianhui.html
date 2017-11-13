@@ -335,6 +335,308 @@ Alias: <code>ed</code></p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-group-code-gcreate-code-since-v1-2-2"><a class="link" href="#creating-a-group-code-gcreate-code-since-v1-2-2">Creating a group: <code>gcreate</code> (Since V1.2)</a></h3>
+<div class="paragraph">
+<p>Adds a group to the address book.<br>
+Format: <code>gc n/NAME</code><br>
+Alias: <code>gc</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gcreate n/Bamboo</code></p>
+</li>
+<li>
+<p><code>gc n/W09-B4</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-to-a-group-code-gadd-code-since-v1-3-2"><a class="link" href="#adding-a-person-to-a-group-code-gadd-code-since-v1-3-2">Adding a person to a group: <code>gadd</code> (Since V1.3)</a></h3>
+<div class="paragraph">
+<p>Adds a person to a group.<br>
+Format: <code>gadd g/GROUP INDEX p/PERSON INDEX</code><br>
+Alias: <code>ga</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds person to the group at the specified <code>GROUP INDEX</code> and <code>PERSON INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gadd g/1 p/2</code></p>
+</li>
+<li>
+<p><code>ga g/3 p/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-a-person-to-a-group-code-gremove-code-since-v1-3-2"><a class="link" href="#removing-a-person-to-a-group-code-gremove-code-since-v1-3-2">Removing a person to a group: <code>gremove</code> (Since V1.3)</a></h3>
+<div class="paragraph">
+<p>Removes a person from a group.<br>
+Format: <code>gremove g/GROUP INDEX p/PERSON INDEX</code><br>
+Alias: <code>gr</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes person from the group at the specified <code>GROUP INDEX</code> and <code>PERSON INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gremove g/1 p/2</code></p>
+</li>
+<li>
+<p><code>gr g/3 p/2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group-code-gdelete-code-since-v1-2-2"><a class="link" href="#deleting-a-group-code-gdelete-code-since-v1-2-2">Deleting a group: <code>gdelete</code> (Since V1.2)</a></h3>
+<div class="paragraph">
+<p>Deletes a group from address book.<br>
+Format: <code>gdelete INDEX</code><br>
+Alias: <code>gd</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the group at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gdelete 2</code><br>
+Deletes the 2nd group in the address book.</p>
+</li>
+<li>
+<p><code>gd 2</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-s-google-calendar-events-code-cadd-code-since-v1-4-2"><a class="link" href="#adding-a-person-s-google-calendar-events-code-cadd-code-since-v1-4-2">Adding a person&#8217;s Google Calendar events : <code>cadd</code> (Since V1.4)</a></h3>
+<div class="paragraph">
+<p>Adds a person&#8217;s Google Calendar events to his/her schedule.<br>
+Format: <code>cadd p/PERSON INDEX i/GOOGLE CALENDAR ID</code><br>
+Alias: <code>ca</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds events pulled from <code>GOOGLE CALENDAR ID</code> to person at specified <code>PERSON INDEX</code></p>
+</li>
+<li>
+<p>Calendar ID must be from publicly shared Calendar.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cadd p/2 i/xderek105243x@gmail.com</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-an-event-to-a-person-s-schedule-code-eadd-code-since-v1-5-2"><a class="link" href="#adding-an-event-to-a-person-s-schedule-code-eadd-code-since-v1-5-2">Adding an event to a person&#8217;s schedule : <code>eadd</code> (Since V1.5)</a></h3>
+<div class="paragraph">
+<p>Adds an event to a person&#8217;s schedule.<br>
+Format: <code>eadd p/PERSON INDEX n/EVENT NAME s/EVENT START DATE e/EVENT END DATE [d/EVENT DETAILS]</code><br>
+Alias: <code>ea</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Add an event to person&#8217;s schedule list at specified <code>PERSON INDEX</code></p>
+</li>
+<li>
+<p><code>EVENT START DATE</code> and <code>EVENT END DATE</code> must be in <strong>YYYY-MM-DD HH:MM</strong> format.</p>
+</li>
+<li>
+<p><code>EVENT START DATE</code> must come before <code>EVENT END DATE</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>eadd p/2 n/CS2103 Meeting s/2017-11-23 10:30 e/2017-11-23 11:45 d/Prepare for Demo</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-event-s-from-a-person-s-schedule-code-edelete-code-since-v1-5-2"><a class="link" href="#removing-event-s-from-a-person-s-schedule-code-edelete-code-since-v1-5-2">Removing event(s) from a person&#8217;s schedule : <code>edelete</code> (Since V1.5)</a></h3>
+<div class="paragraph">
+<p>Removes event(s) from a person&#8217;s schedule.<br>
+Format: <code>edelete p/PERSON INDEX e/EVENT INDEX [EVENT INDEX&#8230;&#8203;]</code><br>
+Alias: <code>ed</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes event(s) from a person&#8217;s schedule list at specified <code>PERSON INDEX</code></p>
+</li>
+<li>
+<p>At least one <code>EVENT INDEX</code> must be specified</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edelete p/1 e/1</code></p>
+</li>
+<li>
+<p><code>ed p/2 e/4 5 6</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-persons-code-sort-code-since-v1-1-2"><a class="link" href="#sorting-persons-code-sort-code-since-v1-1-2">Sorting persons : <code>sort</code> (Since V1.1)</a></h3>
+<div class="paragraph">
+<p>Sorts persons based on prefix specified in either ascending or descending order.<br>
+Format: <code>sort [PREFIX/[r]]</code><br>
+Alias: <code>s</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Sorts persons by PREFIX</p>
+</li>
+<li>
+<p>Adding the optional flag <code>r</code> will sort persons in descending order</p>
+</li>
+<li>
+<p>Persons are sorted by name by default (if no <code>PREFIX</code> is specified)</p>
+</li>
+<li>
+<p>Persons are sorted in ascending order by default (if no <code>r</code> flag is specified)</p>
+</li>
+<li>
+<p>'Favourite' persons are not subject to sorting and will remain at the top of list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort</code><br>
+Sorts persons by name in ascending order.<br></p>
+</li>
+<li>
+<p><code>sort p/r</code><br>
+Sorts persons by phone in descending order.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -681,6 +983,527 @@ and add new <code>Group</code> commands without affecting or being confined by t
 <code>Group</code> functions and is limited in its structure to allow fine-grained control over
 the addition and removal of 'members'.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-2"><a class="link" href="#sorting-2">Sorting</a></h3>
+<div class="paragraph">
+<p>The sorting mechanism is facilitated by <code>SortCommand</code>, which extends <code>UndoableCommand</code>.
+It supports the sorting of persons in the address book by the <code>PREFIX</code> specified.
+If the <code>r</code> flag is specified, the list of persons will be sorted in descending order.</p>
+</div>
+<div class="paragraph">
+<p><code>SortCommand</code> would return a <code>Comparator</code> depending on the <code>PREFIX</code> specified through this code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">Comparator</span>&lt;ReadOnlyPerson&gt; getSortComparator(<span class="predefined-type">String</span> field) {
+        <span class="keyword">return</span> (o1, o2) -&gt; {
+            <span class="comment">/** Person(s) marked as 'Favourite' will always remain at the top of the list **/</span>
+            <span class="keyword">if</span> (o1.getFavourite().getStatus()) {
+                <span class="keyword">if</span> (isReverseOrder) {
+                    <span class="comment">/** Ensure 'Favourite' persons is always greater than when sorted in descending order**/</span>
+                    <span class="keyword">return</span> <span class="integer">1</span>;
+                } <span class="keyword">else</span> {
+                    <span class="comment">/** Ensure 'Favourite' persons is always smaller than when sorted in ascending order**/</span>
+                    <span class="keyword">return</span> -<span class="integer">1</span>;
+                }
+            }
+
+            <span class="keyword">switch</span> (field) {
+            <span class="keyword">case</span> PREFIX_NAME_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getName().toString()
+                        .compareToIgnoreCase(o2.getName().toString()
+                        );
+
+            <span class="keyword">case</span> PREFIX_PHONE_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">phone</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getPhone().toString()
+                        .compareToIgnoreCase(o2.getPhone().toString()
+                        );
+
+            <span class="keyword">case</span> PREFIX_EMAIL_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getEmail().toString()
+                        .compareToIgnoreCase(o2.getEmail().toString()
+                        );
+
+            <span class="keyword">case</span> PREFIX_ADDRESS_FIELD:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">address</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getAddress().toString()
+                        .compareToIgnoreCase(o2.getAddress().toString()
+                        );
+
+            <span class="keyword">default</span>:
+                <span class="local-variable">this</span>.sortBy = <span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>;
+                <span class="keyword">return</span> o1.getName().toString()
+                        .compareToIgnoreCase(o2.getName().toString()
+                        );
+            }
+        };
+
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A person marked as <strong>'Favourite'</strong> will always be given priority during sorting to ensure consistency of the <code>Favourite</code> feature as
+<strong>'Favourite'</strong> persons should always stay at the top of the contact list to locate them easily.
+Thereafter, the sorting of persons occur in <code>UniquePersonList</code>, where a call to <code>Collections.sort</code> is
+made with the respective comparator and an <code>isReverse</code> boolean flag as parameters.</p>
+</div>
+<div class="paragraph">
+<p>The sort feature is implemented in <code>UniquePersonList</code> in this manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> sort(<span class="predefined-type">Comparator</span> sortComparator, <span class="predefined-type">Boolean</span> isReverseOrder) <span class="directive">throws</span> NoPersonsException {
+        requireNonNull(sortComparator);
+        requireNonNull(isReverseOrder);
+
+        <span class="keyword">if</span> (internalList.size() &lt; <span class="integer">1</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> NoPersonsException();
+        }
+
+        <span class="predefined-type">Collections</span>.sort(internalList, sortComparator);
+
+        <span class="keyword">if</span> (isReverseOrder) {
+            <span class="predefined-type">Collections</span>.reverse(internalList);
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows the flow of program execution when a <code>SortCommand</code> is executed by the user:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortPersonSdForLogic.png" alt="SortPersonSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.2.1 : Interactions Inside the Logic Component for the <code>sort n/r</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of <code>sort</code> results in the reordering of the in-memory <code>UniquePersonList</code>.
+The change is transient and the order of the list will return to its
+original starting order as when the application starts up.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>sort</code><br>
+<strong>Alternative 1 (current choice):</strong> Sort persons through <code>UniquePersonList</code><br>
+<strong>Pros:</strong> Imputes responsibility of sorting to <code>UniquePersonList</code>, which is the class person list is declared from.<br>
+This results in fine-grained, total control over anything to do with a person list and future implementations
+will be easier and more complete.<br>
+<strong>Cons:</strong> Hard for new developers to understand the flow of sorting execution.<br>
+<strong>Alternative 2:</strong> Perform <code>sort</code> at <code>ModelManager</code> or <code>AddressBook</code> level<br>
+<strong>Pros:</strong> New developers will have an easier time tracing the sort execution flow.<br>
+<strong>Cons:</strong> <code>ModelManager</code> or <code>AddressBook</code> will be highly coupled with the sort function and
+any future changes to these classes may be more contrived and difficult.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Sort Persistence<br>
+<strong>Alternative 1 (current choice):</strong> The address book is not saved after sorting.<br>
+<strong>Pros:</strong> Users may want to sort for their current session only.<br>
+<strong>Cons:</strong> Sorting order is not retained when the program exits.<br>
+<strong>Alternative 2:</strong> Save address book after every sort<br>
+<strong>Pros:</strong> Sorting order is preserved after program exits.<br>
+<strong>Cons:</strong> The original order of the address book is lost during every sort.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Sorting <code>Favourite</code> Person(s)<br>
+<strong>Alternative 1 (current choice):</strong> <code>Favourite</code> person(s) are not subjected to sorting.<br>
+<strong>Pros:</strong> Presents a coherent and uniform <code>Favourite</code> feature as <code>Favourite</code> person(s) should always be found at the top of the list.<br>
+<strong>Cons:</strong> A user is unable to sort every person according to the <code>PREFIX</code> specified.<br>
+<strong>Alternative 2:</strong> <code>Favourite</code> person(s) are subjected to sorting.<br>
+<strong>Pros:</strong> A user is able to sort every person according to the <code>PREFIX</code> specified, regardless of the <code>Favourite</code> status.<br>
+<strong>Cons:</strong> <code>Favourite</code> person(s) will not remain at the top of the list after a user sorts the address book.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="groups-2"><a class="link" href="#groups-2">Groups</a></h3>
+<div class="paragraph">
+<p>The <code>Group</code> suite of features are implemented by creating a new <code>Group</code> model with its constituent components as shown in the class
+diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/GroupClassDiagram.png" alt="GroupClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.1 : Class Diagram for `Group`</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Group</code> is composed of a <code>GroupName</code> and <code>UniquePersonList</code> which is responsible for storing group members.
+The Groups in address book are contained in <code>UniqueGroupList</code>, which exposes itself through a
+<code>FilteredGroupList</code> in the <code>Model</code>. All groups commands are performed through the <code>Model</code> where the
+<code>UniqueGroupList</code> is accessed to either create groups, delete groups, add person(s) to groups or remove
+person(s) from groups.</p>
+</div>
+<div class="sect3">
+<h4 id="creating-and-deleting-groups-2"><a class="link" href="#creating-and-deleting-groups-2">Creating and Deleting Groups</a></h4>
+<div class="paragraph">
+<p>The create and delete group mechanism is facilitated by <code>CreateGroupCommand</code> and <code>DeleteGroupCommand</code> respectively, which extends <code>UndoableCommand</code>.
+The <code>CreateGroupCommand</code> allows a user to create a group with a desired <code>GroupName</code> specified by the
+<code>n/</code> flag while the
+<code>DeleteGroupCommand</code> allows a user to delete a group at the specified <code>INDEX</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>CreateGroupCommand</code> interfaces with <code>ModelManager</code>, which exposes the <code>UniqueGroupList</code> and is implemented in this manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> addGroup(ReadOnlyGroup group) <span class="directive">throws</span> DuplicateGroupException {
+        addressBook.addGroup(group);
+        updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>DuplicateGroupException</code> is thrown if a duplicate <code>Group</code> is added to <code>UniqueGroupList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, the <code>DeleteGroupCommand</code> interfaces with <code>ModelManager</code>, which exposes the <code>UniqueGroupList</code> and is implemented in the following manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> <span class="type">void</span> deleteGroup(ReadOnlyGroup target) <span class="directive">throws</span> GroupNotFoundException {
+        addressBook.removeGroup(target);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>GroupNotFoundException</code> is thrown if the <code>Group</code> speicfied by the <code>INDEX</code> is not found in
+<code>UniqueGroupList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Both creating and deleting groups result in a change in the model of the address book, and these
+changes are saved to storage as well.
+The following sequence diagram captures the program flow when a user creates a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CreateGroupSdForLogic.png" alt="CreateGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.2a : Interactions Inside the Logic Component for the <code>gcreate n/Bamboo</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>Similarly, the following sequence diagram captures the program flow when a user deletes a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteGroupSdForLogic.png" alt="DeleteGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.2b : Interactions Inside the Logic Component for the <code>gdelete 1</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-and-removing-a-person-from-a-group-2"><a class="link" href="#adding-and-removing-a-person-from-a-group-2">Adding and removing a person from a Group</a></h4>
+<div class="paragraph">
+<p>The <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code>, which extends <code>UndoableCommand</code>, is
+responsible for adding and removing a person from a group.
+Both commands allow a user to add or remove a person from a group by specifying a <code>PERSON INDEX</code> through the
+<code>p/</code> flag and a <code>GROUP INDEX</code> through a <code>g/</code> flag.</p>
+</div>
+<div class="paragraph">
+<p>Both <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code> both interfaces with <code>ModelManager</code>,
+which exposes <code>UniqueGroupList</code> and its corresponding <code>UniquePersonList</code> and
+they are implemented in the following manner:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> addPersonToGroup(Index targetGroup, ReadOnlyPerson toAdd)
+            <span class="directive">throws</span> GroupNotFoundException, PersonNotFoundException, DuplicatePersonException {
+        addressBook.addPersonToGroup(targetGroup, toAdd);
+        indicateAddressBookChanged();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GroupNotFoundException</code>, <code>PersonNotFoundException</code> and <code>DuplicatePersonException</code> are thrown
+in the event the <code>Group</code> specified does not exist, or if <code>Person</code> specified is not found, or
+if a duplicate <code>Person</code> exists in the <code>UniquePersonList</code> in the group.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> <span class="type">void</span> deletePersonFromGroup(Index targetGroup, ReadOnlyPerson toRemove)
+            <span class="directive">throws</span> GroupNotFoundException, PersonNotFoundException, NoPersonsException {
+        addressBook.deletePersonFromGroup(targetGroup, toRemove);
+        <span class="comment">/** Update filtered list with predicate for current group members in group after removing a person */</span>
+        ObservableList&lt;ReadOnlyPerson&gt; personList = addressBook.getGroupList()
+                .get(targetGroup.getZeroBased()).groupMembersProperty().get().asObservableList();
+        updateFilteredPersonList(getGroupMembersPredicate(personList));
+        indicateAddressBookChanged();
+
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GroupNotFoundException</code>, <code>PersonNotFoundException</code> and <code>NoPersonsException</code> are thrown
+in the event the <code>Group</code> specified does not exist, or if <code>Person</code> specified is not found, or
+if the <code>UniquePersonList</code> in the <code>Group</code> specified is empty.</p>
+</div>
+<div class="paragraph">
+<p>Both adding and removing a person from a group will result in a change in the model of the address book, and these
+changes are saved to storage as well.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram captures the program flow when a user adds a person to a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddPersonToGroupSdForLogic.png" alt="AddPersonToGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.3a : Interactions Inside the Logic Component for the <code>gadd p/1 g/1</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram captures the program flow when a user removes a person from a group:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddPersonToGroupSdForLogic.png" alt="AddPersonToGroupSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.3.3b : Interactions Inside the Logic Component for the <code>gremove p/1 g/1</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>Group</code><br>
+<strong>Alternative 1 (current choice):</strong> Implement a completely new <code>Group</code> model.<br>
+<strong>Pros:</strong> Creating a completely new <code>Group</code> Model gives the developer fine-grained control
+over a <code>Group</code> and logically separates <code>Group</code> from a <code>Tag</code>, which makes implementation
+of <code>Group</code> commands distinct from <code>Tag</code> commands. This allows a developer to freely extend
+and add new <code>Group</code> commands without affecting or being confined by the <code>Tag</code> model.<br>
+<strong>Cons:</strong> It takes alot of time to create and integrate a new <code>Group</code> model.<br>
+<strong>Alternative 2:</strong> Modify the <code>Tag</code> model to perform 'Group-like` functions. <br>
+<strong>Pros:</strong> Less time is needed to modify <code>Tag</code> and integration of new commands will be simple.<br>
+<strong>Cons:</strong> The <code>Tag</code> model does not provide a clear and logical separation of duties for
+<code>Group</code> functions and is limited in its structure to allow fine-grained control over
+the addition and removal of 'members'.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="schedule"><a class="link" href="#schedule">Schedule</a></h3>
+<div class="paragraph">
+<p>To allow a user to pull events from Google Calendar, add and remove events, a <code>Schedule</code> model is created with its constituent components as shown in the class diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ScheduleClassDiagram.png" alt="ScheduleClassDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.1 : Schedule Class Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Schedule</code> is composed of a <code>ScheduleName</code> and a <code>ScheduleDate</code>. Every <code>Person</code> in address book
+has a <code>UniqueScheduleList</code>, which contains a list of <code>Schedule</code> objects. A <code>Schedule</code> is accessed
+by accessing the <code>UniqueScheduleList</code> of a person through the <code>UniquePersonList</code> maintained in
+<code>ModelManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>googlecalendarutil</code> package is created and it contains helper methods to query the
+Google Calendar API, parse <code>JSON</code> reponses and the corresponding datetime strings.</p>
+</div>
+<div class="sect3">
+<h4 id="adding-events-from-a-person-s-google-calendar"><a class="link" href="#adding-events-from-a-person-s-google-calendar">Adding events from a person&#8217;s Google Calendar</a></h4>
+<div class="paragraph">
+<p>To obtain events from a person&#8217;s Google Calendar, <code>EventParserUtil</code> and <code>ServiceHandlerUtil</code> are used.
+<code>EventParserUtil</code> queries <code><a href="https://www.googleapis.com/calendar/v3/calendars/" class="bare">https://www.googleapis.com/calendar/v3/calendars/</a></code> with a user&#8217;s specified
+<code>CALENDAR_ID</code> and parses the corresponding <code>JSON</code> response as shown in the code snippet below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> UniqueScheduleList getScheduleList(<span class="predefined-type">String</span> calendarId) <span class="directive">throws</span> <span class="exception">IOException</span>, IllegalValueException {
+        UniqueScheduleList scheduleList = <span class="keyword">new</span> UniqueScheduleList();
+        <span class="predefined-type">String</span> apiUrl = API + calendarId + QUERY + KEY;
+        <span class="predefined-type">String</span> response = ServiceHandlerUtil.makeCall(apiUrl);
+        ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();
+        JsonNode root = mapper.readTree(response);
+        JsonNode events = root.at(EVENTS);
+        <span class="keyword">for</span> (JsonNode event: events) {
+            scheduleList.add(getSingleSchedule(event));
+        }
+        <span class="keyword">return</span> scheduleList;
+
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the <code>CALENDAR_ID</code> is valid, Google responds with a <code>JSON</code> response that is subsequently parsed and used
+to construct a <code>UniqueScheduleList</code> comprising of <code>Schedule</code> objects.</p>
+</div>
+<div class="paragraph">
+<p>The Google Calendar API is accessed by a <code>HTTP GET</code> which is implemented in <code>ServiceHandlerUtil</code> as shown
+below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>public static String makeCall(String url) throws IOException {
+
+        URL obj = new URL(url);
+
+        HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+        connection.setRequestMethod("GET");
+
+        return getResponseString(connection);
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After obtaining a <code>UniqueScheduleList</code> from <code>EventParserUtil</code>, a call to updatePerson is made
+with a new <code>UniqueSheduleList</code> inserted into the edited person.
+The sequence diagram below captures the program flow when an add calendar command is executed:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCalendarSdForLogic.png" alt="AddCalendarSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.2 : Interactions Inside the Logic Component for the <code>cadd</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-and-removing-events"><a class="link" href="#adding-and-removing-events">Adding and removing events</a></h4>
+<div class="paragraph">
+<p>The add and remove event mechanism is facilitated by <code>AddEventCommand</code> and <code>DeleteEventCommand</code> respectively.
+A helper method is called in these commands to add or remove an event and is implemented as such:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    private Person addEventToPerson(ReadOnlyPerson personToEdit, String personName) throws ParseException {
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        ProfPic updatedProfPic = personToEdit.getProfPic();
+        Favourite updatedFavourite = personToEdit.getFavourite();
+        Set&lt;Tag&gt; updatedTags = personToEdit.getTags();
+        Set&lt;Group&gt; updatedGroups = personToEdit.getGroups();
+        UniqueScheduleList updatedScheduleList = personToEdit.scheduleProperty().get();
+        Set&lt;SocialMedia&gt; updatedSocialMediaList = personToEdit.getSocialMedia();
+
+        try {
+            updatedScheduleList.add(this.schedule);
+        } catch (DuplicateScheduleException e) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_SCHEDULE, personName));
+        }
+
+        /** Ensure scheduleList is in order **/
+        updatedScheduleList.sort();
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedFavourite,
+                updatedProfPic, updatedTags, updatedGroups, updatedScheduleList.toSet(), updatedSocialMediaList);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>DuplicateScheduleException</code> is thrown if an identical <code>Schedule</code> is present in the
+person&#8217;s <code>UniqueScheduleList</code>. Afterwhich, <code>updatePerson</code> in <code>ModelManager</code> is invoked to update
+the person with the updated <code>UniqueScheduleList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, a helper method is called to remove event(s) from a person in <code>DeleteEventCommand</code> as such:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>private Person removeEventFromPerson(ReadOnlyPerson personToEdit) throws ParseException {
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        Favourite updatedFavourite = personToEdit.getFavourite();
+        ProfPic updatedProfPic = personToEdit.getProfPic();
+        Set&lt;Tag&gt; updatedTags = personToEdit.getTags();
+        Set&lt;Group&gt; updatedGroups = personToEdit.getGroups();
+        UniqueScheduleList updatedScheduleList = personToEdit.scheduleProperty().get();
+        Set&lt;SocialMedia&gt; updatedSocialMediaList = personToEdit.getSocialMedia();
+
+        if (updatedScheduleList.asObservableList().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_NO_EVENTS, updatedName.fullName));
+        }
+
+        ReadOnlySchedule[] schedulesToDelete = new ReadOnlySchedule[eventIndexes.length];
+        for (int i = 0; i &lt; eventIndexes.length; i++) {
+            try {
+                schedulesToDelete[i] = updatedScheduleList.asObservableList().get(eventIndexes[i].getZeroBased());
+            } catch (IndexOutOfBoundsException e) {
+                throw new ParseException(MESSAGE_NO_SUCH_EVENT);
+            }
+        }
+
+        for (int i = 0; i &lt; eventIndexes.length; i++) {
+            try {
+                updatedScheduleList.remove(schedulesToDelete[i]);
+            } catch (ScheduleNotFoundException e) {
+                throw new ParseException(MESSAGE_NO_SUCH_EVENT);
+            }
+        }
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedFavourite, updatedProfPic, updatedTags, updatedGroups,
+                updatedScheduleList.toSet(), updatedSocialMediaList);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>ScheduleNotFoundException</code> is thrown if a specified <code>Schedule</code> is not present in the
+person&#8217;s <code>UniqueScheduleList</code>. Afterwhich, <code>updatePerson</code> in <code>ModelManager</code> is invoked to update
+the person with the updated <code>UniqueScheduleList</code>.</p>
+</div>
+<div class="paragraph">
+<p>The follow sequence diagrams capture the program flow during the execution of add event and delete event
+respectively:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddEventSdForLogic.png" alt="AddEventSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.3a : Interactions Inside the Logic Component for the <code>eadd</code> Command</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteEventSdForLogic.png" alt="DeleteEventSdForLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 4.4.3b : Interactions Inside the Logic Component for the <code>edelete</code> Command</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of pulling events from Google Calendar<br>
+<strong>Alternative 1 (current choice):</strong> Access Google Calendar API with an <code>API KEY</code><br>
+<strong>Pros:</strong> The developer&#8217;s <code>API KEY</code> can be used to obtain events for every user without<br>
+the user having to log in.<br>
+<strong>Cons:</strong> Using an <code>API KEY</code> only allows for limited Google Calendar functionality
+and there is no way to add or remove events to a user securely or easily.<br>
+<strong>Alternative 2:</strong> Log in to Google and access an oAuth token to access Google Calendar API. <br>
+<strong>Pros:</strong> Functionality such as adding or removing events from a user securely can be implemented.<br>
+<strong>Cons:</strong> Coding the login function to Google is highly involved and tedious.<br></p>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -712,7 +1535,7 @@ the addition and removal of 'members'.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 14:12:19 +00:00
+Last updated 2017-11-13 14:42:33 +00:00
 </div>
 </div>
 </body>
