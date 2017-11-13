@@ -167,9 +167,6 @@ Restores the address book data to the state before the previous _undoable_ comma
 
 ==== Viewing the command usage:
 
-`help clear` +
-The usage of "clear" command will be shown in the result box.
-
 `help` +
 The help window will be shown.
 
