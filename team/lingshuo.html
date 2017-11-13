@@ -16,16 +16,19 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="bamboo"><a class="link" href="#bamboo">Bamboo</a></h2>
+<h2 id="project-bamboo"><a class="link" href="#project-bamboo">Project: Bamboo</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Bamboo is a desktop address book application developed as part of a Software Engineering module requirement. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+<p>Bamboo is a desktop address book application developed as part of a Software Engineering module requirement.
+The target audience is students or possibly business people as Bamboo provides an easy but efficient approach to
+manage contacts. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java,
+and has about 22 kLoC.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W09-B4/main/edit/collate/collated/main/jiangLingshuo.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W09-B4/main/blob/collate/collated/test/jiangLingshuo.md">Test code</a>] {give links to collated code files}</p>
+<p><strong>Code contributed</strong>:[<a href="https://github.com/CS2103AUG2017-W09-B4/main/blob/master/collated/main/jianglingshuo.md">Functional code</a>][<a href="https://github.com/CS2103AUG2017-W09-B4/main/blob/master/collated/test/jianglingshuo.md">Test code</a>]</p>
 </div>
 <div class="sect2">
-<h3 id="enhancement-added-group-function-find-function"><a class="link" href="#enhancement-added-group-function-find-function">Enhancement Added: Group Function&amp;Find Function</a></h3>
+<h3 id="enhancement-added-group-function-find-function"><a class="link" href="#enhancement-added-group-function-find-function">Enhancement Added: Group Function &amp; Find Function</a></h3>
 <div class="sect3">
 <h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
 <hr>
@@ -35,88 +38,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<h3 id="locating-persons-by-name-address-email-or-phone-number-code-find-code-since-v1-4"><a class="link" href="#locating-persons-by-name-address-email-or-phone-number-code-find-code-since-v1-4">Locating persons by name, address, email or phone number: <code>find</code> (Since V1.4)</a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code><br>
-Alias: <code>u</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>select 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
-<div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code><br>
-Alias: <code>r</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4"><a class="link" href="#locating-persons-by-name-address-or-phone-number-code-find-code-since-v1-4">Locating persons by name, address or phone number: <code>find</code> (Since V1.4)</a></h3>
-<div class="paragraph">
-<p>Finds persons whose names or name initials or address or phone number contain any of the given keywords.<br>
+<p>Finds persons whose names or name initials or address or phone number or email contain any of the given keywords.<br>
 Format: <code>find [n/] [p/] [e/] [a/] [t/] KEYWORD [MORE_KEYWORDS]</code><br>
 Alias: <code>f</code></p>
 </div>
@@ -131,16 +55,13 @@ Alias: <code>f</code></p>
 <p>The search can be done with initials. e.g. <code>AY</code> will match <code>Alex Yeoh</code></p>
 </li>
 <li>
-<p>The search can be done with partial string. e.g. <code>Ber</code> will match <code>Bernice Yu</code></p>
+<p>The search can be done with partial strings. e.g. <code>Ber</code> will match <code>Bernice Yu</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Name, phone number and addresses are searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>Persons can be searched by name, phone number, email or address.</p>
 </li>
 <li>
 <p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
@@ -188,6 +109,51 @@ Returns any person with tags containing keyword <code>friends</code></p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">Adding a person: <code>add</code></a></h3>
+<div class="paragraph">
+<p>Adds a person to the address book<br>
+Format: <code>add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+Alias: <code>a</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person must have 1 name<br>
+A person can have 0 or 1 phone number, email and address<br>
+A person can have any number of tags (including 0)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/John Doe</code><br>
+Add person <code>John Doe</code> with empty phone, email and address as <code>---</code></p>
+</li>
+<li>
+<p><code>add n/John Doe p/71625387</code><br>
+Add person <code>John Doe</code> with phone <code>71625387</code></p>
+</li>
+<li>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code><br>
+Add <code>John Doe</code> with all fields</p>
+</li>
+<li>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code><br>
+Add <code>Betsy Crowe</code> and the following fields with a tag <code>Criminal</code></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
@@ -197,15 +163,14 @@ Returns any person with tags containing keyword <code>friends</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Having a group feature can be regarded as a new framework under our current project.
-It is different from tag system although both serve as linking one person with a particular
-attribute. However, with group implementation, this software can be furthered evolved with more group
-applications such as group meeting tasks</p>
-</li>
-<li>
 <p>Enhancing find functions is essential for a large size address book. By allowing multiple ways of finding,
 users could actually access the contacts by remembering anything, names, emails, address&#8230;&#8203; and even
 partial name searching is supported</p>
+</li>
+<li>
+<p>Enhancing add functions has great practical value for users. Normally users do not have every detail of their contacts.
+Normally, people may want to save their contact with limited knowledge of their phones, emails and addresses.
+Especially for students and business people, adding a person with missing field is convenient and require less for users.</p>
 </li>
 </ul>
 </div>
@@ -219,220 +184,72 @@ partial name searching is supported</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">Undo/Redo mechanism</a></h3>
+<h3 id="finding"><a class="link" href="#finding">Finding</a></h3>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The finding mechanism is facilitated by <code>FindCommand</code>, which extends <code>Command</code>.
+It supports finding a list of specific persons by entering any substring of a person&#8217;s contact field.
+This includes a person&#8217;s name, phone number, email, address or even their tags with <code>PREFIX</code> specified.<br></p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
+<p>The sequence diagram below details the flow the execution of a <code>find p/1</code> command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
+<img src="../images/FindSequenceDiagram.png" alt="FindSequenceDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 4.1.1 : Structure of Undo/Redo Command</em></p>
-</div>
-<div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the address book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
-</div>
-<div class="paragraph">
-<p>Commands that are not undoable are implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">ListCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... list logic ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With the extra layer, the commands that are undoable are implemented this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">UndoableCommand</span> <span class="directive">extends</span> Command {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult execute() {
-        <span class="comment">// ... undo logic ...</span>
-
-        executeUndoableCommand();
-    }
-}
-
-<span class="directive">public</span> <span class="type">class</span> <span class="class">DeleteCommand</span> <span class="directive">extends</span> UndoableCommand {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> CommandResult executeUndoableCommand() {
-        <span class="comment">// ... delete logic ...</span>
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
-</div>
-<div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the address book. The current state of the address book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.2a : State of UndoRedoStack when executing delete</em>
-As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new person.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.2b : State of UndoRedoStack when executing add</em></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not be pushed to the <code>UndoRedoStack</code> at all.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The user now decides that adding the person was a mistake, and decides to undo that action using <code>undo</code>.</p>
-</div>
-<div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the address book to the state before the <code>add</code> command executed.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.2c : State of UndoRedoStack when executing undo</em></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>undoStack</code> is empty, then there are no other commands left to be undone, and an <code>Exception</code> will be thrown when popping the <code>undoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.3 : Interactions Inside the Logic Component for the <code>undo</code> Command</em></p>
-</div>
-<div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and an <code>Exception</code> will be thrown when popping the <code>redoStack</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.4a : State of UndoRedoStack when executing clear</em></p>
-</div>
-<div class="paragraph">
-<p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.4b : State of UndoRedoStack when executing undo</em></p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarize what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="200">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 4.1.5 : Activity Diagram of UndoRedoStack</em></p>
+<p>Finding a person is facilitated using <code>PartialSearchUtil</code>, which examines whether a base list contains any word whose
+substring appears in the target list. It maps each attribute to the <code>find</code> parser and returns a list of persons
+matching find condition.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Implementation of <code>UndoableCommand</code><br>
-<strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code><br>
-<strong>Pros:</strong> We will not lose any undone/redone functionality as it is now part of the default behaviour. Classes that deal with <code>Command</code> do not have to know that <code>executeUndoableCommand()</code> exist.<br>
-<strong>Cons:</strong> Hard for new developers to understand the template pattern.<br>
-<strong>Alternative 2:</strong> Just override <code>execute()</code><br>
-<strong>Pros:</strong> Does not involve the template pattern, easier for new developers to understand.<br>
-<strong>Cons:</strong> Classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to undo/redo.</p>
+<p><strong>Aspect:</strong> Implementation of <code>find</code><br>
+<strong>Alternative 1 (current choice):</strong> Find person by a list of substrings or name initials<br>
+<strong>Pros:</strong> Easy and neat for implementation<br>
+A lot of real user case shows finding by substring and name initials are prevailing among users<br>
+<strong>Cons:</strong> Unable to handle typo mistakes and order mistakes<br>
+<strong>Alternative 2:</strong> Perform fuzzy search by editing distance<br>
+<strong>Pros:</strong> Able to fix typos and order mistakes<br>
+<strong>Cons:</strong> Slow in running and hard to implement<br>
+Partial string will have a big editing distance.</p>
 </div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> How undo &amp; redo executes<br>
-<strong>Alternative 1 (current choice):</strong> Saves the entire address book.<br>
-<strong>Pros:</strong> Easy to implement.<br>
-<strong>Cons:</strong> May have performance issues in terms of memory usage.<br>
-<strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.<br>
-<strong>Pros:</strong> Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).<br>
-<strong>Cons:</strong> We must ensure that the implementation of each individual command are correct.</p>
 </div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> Type of commands that can be undone/redone<br>
-<strong>Alternative 1 (current choice):</strong> Only include commands that modifies the address book (<code>add</code>, <code>clear</code>, <code>edit</code>).<br>
-<strong>Pros:</strong> We only revert changes that are hard to change back (the view can easily be re-modified as no data are lost).<br>
-<strong>Cons:</strong> User might think that undo also applies when the list is modified (undoing filtering for example), only to realize that it does not do that, after executing <code>undo</code>.<br>
-<strong>Alternative 2:</strong> Include all commands.<br>
-<strong>Pros:</strong> Might be more intuitive for the user.<br>
-<strong>Cons:</strong> User have no way of skipping such commands if he or she just want to reset the state of the address book and not the view.<br>
-<strong>Additional Info:</strong> See our discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
 </div>
-<hr>
+<div class="sect2">
+<h3 id="adding"><a class="link" href="#adding">Adding</a></h3>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Data structure to support the undo/redo commands<br>
-<strong>Alternative 1 (current choice):</strong> Use separate stack for undo and redo<br>
-<strong>Pros:</strong> Easy to understand for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.<br>
-<strong>Cons:</strong> Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>UndoRedoStack</code>.<br>
-<strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo<br>
-<strong>Pros:</strong> We do not need to maintain a separate stack, and just reuse what is already in the codebase.<br>
-<strong>Cons:</strong> Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.<br></p>
+<p>The finding mechanism is facilitated by <code>AddCommand</code>, which extends <code>Command</code>.
+It supports adding a person into address book with name, and alternative fields phone, email, address and tag
+Missing field with be displayed as <code>---</code><br></p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below details the flow the execution of a <code>add n/Lingshuo</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddSequenceDiagram.png" alt="AddSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>This functionality is supported by requiring only name in argMultimap.<br>
+Other empty field among email, address and phone number will be marked with name of <code>---</code></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>add</code><br>
+<strong>Alternative 1 (current choice):</strong> once detect a missing field in arguMultimap for phone, address or email,
+create the corresponding field with a false name of <code>---</code><br>
+<strong>Pros:</strong> Easy and neat for implementation<br>
+Low coupling with other parts of the program<br>
+<strong>Cons:</strong> Not good for future detection and correction of missing fields<br>
+<strong>Alternative 2:</strong> replace required field phone, email and address in Person model with Optional<br>
+<strong>Pros:</strong> Standard implementation and implement the missing of the fields properly<br>
+<strong>Cons:</strong> SHigh coupling with other classes<br>
+Not user friendly on UI.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -441,10 +258,10 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhancement-proposed-enhance-add-command-so-that-can-take-in-a-incomplete-field-and-propose-for-completion"><a class="link" href="#enhancement-proposed-enhance-add-command-so-that-can-take-in-a-incomplete-field-and-propose-for-completion">Enhancement Proposed: Enhance add command so that can take in a incomplete field and propose for completion</a></h3>
+<h3 id="enhancement-proposed-generate-qr-code-for-adding-person"><a class="link" href="#enhancement-proposed-generate-qr-code-for-adding-person">Enhancement Proposed: Generate QR code for adding person</a></h3>
 <div class="paragraph">
-<p>Support adding a person by a few fields included with <code>PREFIX</code>, and search for persons with empty field
-as well as propose for completion to the user every time address book is launched</p>
+<p>Support generating QR code for existing contacts. Scanning the QR code will generate add command
+instructions for another user. This enhancement would increase the interactive functionality between users.</p>
 </div>
 </div>
 <div class="sect2">
@@ -452,7 +269,10 @@ as well as propose for completion to the user every time address book is launche
 <div class="ulist">
 <ul>
 <li>
-<p>Write Test Case Group Test (Pull requests <a href="https://github.com/CS2103AUG2017-W09-B4/main/pull/84">#36</a>)</p>
+<p>Write Test Case Group Test (Pull requests <a href="https://github.com/CS2103AUG2017-W09-B4/main/pull/84">#84</a>)</p>
+</li>
+<li>
+<p>Write System Tests for add and find command (Pull requests <a href="https://github.com/CS2103AUG2017-W09-B4/main/pull/100">#100</a>)</p>
 </li>
 </ul>
 </div>
@@ -470,7 +290,7 @@ as well as propose for completion to the user every time address book is launche
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 14:52:08 +00:00
+Last updated 2017-11-13 14:53:20 +00:00
 </div>
 </div>
 </body>
