@@ -46,10 +46,8 @@ Five persons with address containing "blk" will be listed.
 One person with the name "Alex Yeoh" is listed.
 
 ==== Sorting list of persons:
-+
 [NOTE]
 `Favourite` persons will not be sorted.
-+
 
 `sort` +
 Returns list of persons sorted by name added in ascending order.
