@@ -52,14 +52,16 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
 <li><a href="#sorting">4.2. Sorting</a></li>
-<li><a href="#groups">4.3. Groups</a></li>
-<li><a href="#schedule">4.4. Schedule</a></li>
-<li><a href="#finding">4.5. Finding</a></li>
-<li><a href="#logging">4.6. Logging</a></li>
-<li><a href="#configuration">4.7. Configuration</a></li>
-<li><a href="#favourite-contact-system">4.8. Favourite Contact System</a></li>
-<li><a href="#profile-picture-feature">4.9. Profile Picture Feature</a></li>
-<li><a href="#user-interface-ui">4.10. User Interface (UI)</a></li>
+<li><a href="#finding">4.3. Finding</a></li>
+<li><a href="#adding">4.4. Adding</a></li>
+<li><a href="#groups">4.5. Groups</a></li>
+<li><a href="#schedule">4.6. Schedule</a></li>
+<li><a href="#finding-2">4.7. Finding</a></li>
+<li><a href="#logging">4.8. Logging</a></li>
+<li><a href="#configuration">4.9. Configuration</a></li>
+<li><a href="#favourite-contact-system">4.10. Favourite Contact System</a></li>
+<li><a href="#profile-picture-feature">4.11. Profile Picture Feature</a></li>
+<li><a href="#user-interface-ui">4.12. User Interface (UI)</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -988,7 +990,77 @@ any future changes to these classes may be more contrived and difficult.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="groups"><a class="link" href="#groups">4.3. Groups</a></h3>
+<h3 id="finding"><a class="link" href="#finding">4.3. Finding</a></h3>
+<div class="paragraph">
+<p>The finding mechanism is facilitated by <code>FindCommand</code>, which extends <code>Command</code>.
+It supports finding a list of specific persons by entering any substring of a person&#8217;s contact field.
+This includes a person&#8217;s name, phone number, email, address or even their tags with <code>PREFIX</code> specified.<br></p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below details the flow the execution of a <code>find p/1</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FindSequenceDiagram.png" alt="FindSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Finding a person is facilitated using <code>PartialSearchUtil</code>, which examines whether a base list contains any word whose
+substring appears in the target list. It maps each attribute to the <code>find</code> parser and returns a list of persons
+matching find condition.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>find</code><br>
+<strong>Alternative 1 (current choice):</strong> Find person by a list of substrings or name initials<br>
+<strong>Pros:</strong> Easy and neat for implementation<br>
+A lot of real user case shows finding by substring and name initials are prevailing among users<br>
+<strong>Cons:</strong> Unable to handle typo mistakes and order mistakes<br>
+<strong>Alternative 2:</strong> Perform fuzzy search by editing distance<br>
+<strong>Pros:</strong> Able to fix typos and order mistakes<br>
+<strong>Cons:</strong> Slow in running and hard to implement<br>
+Partial string will have a big editing distance.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding"><a class="link" href="#adding">4.4. Adding</a></h3>
+<div class="paragraph">
+<p>The finding mechanism is facilitated by <code>AddCommand</code>, which extends <code>Command</code>.
+It supports adding a person into address book with name, and alternative fields phone, email, address and tag
+Missing field with be displayed as <code>---</code><br></p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below details the flow the execution of a <code>add n/Lingshuo</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>This functionality is supported by requiring only name in argMultimap.<br>
+Other empty field among email, address and phone number will be marked with name of <code>---</code></p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>add</code><br>
+<strong>Alternative 1 (current choice):</strong> once detect a missing field in arguMultimap for phone, address or email,
+create the corresponding field with a false name of <code>---</code><br>
+<strong>Pros:</strong> Easy and neat for implementation<br>
+Low coupling with other parts of the program<br>
+<strong>Cons:</strong> Not good for future detection and correction of missing fields<br>
+<strong>Alternative 2:</strong> replace required field phone, email and address in Person model with Optional<br>
+<strong>Pros:</strong> Standard implementation and implement the missing of the fields properly<br>
+<strong>Cons:</strong> SHigh coupling with other classes<br>
+Not user friendly on UI.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="groups"><a class="link" href="#groups">4.5. Groups</a></h3>
 <div class="paragraph">
 <p>The <code>Group</code> suite of features are implemented by creating a new <code>Group</code> model with its constituent components as shown in the class
 diagram below:</p>
@@ -1009,7 +1081,7 @@ The Groups in address book are contained in <code>UniqueGroupList</code>, which 
 person(s) from groups.</p>
 </div>
 <div class="sect3">
-<h4 id="creating-and-deleting-groups"><a class="link" href="#creating-and-deleting-groups">4.3.1. Creating and Deleting Groups</a></h4>
+<h4 id="creating-and-deleting-groups"><a class="link" href="#creating-and-deleting-groups">4.5.1. Creating and Deleting Groups</a></h4>
 <div class="paragraph">
 <p>The create and delete group mechanism is facilitated by <code>CreateGroupCommand</code> and <code>DeleteGroupCommand</code> respectively, which extends <code>UndoableCommand</code>.
 The <code>CreateGroupCommand</code> allows a user to create a group with a desired <code>GroupName</code> specified by the
@@ -1072,7 +1144,7 @@ The following sequence diagram captures the program flow when a user creates a g
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-and-removing-a-person-from-a-group"><a class="link" href="#adding-and-removing-a-person-from-a-group">4.3.2. Adding and removing a person from a Group</a></h4>
+<h4 id="adding-and-removing-a-person-from-a-group"><a class="link" href="#adding-and-removing-a-person-from-a-group">4.5.2. Adding and removing a person from a Group</a></h4>
 <div class="paragraph">
 <p>The <code>AddPersonToGroupCommand</code> and <code>RemovePersonFromGroupCommand</code>, which extends <code>UndoableCommand</code>, is
 responsible for adding and removing a person from a group.
@@ -1145,7 +1217,7 @@ changes are saved to storage as well.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.3. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.3. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>Group</code><br>
 <strong>Alternative 1 (current choice):</strong> Implement a completely new <code>Group</code> model.<br>
@@ -1163,7 +1235,7 @@ the addition and removal of 'members'.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="schedule"><a class="link" href="#schedule">4.4. Schedule</a></h3>
+<h3 id="schedule"><a class="link" href="#schedule">4.6. Schedule</a></h3>
 <div class="paragraph">
 <p>To allow a user to pull events from Google Calendar, add and remove events, a <code>Schedule</code> model is created with its constituent components as shown in the class diagram below:</p>
 </div>
@@ -1186,7 +1258,7 @@ by accessing the <code>UniqueScheduleList</code> of a person through the <code>U
 Google Calendar API, parse <code>JSON</code> reponses and the corresponding datetime strings.</p>
 </div>
 <div class="sect3">
-<h4 id="adding-events-from-a-person-s-google-calendar"><a class="link" href="#adding-events-from-a-person-s-google-calendar">4.4.1. Adding events from a person&#8217;s Google Calendar</a></h4>
+<h4 id="adding-events-from-a-person-s-google-calendar"><a class="link" href="#adding-events-from-a-person-s-google-calendar">4.6.1. Adding events from a person&#8217;s Google Calendar</a></h4>
 <div class="paragraph">
 <p>To obtain events from a person&#8217;s Google Calendar, <code>EventParserUtil</code> and <code>ServiceHandlerUtil</code> are used.
 <code>EventParserUtil</code> queries <code><a href="https://www.googleapis.com/calendar/v3/calendars/" class="bare">https://www.googleapis.com/calendar/v3/calendars/</a></code> with a user&#8217;s specified
@@ -1246,7 +1318,7 @@ The sequence diagram below captures the program flow when an add calendar comman
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-and-removing-events"><a class="link" href="#adding-and-removing-events">4.4.2. Adding and removing events</a></h4>
+<h4 id="adding-and-removing-events"><a class="link" href="#adding-and-removing-events">4.6.2. Adding and removing events</a></h4>
 <div class="paragraph">
 <p>The add and remove event mechanism is facilitated by <code>AddEventCommand</code> and <code>DeleteEventCommand</code> respectively.
 A helper method is called in these commands to add or remove an event and is implemented as such:</p>
@@ -1354,7 +1426,7 @@ respectively:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.3. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.3. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of pulling events from Google Calendar<br>
 <strong>Alternative 1 (current choice):</strong> Access Google Calendar API with an <code>API KEY</code><br>
@@ -1369,7 +1441,7 @@ and there is no way to add or remove events to a user securely or easily.<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding"><a class="link" href="#finding">4.5. Finding</a></h3>
+<h3 id="finding-2"><a class="link" href="#finding-2">4.7. Finding</a></h3>
 <div class="paragraph">
 <p>The finding mechanism is facilitated by <code>FindCommand</code>, which extends <code>Command</code>.
 It supports finding a list of specific persons by entering any substring of a person&#8217;s contact field.
@@ -1382,7 +1454,7 @@ matching find condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1420,18 +1492,18 @@ matching find condition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.7. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">4.8. Favourite Contact System</a></h3>
+<h3 id="favourite-contact-system"><a class="link" href="#favourite-contact-system">4.10. Favourite Contact System</a></h3>
 <div class="paragraph">
 <p>The commands related to the Favourite system rely on the <code>Favourite</code> attribute class which is a <code>Person</code> component.</p>
 </div>
 <div class="sect3">
-<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.8.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
+<h4 id="add-remove-contact-from-favourites-since-v1-2"><a class="link" href="#add-remove-contact-from-favourites-since-v1-2">4.10.1. Add &amp; Remove contact from Favourites (since V1.2)</a></h4>
 <div class="paragraph">
 <p><strong>Adding a Favourite:</strong> This feature&#8217;s functions are mainly contained in the command class <code>AddFavouriteCommand</code> with its
 supporting parser class <code>AddFavouriteCommandParser</code>:</p>
@@ -1470,7 +1542,7 @@ retreived from the parsed index has their <code>Favourite</code> attribute updat
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.8.2. Listing of only Favourite contacts (since V1.3)</a></h4>
+<h4 id="listing-of-only-favourite-contacts-since-v1-3"><a class="link" href="#listing-of-only-favourite-contacts-since-v1-3">4.10.2. Listing of only Favourite contacts (since V1.3)</a></h4>
 <div class="paragraph">
 <p><strong>List command option:</strong> The <strong>list</strong> command now has an option to list only contacts marked as favourites with
 "list /f". This feature works by updating the model&#8217;s <code>filteredList</code> of <code>Person</code> objects with the predicate
@@ -1478,7 +1550,7 @@ retreived from the parsed index has their <code>Favourite</code> attribute updat
 </div>
 </div>
 <div class="sect3">
-<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.8.3. Other modifications to existing components to handle favourites (since V1.4)</a></h4>
+<h4 id="other-modifications-to-existing-components-to-handle-favourites-since-v1-4"><a class="link" href="#other-modifications-to-existing-components-to-handle-favourites-since-v1-4">4.10.3. Other modifications to existing components to handle favourites (since V1.4)</a></h4>
 <div class="paragraph">
 <p><code>UniquePersonList</code>: The <strong>setPerson()</strong> function (that is called whenever a <strong>Person</strong> object has been modified)
 also changes a `Person&#8217;s order in the model list if their <strong>Favourite</strong> attribute&#8217;s value has been changed.</p>
@@ -1497,7 +1569,7 @@ and inserted into the position after the last favourite person in the internal m
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.4. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.10.4. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Storage of <code>Favourite</code> status<br>
 <strong>Alternative 1 (current choice):</strong> Add a new attribute class to Person, <code>Favourite</code><br>
@@ -1511,14 +1583,14 @@ and inserted into the position after the last favourite person in the internal m
 </div>
 </div>
 <div class="sect2">
-<h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">4.9. Profile Picture Feature</a></h3>
+<h3 id="profile-picture-feature"><a class="link" href="#profile-picture-feature">4.11. Profile Picture Feature</a></h3>
 <div class="paragraph">
 <p>A user&#8217;s profile picture is retrieved by and displayed in the UI class <code>MainContactPanel</code> with <strong>setContactImage(Person)</strong>.
 A contact&#8217;s path stored in a contact&#8217;s <code>ProfPic</code> person attribute can be modified with the use of 2 commands
 explained below.</p>
 </div>
 <div class="sect3">
-<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.9.1. Setting profile picture (since V1.4)</a></h4>
+<h4 id="setting-profile-picture-since-v1-4"><a class="link" href="#setting-profile-picture-since-v1-4">4.11.1. Setting profile picture (since V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Setting a new profile picture</strong>: This feature&#8217;s functions are mainly contained in the command class <code>SetPictureCommand</code>
 with its supporting parser class <code>SetPictureCommandParser</code>:</p>
@@ -1553,7 +1625,7 @@ the modified <strong>Person</strong> saved to the in-memory model list of <stron
 </div>
 </div>
 <div class="sect3">
-<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.9.2. Resetting profile picture (since V1.4)</a></h4>
+<h4 id="resetting-profile-picture-since-v1-4"><a class="link" href="#resetting-profile-picture-since-v1-4">4.11.2. Resetting profile picture (since V1.4)</a></h4>
 <div class="paragraph">
 <p><strong>Resetting a contact&#8217;s profile picture</strong> This feature&#8217;s functions are mainly contained in the command class <code>ResetPictureCommand</code>
 with it&#8217;s supporting parser class <code>ResetPictureCommandParser</code>:</p>
@@ -1575,16 +1647,16 @@ attribute&#8217;s path var to the default "maleIcon.png before saving the modifi
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">4.10. User Interface (UI)</a></h3>
+<h3 id="user-interface-ui"><a class="link" href="#user-interface-ui">4.12. User Interface (UI)</a></h3>
 <div class="sect3">
-<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">4.10.1. Layout of the user interface (since V1.1)</a></h4>
+<h4 id="layout-of-the-user-interface-since-v1-1"><a class="link" href="#layout-of-the-user-interface-since-v1-1">4.12.1. Layout of the user interface (since V1.1)</a></h4>
 <div class="paragraph">
 <p>The application uses various panels such as <code>StackPanes</code> and <code>BorderPanes</code> inside <code>.fxml</code> files that define the basic layout, with no content inside of it.
 Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">4.10.2. Layout of the contact details panel (since V1.2)</a></h4>
+<h4 id="layout-of-the-contact-details-panel-since-v1-2"><a class="link" href="#layout-of-the-contact-details-panel-since-v1-2">4.12.2. Layout of the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The main contact panel (MainContactPanel.fxml) uses a 2x2 <code>GridPane</code> to show the following:</p>
 </div>
@@ -1606,7 +1678,7 @@ Content is usually created or instantiated by code.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">4.10.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
+<h4 id="layout-of-contact-s-image-and-social-icons-since-v1-2"><a class="link" href="#layout-of-contact-s-image-and-social-icons-since-v1-2">4.12.3. Layout of contact&#8217;s image and social icons (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (0, 0) and (1, 0) cells of the main contact panel contain nested <code>BorderPane</code> objects. These <code>BorderPanes</code> then create <code>Circle</code> objects.</p>
 </div>
@@ -1619,7 +1691,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 </div>
 </div>
 <div class="sect3">
-<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.10.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
+<h4 id="layout-of-the-contact-s-details-since-v1-2"><a class="link" href="#layout-of-the-contact-s-details-since-v1-2">4.12.4. Layout of the contact&#8217;s details (since V1.2)</a></h4>
 <div class="paragraph">
 <p>The (1,0) cell of the main contact panel contains a <code>VBox</code> object that creates four empty <code>Label</code> objects in <code>setupContactDetailsBox()</code>.</p>
 </div>
@@ -1631,7 +1703,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 </div>
 </div>
 <div class="sect3">
-<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">4.10.5. Animation in the contact details panel (since V1.2)</a></h4>
+<h4 id="animation-in-the-contact-details-panel-since-v1-2"><a class="link" href="#animation-in-the-contact-details-panel-since-v1-2">4.12.5. Animation in the contact details panel (since V1.2)</a></h4>
 <div class="paragraph">
 <p>UI parts (nodes) in <a href="https://github.com/CS2103AUG2017-W09-B4/main/src/main/java/seedu/address/ui/ContactDetailsPanel.java"><code>ContactDetailsPanel.java</code></a> are passed into a method called <code>easeIn</code> in the same file. This method takes in <code>Node</code> objects and animates them through the use of various <code>Transitions</code> objects.</p>
 </div>
@@ -1640,7 +1712,7 @@ A <code>BorderPane</code> supports both positioning and resizing of objects insi
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.10.6. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.12.6. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of the user interface components<br>
 <strong>Alternative 1 (current choice):</strong> Basic layout by <code>.FXML</code> files,
@@ -2548,7 +2620,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 14:42:33 +00:00
+Last updated 2017-11-13 14:48:17 +00:00
 </div>
 </div>
 </body>
