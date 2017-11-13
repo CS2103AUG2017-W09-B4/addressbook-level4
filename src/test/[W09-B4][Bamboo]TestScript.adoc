@@ -37,27 +37,31 @@ Two persons with name containing the "Derek" substring will be listed.
 Seven persons with phone number containing "123" will be listed.
 
 `find e/gmail` +
-Four persons with email address containing "gmail" will be listed. 
+Four persons with email address containing "gmail" will be listed.
 
 `find a/blk` +
-Five persons with address containing "blk" will be listed. 
+Five persons with address containing "blk" will be listed.
 
 `find AY` +
-One person with the name "Alex Yeoh" is listed. 
+One person with the name "Alex Yeoh" is listed.
 
 ==== Sorting list of persons:
++
+[NOTE]
+`Favourite` persons will not be sorted.
++
 
 `sort` +
-Returns list of persons sorted by name added in ascending order. 
+Returns list of persons sorted by name added in ascending order.
 
 `sort p/` +
-Returns list of persons sorted by phone in ascending order when no order is specified. 
+Returns list of persons sorted by phone in ascending order when no order is specified.
 
 `sort e/r` +
-Returns list of persons sorted by email in descending order. 
+Returns list of persons sorted by email in descending order.
 
 `sort a/` +
-Returns list of persons sorted by address in ascending order. 
+Returns list of persons sorted by address in ascending order.
 
 ==== Selecting a person:
 
@@ -85,22 +89,22 @@ Changes the name of the second person to "Derek".
 ==== Deleting multiple person(s) from address book:
 
 `delete 3 4 5` +
-Deletes the third, fourth and fifth person from address book. 
+Deletes the third, fourth and fifth person from address book.
 
 ==== Marking/Unmarking a person as 'Favourite:
 
-`fadd 4` +
-A star should appear beside "David Li" and he will be shifted to the first position in the current contacts listing.
+`fadd 10` +
+A star should appear beside "Alex Yeoh" and he will be shifted to the second position in the current contacts listing.
 
-`fremove 1` +
-The star beside "David Li" should disappear and he will remain in the first position in the current contacts listing as there are no 'Favourite' perons above him.
+`fremove 2` +
+The star beside "Alex Yeoh" should disappear and he will be shifted to the eighth position in the current contacts listing as there are are seven 'Favourite' persons above him.
 
 ==== Creating/Deleting a Group:
 
 `gcreate n/Test` +
-A group "Test" will be created and added to the end of the current groups listing. 
+A group "Test" will be created and added to the end of the current groups listing.
 
-`gdelete 6` +
+`gdelete 7` +
 The "Test" group will be removed from the current groups listing.
 
 ==== Adding/Removing a person from a Group:
@@ -110,14 +114,13 @@ The "Test" group will be removed from the current groups listing.
 `sel g/1` +
 "Irfan Ibrahim" will be added to the first group, "Bamboo".
 
-`select g/1` +
-`gremove p/1 g/1 + 
+`gremove p/1 g/1 +
 "Irfan Ibrahim" will be removed from the first group, "Bamboo".
 
 ==== Adding Google Calendar Events of a contact:
 `list` +
-`cadd p/1 i/xderek105243x@gmail.com` +
-`select 1` +
+`cadd p/2 i/xderek105243x@gmail.com` +
+`select 2` +
 A list of events from xderek105243x@gmail.com will be added to the contact's schedule list.
 
 ==== Adding an event to a contact's schedule list:
@@ -129,7 +132,7 @@ A event "CS2103 Meeting" with the details above will be added to the second pers
 ==== Removing event(s) from a contact's schedule list:
 `list` +
 `select 2` +
-`edelete p/2 e/1` +
+`edelete p/2 e/9` +
 The event "CS2103 Meeting" is removed from the schedule list of the second person in the contacts listing.
 
 ===== Adding/Removing a profile picture to a contact:
