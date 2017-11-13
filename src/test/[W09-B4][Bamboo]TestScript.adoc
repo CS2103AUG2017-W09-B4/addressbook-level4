@@ -112,7 +112,7 @@ The "Test" group will be removed from the current groups listing.
 `sel g/1` +
 "Irfan Ibrahim" will be added to the first group, "Bamboo".
 
-`gremove p/1 g/1 +
+`gremove p/1 g/1` +
 "Irfan Ibrahim" will be removed from the first group, "Bamboo".
 
 ==== Adding Google Calendar Events of a contact:
