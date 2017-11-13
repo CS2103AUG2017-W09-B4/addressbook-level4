@@ -1,0 +1,185 @@
+= `[W09-B4] [Bamboo]` Test Script
+
+== Loading of sample data file
+The sample data file `[W09-B4][Bamboo]SampleData.xml` is inside the `test` folder, the same folder as this test script. +
+
+. Create a new empty folder named `data` within the same folder with `Bamboo.jar` file.
+. Copy the `SampleData.xml` into the `data` folder.
+. Rename the data file as `addressbook.xml`.
+
+== Explanation on user interface
+
+. The menu bar on top contains `File` and `Help`.
+. There are three panels - Contacts, Groups and Person Details
+. The leftmost panel shows the list of contacts present in Bamboo.
+. The middle panel shows the Groups present in Bamboo.
+. The rightmost panel shows the details of the person. (Eg. Name, Email, Schedule)
+
+Now we will manually test the functionality in groups.
+
+== Testing of the application
+
+Note that person list and event list is now in its natural order, based on the order it was first added.
+
+=== Display
+
+==== Listing all persons:
+
+`list` +
+Shows a list of all persons stored in address book.
+
+==== Finding persons by different attributes:
+
+`find Derek` +
+Two persons with name containing the "Derek" substring will be listed.
+
+`find p/123` +
+Seven persons with phone number containing "123" will be listed.
+
+`find e/gmail` +
+Four persons with email address containing "gmail" will be listed. 
+
+`find a/blk` +
+Five persons with address containing "blk" will be listed. 
+
+`find AY` +
+One person with the name "Alex Yeoh" is listed. 
+
+==== Sorting list of persons:
+
+`sort` +
+Returns list of persons sorted by name added in ascending order. 
+
+`sort p/` +
+Returns list of persons sorted by phone in ascending order when no order is specified. 
+
+`sort e/r` +
+Returns list of persons sorted by email in descending order. 
+
+`sort a/` +
+Returns list of persons sorted by address in ascending order. 
+
+==== Selecting a person:
+
+`select 1` +
+Selects the first person in the current person listing. The rightmost contact detail panel will show details of the first person.
+
+`select g/2` +
+Selects the second group in the group listing. The leftmost contact panel will display the group members of that group.
+
+=== Manage contacts
+
+==== Adding a person to address book:
+
+`add n/Doge p/98765432 e/doge@example.com a/doge street, block 123, #01-01` +
+A new person "Doge" will be added to the end of the list at the leftmost panel.
+
+==== Editing an existing person in address book:
+
+`edit 1 p/10101010` +
+Changes the phone number of the first person to "10101010".
+
+`edit 2 n/Derek` +
+Changes the name of the second person to "Derek".
+
+==== Deleting multiple person(s) from address book:
+
+`delete 3 4 5` +
+Deletes the third, fourth and fifth person from address book. 
+
+==== Marking/Unmarking a person as 'Favourite:
+
+`fadd 4` +
+A star should appear beside "David Li" and he will be shifted to the first position in the current contacts listing.
+
+`fremove 1` +
+The star beside "David Li" should disappear and he will remain in the first position in the current contacts listing as there are no 'Favourite' perons above him.
+
+==== Creating/Deleting a Group:
+
+`gcreate n/Test` +
+A group "Test" will be created and added to the end of the current groups listing. 
+
+`gdelete 6` +
+The "Test" group will be removed from the current groups listing.
+
+==== Adding/Removing a person from a Group:
+
+`list` +
+`gadd p/5 g/1` +
+`sel g/1` +
+"Irfan Ibrahim" will be added to the first group, "Bamboo".
+
+`select g/1` +
+`gremove p/1 g/1 + 
+"Irfan Ibrahim" will be removed from the first group, "Bamboo".
+
+==== Adding Google Calendar Events of a contact:
+`list` +
+`cadd p/1 i/xderek105243x@gmail.com` +
+`select 1` +
+A list of events from xderek105243x@gmail.com will be added to the contact's schedule list.
+
+==== Adding an event to a contact's schedule list:
+`list` +
+`eadd p/2 n/CS2103 Meeting s/2017-11-23 10:30 e/2017-11-23 11:45 d/Prepare for Demo` +
+`select 2` +
+A event "CS2103 Meeting" with the details above will be added to the second person in the contacts listing.
+
+==== Removing event(s) from a contact's schedule list:
+`list` +
+`select 2` +
+`edelete p/2 e/1` +
+The event "CS2103 Meeting" is removed from the schedule list of the second person in the contacts listing.
+
+===== Adding/Removing a profile picture to a contact:
+`list` +
+`ppset 1 fp/[file path of png/jpg]
+`select 1`+
+Download any png from the web run the command above with the respective file path.
+The profile picture of the first person in the contact list should change.
+
+`list` +
+`ppreset 1` +
+`select 1` +
+The profile picture of the first contact will be set to the default profile picture.
+
+
+==== Clearing all entries:
+
+`clear`
+Clears all entries from the address book. Person list panel, person detail panel and event list panel will be cleared.
+
+=== General commands
+
+==== Undoing previous command:
+
+`undo` +
+Restores the address book to the state before the previous _undoable_ command was executed.
+
+==== Redoing the previously undone command:
+
+`redo` +
+Reverses the most recent "undo" command. +
+`undo` +
+Restores the address book data to the state before the previous _undoable_ command is executed for further testing.
+
+==== Viewing the command usage:
+
+`help clear` +
+The usage of "clear" command will be shown in the result box.
+
+`help` +
+The help window will be shown.
+
+==== Listing entered commands:
+
+`history` +
+Lists all the commands entered in reverse chronological order.
+
+=== Exit
+
+==== Exiting the program:
+
+`exit` +
+Exits the program and finish the manual testing.
